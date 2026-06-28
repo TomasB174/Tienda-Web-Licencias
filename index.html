@@ -50,7 +50,7 @@
 
       <ul class="nav-links" id="navLinks">
         <li><a href="#productos" class="nav-link">Productos</a></li>
-        <li><a href="#categorias" class="nav-link">Categorías</a></li>
+        <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
         <li><a href="#caracteristicas" class="nav-link">¿Por qué nosotros?</a></li>
         <li><a href="#testimonios" class="nav-link">Reseñas</a></li>
         <li><a href="#faq" class="nav-link">FAQ</a></li>
@@ -114,7 +114,7 @@
 
       <div class="hero-stats animate-fade-up delay-4">
         <div class="stat-item">
-          <span class="stat-number" data-target="50000">0</span><span class="stat-suffix">+</span>
+          <span class="stat-number" data-target="20"></span><span class="stat-suffix">+</span>
           <span class="stat-label">Clientes Satisfechos</span>
         </div>
         <div class="stat-divider"></div>
@@ -129,16 +129,13 @@
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item">
-          <span class="stat-number" data-target="24">0</span><span class="stat-suffix">/7</span>
+          <span style="white-space: nowrap;"><span class="stat-number" data-target="24">0</span><span
+              class="stat-suffix">/7</span></span>
           <span class="stat-label">Soporte Activo</span>
         </div>
       </div>
     </div>
 
-    <div class="hero-scroll-hint">
-      <div class="scroll-line"></div>
-      <span>Scroll</span>
-    </div>
   </section>
 
   <div class="trust-bar">
@@ -180,83 +177,87 @@
       </div>
 
       <div class="bento-categories">
-        <div class="bento-cat cat-os glow-blue" onclick="filterCategory('os')">
+
+        <!-- Tarjeta 1 — Inteligencia Artificial -->
+        <a href="catalogo.html#ia" class="bento-cat cat-ia glow-purple">
           <div class="cat-icon">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="2" y="3" width="20" height="14" rx="2" />
-              <polyline points="8 21 12 17 16 21" />
+              <path d="M12 2a4 4 0 014 4v2h2a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2v-8a2 2 0 012-2h2V6a4 4 0 014-4z"/>
+              <circle cx="12" cy="14" r="2"/>
+            </svg>
+          </div>
+          <h3>Inteligencia Artificial</h3>
+          <p>ChatGPT, Gemini, Perplexity y más.</p>
+          <div class="cat-arrow">&#8594;</div>
+        </a>
+
+        <!-- Tarjeta 2 — Ecosistema Microsoft -->
+        <a href="catalogo.html#microsoft" class="bento-cat cat-office glow-blue">
+          <div class="cat-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="8" height="8" rx="1"/>
+              <rect x="13" y="3" width="8" height="8" rx="1"/>
+              <rect x="3" y="13" width="8" height="8" rx="1"/>
+              <rect x="13" y="13" width="8" height="8" rx="1"/>
+            </svg>
+          </div>
+          <h3>Ecosistema Microsoft</h3>
+          <p>Office, Project, Visio.</p>
+          <div class="cat-arrow">&#8594;</div>
+        </a>
+
+        <!-- Tarjeta 3 — Antivirus y Seguridad -->
+        <a href="catalogo.html#antivirus" class="bento-cat cat-security glow-green">
+          <div class="cat-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+          </div>
+          <h3>Antivirus y Seguridad</h3>
+          <p>McAfee, Avast, Kaspersky.</p>
+          <div class="cat-arrow">&#8594;</div>
+        </a>
+
+        <!-- Tarjeta 4 — Suscripciones y Creatividad -->
+        <a href="catalogo.html#creatividad" class="bento-cat cat-creative glow-orange">
+          <div class="cat-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
+            </svg>
+          </div>
+          <h3>Suscripciones y Creatividad</h3>
+          <p>Canva Pro, LinkedIn Premium.</p>
+          <div class="cat-arrow">&#8594;</div>
+        </a>
+
+        <!-- Tarjeta 5 — Sistemas Operativos -->
+        <a href="catalogo.html#sistemas-operativos" class="bento-cat cat-os glow-cyan">
+          <div class="cat-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <polyline points="8 21 12 17 16 21"/>
             </svg>
           </div>
           <h3>Sistemas Operativos</h3>
-          <p>Windows 10, 11, Server</p>
-          <span class="cat-count">12 productos</span>
+          <p>Windows 11, Windows Server.</p>
           <div class="cat-arrow">&#8594;</div>
-        </div>
+        </a>
 
-        <div class="bento-cat cat-office glow-purple" onclick="filterCategory('office')">
+        <!-- Tarjeta 6 — Desarrollo y Código -->
+        <a href="catalogo.html#desarrollo" class="bento-cat cat-dev glow-gold">
           <div class="cat-icon">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z" />
-              <polyline points="14 2 14 8 20 8" />
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+              <line x1="12" y1="2" x2="12" y2="22" opacity="0.4"/>
             </svg>
           </div>
-          <h3>Ofimática</h3>
-          <p>Microsoft 365, Office 2024</p>
-          <span class="cat-count">8 productos</span>
+          <h3>Desarrollo y Código</h3>
+          <p>Warp, Cursor, Herramientas dev.</p>
           <div class="cat-arrow">&#8594;</div>
-        </div>
+        </a>
 
-        <div class="bento-cat cat-security glow-green" onclick="filterCategory('security')">
-          <div class="cat-icon">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
-          </div>
-          <h3>Seguridad</h3>
-          <p>Antivirus, Firewall, VPN</p>
-          <span class="cat-count">15 productos</span>
-          <div class="cat-arrow">&#8594;</div>
-        </div>
-
-        <div class="bento-cat cat-creative glow-orange" onclick="filterCategory('creative')">
-          <div class="cat-icon">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path
-                d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
-            </svg>
-          </div>
-          <h3>Diseño Creativo</h3>
-          <p>Adobe CC, Canva Pro, Figma</p>
-          <span class="cat-count">10 productos</span>
-          <div class="cat-arrow">&#8594;</div>
-        </div>
-
-        <div class="bento-cat cat-dev glow-cyan" onclick="filterCategory('dev')">
-          <div class="cat-icon">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <polyline points="16 18 22 12 16 6" />
-              <polyline points="8 6 2 12 8 18" />
-            </svg>
-          </div>
-          <h3>Desarrollo</h3>
-          <p>Visual Studio, JetBrains</p>
-          <span class="cat-count">9 productos</span>
-          <div class="cat-arrow">&#8594;</div>
-        </div>
-
-        <div class="bento-cat cat-cad glow-gold" onclick="filterCategory('cad')">
-          <div class="cat-icon">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="12" r="3" />
-              <path
-                d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
-            </svg>
-          </div>
-          <h3>CAD e Ingeniería</h3>
-          <p>AutoCAD, SolidWorks</p>
-          <span class="cat-count">7 productos</span>
-          <div class="cat-arrow">&#8594;</div>
-        </div>
       </div>
     </div>
   </section>
@@ -269,211 +270,262 @@
         <p class="section-subtitle">Licencias auténticas, activación garantizada y soporte experto incluido.</p>
       </div>
 
-      <div class="filter-bar">
-        <button class="filter-btn active" data-filter="all" onclick="filterProducts('all', this)">Todos</button>
-        <button class="filter-btn" data-filter="os" onclick="filterProducts('os', this)">Sistemas Op.</button>
-        <button class="filter-btn" data-filter="office" onclick="filterProducts('office', this)">Ofimática</button>
-        <button class="filter-btn" data-filter="security" onclick="filterProducts('security', this)">Seguridad</button>
-        <button class="filter-btn" data-filter="creative" onclick="filterProducts('creative', this)">Creativo</button>
-        <button class="filter-btn" data-filter="cad" onclick="filterProducts('cad', this)">CAD</button>
-      </div>
 
+      <!-- ═══════════════════════════════════════════════
+           GRID ESTÁTICO — 6 PRODUCTOS · 2 FILAS DE 3
+           Sin pestañas · Sin filtrado · Siempre visible
+      ═══════════════════════════════════════════════ -->
       <div class="products-grid" id="productsGrid">
 
-        <div class="product-card glow-card-blue" data-category="os" id="prod-win11">
+        <!-- ╔══════════ FILA 1 — DESTACADOS ══════════╗ -->
+
+        <!-- 1 · Google Gemini Pro | MÁS VENDIDO -->
+        <div class="product-card glow-card-blue" id="prod-gemini"
+          data-qv-name="Google Gemini Pro"
+          data-qv-tag="IA · Google"
+          data-qv-stars="5" data-qv-reviews="3.8k"
+          data-qv-price="13.99" data-qv-old-price="19.99"
+          data-qv-img="assets/product_gemini.png"
+          data-qv-glow="blue"
+          data-qv-desc="Accedé al modelo Gemini PRO de Google con más de 1M de tokens de contexto. Integración nativa con Gmail, Docs, Drive, Sheets y Meet. Incluye Google One con 5TB de almacenamiento en la nube."
+          data-qv-features="Modelo Gemini PRO|Más de 1M tokens de contexto|Integrado con Gmail, Drive, Docs|5TB de almacenamiento Google Drive|Activación inmediata|Garantía 30 días|Soporte personalizado 24/7|12 Meses de suscripción">
           <div class="product-badge badge-hot">Más Vendido</div>
           <div class="product-img-wrap">
-            <img src="assets/product_windows.png" alt="Windows 11 Pro" class="product-img" loading="lazy" />
+            <img src="assets/product_gemini.png" alt="Google Gemini Pro" class="product-img" loading="lazy" />
             <div class="product-img-glow blue"></div>
+            <div class="qv-hover-trigger">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              Vista Rápida
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">IA · Google</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(3.8k)</span></div>
+            </div>
+            <h3 class="product-name">Google Gemini Pro</h3>
+            <p class="product-desc">Google AI Pro +1M tokens con el modelo 3.1 Pro. Gmail, Docs, Drive y todo el ecosistema Google. 5TB de almacenamiento incluido.</p>
+            <div class="product-features">
+              <span>Gemini PRO</span><span>Google One</span><span>5TB storage</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">$19.99</span>
+                <span class="price-current">$13.99</span>
+              </div>
+              <button class="btn-add-cart" onclick="event.stopPropagation(); addToCart('Google Gemini Pro', 13.99, this)" id="btn-gemini">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14" /></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 · Cupón LinkedIn Premium 75% OFF -->
+        <div class="product-card glow-card-gold" id="prod-linkedin"
+          data-qv-name="Cupón LinkedIn Premium 75% OFF — 12 Meses"
+          data-qv-tag="Red Profesional · Suscripción"
+          data-qv-stars="5" data-qv-reviews="2.7k"
+          data-qv-price="19.99" data-qv-old-price="479.88"
+          data-qv-img="assets/product_linkedin.png"
+          data-qv-glow="gold"
+          data-qv-desc="Cupón de descuento exclusivo del 75% para LinkedIn Premium Career o Business. Válido por 12 meses completos. Aplica en cuentas nuevas y en muchas cuentas existentes elegibles."
+          data-qv-features="75% de descuento sobre el precio oficial|Válido para LinkedIn Premium Career|Válido para LinkedIn Premium Business|12 meses de acceso completo|InMail y quién vio tu perfil|Cupón digital enviado al instante|Garantía 30 días">
+          <div class="product-badge badge-sale">75% OFF</div>
+          <div class="product-img-wrap">
+            <img src="assets/product_linkedin.png" alt="LinkedIn Premium 75% OFF" class="product-img" loading="lazy" />
+            <div class="product-img-glow gold"></div>
+            <div class="qv-hover-trigger">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              Vista Rápida
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">Red Profesional</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(2.7k)</span></div>
+            </div>
+            <h3 class="product-name">Cupón LinkedIn Premium 75% OFF</h3>
+            <p class="product-desc">75% de descuento en LinkedIn Premium Career o Business por 12 meses. Cupón digital enviado al instante.</p>
+            <div class="product-features">
+              <span>75% OFF</span><span>12 meses</span><span>Cupón digital</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">$479.88</span>
+                <span class="price-current">$19.99</span>
+              </div>
+              <button class="btn-add-cart" onclick="event.stopPropagation(); addToCart('LinkedIn Premium 75% OFF 12 Meses', 19.99, this)" id="btn-linkedin">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14" /></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 · Lovable AI | EN TENDENCIA -->
+        <div class="product-card glow-card-orange" id="prod-lovable"
+          data-qv-name="Lovable AI"
+          data-qv-tag="IA · No-Code"
+          data-qv-stars="5" data-qv-reviews="1.8k"
+          data-qv-price="19.99" data-qv-old-price="32.00"
+          data-qv-img="assets/cat_ia.png"
+          data-qv-glow="orange"
+          data-qv-desc="Lovable AI convierte ideas en apps web completas con una sola descripción. Sin escribir código, genera frontends, backends y bases de datos en segundos. El generador de apps con IA número 1 del mundo."
+          data-qv-features="Genera apps web completas con texto|Frontend + backend + base de datos|Deploy automático en la nube|Edición en tiempo real con IA|Integración con GitHub|Activación inmediata|Garantía 30 días|12 Meses de Suscripción">
+          <div class="product-badge badge-trend">En Tendencia</div>
+          <div class="product-img-wrap">
+            <img src="assets/cat_ia.png" alt="Lovable AI" class="product-img" loading="lazy" />
+            <div class="product-img-glow orange"></div>
+            <div class="qv-hover-trigger">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              Vista Rápida
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">IA · No-Code</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(1.8k)</span></div>
+            </div>
+            <h3 class="product-name">Lovable AI</h3>
+            <p class="product-desc">El generador de apps web con IA. Describe tu idea y Lovable construye el frontend, backend y base de datos en segundos.</p>
+            <div class="product-features">
+              <span>App builder</span><span>No-Code</span><span>Deploy instant</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">$32.00</span>
+                <span class="price-current">$19.99</span>
+              </div>
+              <button class="btn-add-cart" onclick="event.stopPropagation(); addToCart('Lovable AI', 19.99, this)" id="btn-lovable">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14" /></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ╔══════════ FILA 2 — SEGURIDAD Y SISTEMAS ══════════╗ -->
+
+        <!-- 4 · Bitdefender Total Security -->
+        <div class="product-card glow-card-blue" id="prod-bitdefender"
+          data-qv-name="Bitdefender Total Security 2026"
+          data-qv-tag="Antivirus · Seguridad"
+          data-qv-stars="5" data-qv-reviews="5.1k"
+          data-qv-price="19.99" data-qv-old-price="89.99"
+          data-qv-img="assets/cat_security.png"
+          data-qv-glow="blue"
+          data-qv-desc="La protección total de Bitdefender para 2026. Detección de amenazas en tiempo real con motor de IA, VPN integrada, firewall avanzado, protección anti-ransomware y control parental. Compatible con Windows, macOS, iOS y Android."
+          data-qv-features="Motor IA antimalware en tiempo real|Protección anti-ransomware avanzada|VPN incluida (200MB/día)|Firewall bidireccional|Control parental|5 dispositivos — 1 año|Activación inmediata|Garantía 30 días">
+          <div class="product-img-wrap">
+            <img src="assets/cat_security.png" alt="Bitdefender Total Security" class="product-img" loading="lazy" />
+            <div class="product-img-glow blue"></div>
+            <div class="qv-hover-trigger">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              Vista Rápida
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">Antivirus · Seguridad</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(5.1k)</span></div>
+            </div>
+            <h3 class="product-name">Bitdefender Total Security 2026</h3>
+            <p class="product-desc">Protección total con IA para 5 dispositivos. VPN, firewall, anti-ransomware y control parental incluidos.</p>
+            <div class="product-features">
+              <span>5 dispositivos</span><span>VPN incluida</span><span>Anti-ransomware</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">$89.99</span>
+                <span class="price-current">$19.99</span>
+              </div>
+              <button class="btn-add-cart" onclick="event.stopPropagation(); addToCart('Bitdefender Total Security 2026', 19.99, this)" id="btn-bitdefender">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14" /></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 · Windows 11 Pro — Retail Key | LICENCIA MÁS VENDIDA -->
+        <div class="product-card glow-card-cyan" id="prod-win11"
+          data-qv-name="Windows 11 Pro — Retail Key"
+          data-qv-tag="Sistema Operativo"
+          data-qv-stars="5" data-qv-reviews="6.2k"
+          data-qv-price="24.99" data-qv-old-price="199.99"
+          data-qv-img="assets/product_windows.png"
+          data-qv-glow="cyan"
+          data-qv-desc="Licencia retail permanente de Windows 11 Pro para 1 PC. Activación 100% oficial vía Microsoft. Clave transferible: podés reinstalar en el mismo equipo cuantas veces necesitás."
+          data-qv-features="Licencia permanente (de por vida)|Clave transferible entre reinstalaciones|Activación oficial por Microsoft|Soporte para actualizaciones futuras|BitLocker y Remote Desktop incluidos|Activación inmediata vía email|Garantía 30 días de devolución">
+          <div class="product-badge badge-hot">Licencia más vendida</div>
+          <div class="product-img-wrap">
+            <img src="assets/product_windows.png" alt="Windows 11 Pro" class="product-img" loading="lazy" />
+            <div class="product-img-glow cyan"></div>
+            <div class="qv-hover-trigger">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              Vista Rápida
+            </div>
           </div>
           <div class="product-info">
             <div class="product-meta">
               <span class="product-tag">Sistema Operativo</span>
-              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(2.1k)</span></div>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(6.2k)</span></div>
             </div>
-            <h3 class="product-name">Windows 11 Pro</h3>
-            <p class="product-desc">Licencia permanente, 1 PC. Activación por clave digital. Soporte Microsoft incluido.
-            </p>
+            <h3 class="product-name">Windows 11 Pro — Retail Key</h3>
+            <p class="product-desc">Licencia permanente, 1 PC. Clave digital oficial de Microsoft, transferible entre equipos. Soporte incluido.</p>
             <div class="product-features">
-              <span>Permanente</span>
-              <span>1 dispositivo</span>
-              <span>64-bit</span>
+              <span>Permanente</span><span>Transferible</span><span>64-bit</span>
             </div>
             <div class="product-footer">
               <div class="product-price">
-                <span class="price-old">$129.99</span>
+                <span class="price-old">$199.99</span>
                 <span class="price-current">$24.99</span>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('Windows 11 Pro', 24.99, this)" id="btn-win11">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
+              <button class="btn-add-cart" onclick="event.stopPropagation(); addToCart('Windows 11 Pro Retail Key', 24.99, this)" id="btn-win11">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14" /></svg>
                 Agregar
               </button>
             </div>
           </div>
         </div>
 
-        <div class="product-card glow-card-purple" data-category="office" id="prod-m365">
-          <div class="product-badge badge-new">Nuevo</div>
+        <!-- 6 · Avast Ultimate | MÁS VENDIDO -->
+        <div class="product-card glow-card-orange" id="prod-avast"
+          data-qv-name="Avast Ultimate 2026"
+          data-qv-tag="Antivirus · Seguridad"
+          data-qv-stars="5" data-qv-reviews="3.9k"
+          data-qv-price="17.99" data-qv-old-price="79.99"
+          data-qv-img="assets/cat_security.png"
+          data-qv-glow="orange"
+          data-qv-desc="Avast Ultimate 2026 combina antivirus galardonado, VPN privada, limpiador de PC y protector de identidad en un solo paquete. IA generativa integrada para detección proactiva de amenazas de nueva generación."
+          data-qv-features="Antivirus con IA generativa|VPN privada ilimitada|Avast Cleanup Premium|Protección de identidad|Anti-phishing y anti-spyware|1 dispositivo — 1 año|Activación inmediata|Garantía 30 días">
+          <div class="product-badge badge-hot">Más Vendido</div>
           <div class="product-img-wrap">
-            <img src="assets/product_office.png" alt="Microsoft 365" class="product-img" loading="lazy" />
-            <div class="product-img-glow purple"></div>
+            <img src="assets/cat_security.png" alt="Avast Ultimate" class="product-img" loading="lazy" />
+            <div class="product-img-glow orange"></div>
+            <div class="qv-hover-trigger">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              Vista Rápida
+            </div>
           </div>
           <div class="product-info">
             <div class="product-meta">
-              <span class="product-tag">Ofimática</span>
-              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(1.8k)</span></div>
+              <span class="product-tag">Antivirus · Seguridad</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(3.9k)</span></div>
             </div>
-            <h3 class="product-name">Microsoft 365 Personal</h3>
-            <p class="product-desc">Word, Excel, PowerPoint, Teams y 1TB OneDrive. Suscripción 1 año, 1 usuario.</p>
+            <h3 class="product-name">Avast Ultimate 2026</h3>
+            <p class="product-desc">Antivirus, VPN ilimitada, limpieza de PC y protección de identidad en un solo paquete con IA generativa incluida.</p>
             <div class="product-features">
-              <span>1 año</span>
-              <span>1TB Cloud</span>
-              <span>Multidispositivo</span>
-            </div>
-            <div class="product-footer">
-              <div class="product-price">
-                <span class="price-old">$99.99</span>
-                <span class="price-current">$39.99</span>
-              </div>
-              <button class="btn-add-cart" onclick="addToCart('Microsoft 365 Personal', 39.99, this)" id="btn-m365">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
-                Agregar
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card glow-card-green" data-category="security" id="prod-av">
-          <div class="product-img-wrap">
-            <img src="assets/product_antivirus.png" alt="Kaspersky Total Security" class="product-img" loading="lazy" />
-            <div class="product-img-glow green"></div>
-          </div>
-          <div class="product-info">
-            <div class="product-meta">
-              <span class="product-tag">Seguridad</span>
-              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9734; <span>(947)</span></div>
-            </div>
-            <h3 class="product-name">Kaspersky Total Security</h3>
-            <p class="product-desc">Protección completa: antivirus, firewall, VPN, control parental. 1 año, 3
-              dispositivos.</p>
-            <div class="product-features">
-              <span>3 dispositivos</span>
-              <span>VPN incluida</span>
-              <span>1 año</span>
+              <span>VPN ilimitada</span><span>Cleanup Pro</span><span>Anti-ID theft</span>
             </div>
             <div class="product-footer">
               <div class="product-price">
                 <span class="price-old">$79.99</span>
-                <span class="price-current">$19.99</span>
+                <span class="price-current">$17.99</span>
               </div>
-              <button class="btn-add-cart" onclick="addToCart('Kaspersky Total Security', 19.99, this)" id="btn-av">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
-                Agregar
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card glow-card-blue" data-category="security" id="prod-vpn">
-          <div class="product-img-wrap">
-            <img src="assets/product_vpn.png" alt="NordVPN" class="product-img" loading="lazy" />
-            <div class="product-img-glow blue"></div>
-          </div>
-          <div class="product-info">
-            <div class="product-meta">
-              <span class="product-tag">VPN</span>
-              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(3.2k)</span></div>
-            </div>
-            <h3 class="product-name">NordVPN 2 Años</h3>
-            <p class="product-desc">6.400+ servidores en 111 países. Protege hasta 6 dispositivos simultáneos. Sin logs.
-            </p>
-            <div class="product-features">
-              <span>6 dispositivos</span>
-              <span>Sin logs</span>
-              <span>2 años</span>
-            </div>
-            <div class="product-footer">
-              <div class="product-price">
-                <span class="price-old">$249.99</span>
-                <span class="price-current">$74.99</span>
-              </div>
-              <button class="btn-add-cart" onclick="addToCart('NordVPN 2 Años', 74.99, this)" id="btn-vpn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
-                Agregar
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card glow-card-orange" data-category="creative" id="prod-adobe">
-          <div class="product-badge badge-sale">Premium</div>
-          <div class="product-img-wrap">
-            <img src="assets/product_adobe.png" alt="Adobe Creative Cloud" class="product-img" loading="lazy" />
-            <div class="product-img-glow orange"></div>
-          </div>
-          <div class="product-info">
-            <div class="product-meta">
-              <span class="product-tag">Diseño Creativo</span>
-              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(1.5k)</span></div>
-            </div>
-            <h3 class="product-name">Adobe Creative Cloud</h3>
-            <p class="product-desc">Photoshop, Illustrator, Premiere Pro y más de 20 apps creativas. 1 año, 1 usuario.
-            </p>
-            <div class="product-features">
-              <span>+20 apps</span>
-              <span>100GB Cloud</span>
-              <span>1 año</span>
-            </div>
-            <div class="product-footer">
-              <div class="product-price">
-                <span class="price-old">$599.88</span>
-                <span class="price-current">$89.99</span>
-              </div>
-              <button class="btn-add-cart" onclick="addToCart('Adobe Creative Cloud', 89.99, this)" id="btn-adobe">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
-                Agregar
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card glow-card-gold" data-category="cad" id="prod-autocad">
-          <div class="product-img-wrap">
-            <img src="assets/product_autocad.png" alt="AutoCAD 2025" class="product-img" loading="lazy" />
-            <div class="product-img-glow gold"></div>
-          </div>
-          <div class="product-info">
-            <div class="product-meta">
-              <span class="product-tag">CAD e Ingeniería</span>
-              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9734; <span>(612)</span></div>
-            </div>
-            <h3 class="product-name">AutoCAD 2025</h3>
-            <p class="product-desc">Software CAD profesional con herramientas de IA integradas. Licencia 1 año, 1
-              usuario.</p>
-            <div class="product-features">
-              <span>IA integrada</span>
-              <span>1 año</span>
-              <span>Win + Mac</span>
-            </div>
-            <div class="product-footer">
-              <div class="product-price">
-                <span class="price-old">$2,030</span>
-                <span class="price-current">$149.99</span>
-              </div>
-              <button class="btn-add-cart" onclick="addToCart('AutoCAD 2025', 149.99, this)" id="btn-autocad">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
+              <button class="btn-add-cart" onclick="event.stopPropagation(); addToCart('Avast Ultimate 2026', 17.99, this)" id="btn-avast">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14" /></svg>
                 Agregar
               </button>
             </div>
@@ -482,9 +534,12 @@
 
       </div>
 
+
+      <!-- CTA — Ver Catálogo Completo -->
       <div class="products-cta">
-        <a href="#" class="btn-outline">Ver todo el catálogo
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <a href="catalogo.html" class="btn-catalog-cta">
+          <span>Ver Catálogo Completo</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
         </a>
@@ -513,7 +568,7 @@
             </div>
             <h3>Autenticidad Verificada</h3>
             <p>Cada clave que vendemos pasa por un proceso de verificación triple. Trabajamos directamente con
-              distribuidores autorizados para garantizar que cada licencia sea 100% original.</p>
+              distribuidores autorizados para garantizar que cada licencia funcione perfectamente.</p>
             <div class="feat-tags">
               <span>Microsoft Partner</span>
               <span>Adobe Partner</span>
@@ -549,7 +604,7 @@
             </svg>
           </div>
           <h3>Entrega en<br>Segundos</h3>
-          <p>Recibe tu clave de activación por email inmediatamente después del pago.</p>
+          <p>Recibe tu clave de activación por email / whatsapp / telegram inmediatamente después del pago.</p>
           <div class="mini-stat">menos de 30 segundos</div>
         </div>
 
@@ -587,7 +642,7 @@
             </svg>
           </div>
           <h3>Pago 100% Seguro</h3>
-          <p>Stripe, PayPal y tarjeta de crédito. Encriptación SSL de 256 bits en cada transacción.</p>
+          <p>Mercado Pago, transferencia bancaria, transferencia electrónica, tarjeta de débito, PayPal. Encriptación SSL de 256 bits en cada transacción.</p>
           <div class="payment-icons">
             <span class="pay-icon">VISA</span>
             <span class="pay-icon">MC</span>
@@ -655,7 +710,7 @@
             </svg>
           </div>
           <h3>Pago Seguro</h3>
-          <p>Paga con tarjeta, PayPal o criptomonedas. Checkout encriptado con SSL 256-bit. Sin cargos ocultos.</p>
+          <p>Pagá con Mercado Pago, transferencia bancaria, PayPal o criptomonedas.</p>
           <div class="step-line"></div>
         </div>
 
@@ -678,32 +733,32 @@
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Reseñas</span>
-        <h2 class="section-title">Lo que dicen nuestros <span class="gradient-text">50.000+ clientes</span></h2>
+        <h2 class="section-title">Lo que dicen nuestros <span class="gradient-text">20+ clientes</span></h2>
       </div>
 
       <div class="testimonials-grid">
 
         <div class="testimonial-card glow-card-purple">
           <div class="testimonial-quote">"</div>
-          <p>Compré Windows 11 Pro y en menos de un minuto ya tenía mi clave en el correo. La activación fue perfecta a
-            la primera. Increíble servicio.</p>
+          <p>Me contacté para comprar Google AI Pro y en menos de un minuto ya tenía mi clave en el correo. La activación fue perfecta.
+            Increíble servicio.</p>
           <div class="testimonial-author">
             <div class="author-avatar av1">CR</div>
             <div class="author-info">
               <strong>Carlos R.</strong>
-              <span>5 estrellas - Madrid, España</span>
+              <span>5 estrellas - Buenos Aires, Argentina</span>
             </div>
           </div>
         </div>
 
         <div class="testimonial-card glow-card-blue">
           <div class="testimonial-quote">"</div>
-          <p>Llevo 3 años comprando aquí. Siempre funciona, siempre entrega al instante. NexusKey es literalmente la
+          <p>Llevo poco tiempo comprando acá, pero Siempre funciona, siempre entrega al instante. NexusKey es literalmente la
             mejor tienda de software del mercado.</p>
           <div class="testimonial-author">
             <div class="author-avatar av2">MG</div>
             <div class="author-info">
-              <strong>Maria G.</strong>
+              <strong>Martín G.</strong>
               <span>5 estrellas - Buenos Aires, Argentina</span>
             </div>
           </div>
@@ -711,26 +766,26 @@
 
         <div class="testimonial-card glow-card-green">
           <div class="testimonial-quote">"</div>
-          <p>Tenía dudas sobre la autenticidad pero el soporte me explicó todo. Adobe CC funcionó perfectamente. Ahorré
-            más de $500 vs la tienda oficial.</p>
+          <p>Tenía dudas sobre la autenticidad pero el soporte me explicó todo. El cupón de LinkedIn funcionó perfectamente. Ahorré
+            más de $100.</p>
           <div class="testimonial-author">
             <div class="author-avatar av3">JP</div>
             <div class="author-info">
               <strong>Javier P.</strong>
-              <span>5 estrellas - Ciudad de Mexico</span>
+              <span>5 estrellas - Buenos Aires, Argentina</span>
             </div>
           </div>
         </div>
 
         <div class="testimonial-card glow-card-cyan">
           <div class="testimonial-quote">"</div>
-          <p>El soporte técnico resolvió mi duda en 90 segundos. La clave de AutoCAD funcionó sin problema. Totalmente
+          <p>El soporte técnico resolvió mi duda en 90 segundos. La clave de Warp funcionó sin problema. Totalmente
             recomendado para cualquier profesional.</p>
           <div class="testimonial-author">
             <div class="author-avatar av4">AL</div>
             <div class="author-info">
               <strong>Ana L.</strong>
-              <span>5 estrellas - Bogotá, Colombia</span>
+              <span>5 estrellas - Buenos Aires, Argentina</span>
             </div>
           </div>
         </div>
@@ -762,12 +817,12 @@
       <div class="faq-grid">
         <div class="faq-item" onclick="toggleFaq(this)" id="faq1">
           <div class="faq-question">
-            <span>¿Son licencias originales o piratas?</span>
+            <span>¿Son licencias originales?</span>
             <div class="faq-icon">+</div>
           </div>
           <div class="faq-answer">
-            <p>Todas nuestras licencias son 100% originales y auténticas, obtenidas a través de distribuidores
-              autorizados. Nunca vendemos software crackeado. Puedes verificar la autenticidad directamente en el sitio
+            <p>Todas nuestras licencias son 100% originales, obtenidas a través de distribuidores
+              autorizados. No vendemos software crackeado. Puedes verificar la autenticidad directamente en el sitio
               oficial del fabricante.</p>
           </div>
         </div>
@@ -811,7 +866,7 @@
             <div class="faq-icon">+</div>
           </div>
           <div class="faq-answer">
-            <p>Aceptamos tarjetas Visa, Mastercard, American Express, PayPal, criptomonedas (Bitcoin, Ethereum, USDT) y
+            <p>Aceptamos Mercado Pago, billeteras virtuales, tarjetas de débito Visa, Mastercard, American Express, PayPal, criptomonedas (Bitcoin, Ethereum, USDT) y
               transferencia bancaria. Todos los pagos son procesados por Stripe con encriptación SSL de 256 bits.</p>
           </div>
         </div>
@@ -822,7 +877,7 @@
             <div class="faq-icon">+</div>
           </div>
           <div class="faq-answer">
-            <p>Sí, tenemos planes corporativos con descuentos de hasta el 40% para compras de 5+ licencias. Contáctanos
+            <p>Sí, tenemos planes corporativos con descuentos de hasta + del 30% para compras de 5+ licencias. Contáctanos
               por el chat o email para obtener una cotización personalizada.</p>
           </div>
         </div>
@@ -837,8 +892,8 @@
         <div class="cta-glow-orb orb-right"></div>
         <div class="cta-content">
           <span class="section-tag">Oferta por Tiempo Limitado</span>
-          <h2 class="cta-title">Comienza hoy con un<br><span class="gradient-text">20% de descuento</span></h2>
-          <p>Usa el código <code class="cta-code">NEXUS20</code> al finalizar tu compra. Válido para cualquier producto
+          <h2 class="cta-title">Comienza hoy con un<br><span class="gradient-text">10% de descuento</span></h2>
+          <p>Usa el código <code class="cta-code">NEXUS10</code> al finalizar tu compra. Válido para cualquier producto
             del catálogo.</p>
           <div class="cta-actions">
             <a href="#productos" class="btn-primary btn-lg">
@@ -916,30 +971,30 @@
         <div class="footer-col">
           <h4>Soporte</h4>
           <ul>
-            <li><a href="#">Centro de Ayuda</a></li>
-            <li><a href="#">Guías de Activación</a></li>
-            <li><a href="#">Chat en Vivo</a></li>
-            <li><a href="#">Estado del Servicio</a></li>
-            <li><a href="#">Devoluciones</a></li>
-            <li><a href="#">Contacto</a></li>
+            <li><a href="centro-ayuda.html">Centro de Ayuda</a></li>
+            <li><a href="guias-activacion.html">Guías de Activación</a></li>
+            <li><a href="contacto.html">Chat en Vivo</a></li>
+            <li><a href="estado-servicio.html">Estado del Servicio</a></li>
+            <li><a href="devoluciones.html">Devoluciones</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
           <h4>Empresa</h4>
           <ul>
-            <li><a href="#">Sobre Nosotros</a></li>
-            <li><a href="#">Blog Tech</a></li>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+            <li><a href="blog-tech.html">Blog Tech</a></li>
             <li><a href="#">Afiliados</a></li>
-            <li><a href="#">Planes Empresariales</a></li>
-            <li><a href="#">Política de Privacidad</a></li>
-            <li><a href="#">Términos de Uso</a></li>
+            <li><a href="planes-empresariales.html">Planes Empresariales</a></li>
+            <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
+            <li><a href="terminos-uso.html">Términos de Uso</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>2025 NexusKey. Todos los derechos reservados. Las marcas comerciales pertenecen a sus respectivos
+        <p>© 2026 NexusKey. Todos los derechos reservados. Las marcas comerciales pertenecen a sus respectivos
           propietarios.</p>
         <div class="footer-badges">
           <span class="security-badge">SSL Secured</span>
@@ -983,7 +1038,115 @@
 
   <div class="toast-container" id="toastContainer"></div>
 
+  <!-- ══════════════════════════════════════
+       QUICK VIEW MODAL
+  ══════════════════════════════════════ -->
+  <div class="qv-overlay" id="qvOverlay" role="dialog" aria-modal="true" aria-labelledby="qvTitle">
+    <div class="qv-modal glow-card-blue" id="qvModal">
+
+      <!-- Botón cerrar -->
+      <button class="qv-close" id="qvClose" aria-label="Cerrar vista rápida">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+      <div class="qv-layout">
+
+        <!-- ── Columna Izquierda: Imagen ── -->
+        <div class="qv-media">
+          <div class="qv-img-wrap">
+            <img id="qvImg" src="" alt="" class="qv-img" />
+            <div class="qv-img-glow-el" id="qvImgGlow"></div>
+          </div>
+          <div class="qv-trust-badges">
+            <div class="qv-trust-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+              Pago 100% Seguro
+            </div>
+            <div class="qv-trust-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Entrega Inmediata
+            </div>
+            <div class="qv-trust-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              Soporte 24/7
+            </div>
+            <div class="qv-trust-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              Garantía 30 días
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Columna Derecha: Detalles ── -->
+        <div class="qv-details">
+
+          <div class="qv-meta">
+            <span class="qv-tag" id="qvTag"></span>
+            <div class="qv-stars" id="qvStars"></div>
+          </div>
+
+          <h2 class="qv-title" id="qvTitle"></h2>
+          <p class="qv-desc" id="qvDesc"></p>
+
+          <!-- Lista de beneficios -->
+          <div class="qv-features-block">
+            <h4 class="qv-features-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+              ¿Qué incluye?
+            </h4>
+            <ul class="qv-feature-list" id="qvFeatureList"></ul>
+          </div>
+
+          <!-- Bloque de precios -->
+          <div class="qv-pricing-block">
+            <div class="qv-price-row official">
+              <span class="qv-price-label">Precio en tienda oficial:</span>
+              <span class="qv-price-old" id="qvOldPrice"></span>
+            </div>
+            <div class="qv-price-row ours">
+              <span class="qv-price-label">Nuestro precio:</span>
+              <div class="qv-price-ours-wrap">
+                <span class="qv-price-current" id="qvCurrentPrice"></span>
+                <span class="qv-discount-badge" id="qvDiscount"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <button class="btn-primary btn-lg qv-btn-cart" id="qvBtnCart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+            Agregar al Carrito
+          </button>
+          <a href="catalogo.html" class="qv-catalog-link">
+            Ver catálogo completo
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+
+        </div><!-- /qv-details -->
+      </div><!-- /qv-layout -->
+    </div><!-- /qv-modal -->
+  </div><!-- /qv-overlay -->
+
   <script src="app.js"></script>
+  <script>
+    // Init: garantiza que todos los productos sean visibles al cargar
+    // Corre sincrónicamente después de app.js, con el DOM ya completo
+    (function() {
+      var grid = document.getElementById('productsGrid');
+      if (!grid) return;
+      var cards = grid.querySelectorAll('.product-card');
+      cards.forEach(function(card) {
+        card.style.display = '';
+        card.classList.remove('hidden');
+      });
+    })();
+  </script>
 </body>
 
 </html>

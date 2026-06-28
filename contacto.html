@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contactá al equipo de NexusKey. Soporte por WhatsApp, Telegram y correo electrónico. Atención de lunes a viernes." />
+  <title>Contacto — NexusKey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero { padding: 140px 0 60px; position: relative; overflow: hidden; }
+    .page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(124,58,237,0.15), transparent); pointer-events: none; }
+    .page-hero-content { position: relative; z-index: 1; text-align: center; }
+    .page-title { font-family: var(--font-display); font-size: clamp(36px, 5vw, 60px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 16px; }
+    .page-subtitle { font-size: 17px; color: var(--text-secondary); max-width: 580px; margin: 0 auto; line-height: 1.7; }
+    .page-body { padding: 0 0 100px; }
+    .page-container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+    /* Contact grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .contact-card {
+      border-radius: var(--border-radius-lg);
+      padding: 36px 28px;
+      text-align: center;
+      border: 1px solid;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .contact-card:hover { transform: translateY(-5px); }
+    .ch-icon {
+      width: 60px; height: 60px;
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      transition: var(--transition);
+    }
+    .contact-card:hover .ch-icon { transform: scale(1.08); }
+    .contact-card h3 {
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .contact-card p {
+      font-size: 14px; color: var(--text-secondary);
+      line-height: 1.6; margin-bottom: 24px; flex: 1;
+    }
+    .btn-contact {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-weight: 700; font-size: 14px;
+      padding: 12px 24px; border-radius: 10px;
+      text-decoration: none; transition: var(--transition);
+      border: 1px solid transparent; cursor: pointer;
+      width: 100%; justify-content: center;
+    }
+    .btn-contact:hover { transform: translateY(-2px); }
+
+    /* Hours card */
+    .hours-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--border-radius-lg);
+      padding: 36px 40px;
+    }
+    .hours-card h2 {
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: 700;
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 24px;
+    }
+    .hours-card h2 svg { color: var(--neon-cyan); }
+    .hours-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-day { font-weight: 600; color: var(--text-primary); font-size: 15px; }
+    .hours-time { font-size: 14px; color: var(--neon-cyan); font-weight: 600; }
+    .hours-time.muted { color: var(--text-muted); }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .hours-card { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+  <canvas id="particleCanvas"></canvas>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" id="nav-logo-link">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L24 8V20L14 26L4 20V8L14 2Z" stroke="url(#hGCT)" stroke-width="1.5" fill="none"/>
+            <path d="M14 7L20 10.5V17.5L14 21L8 17.5V10.5L14 7Z" fill="url(#hFCT)" opacity="0.6"/>
+            <defs>
+              <linearGradient id="hGCT" x1="4" y1="2" x2="24" y2="26"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient>
+              <linearGradient id="hFCT" x1="8" y1="7" x2="20" y2="21"><stop offset="0%" stop-color="#7c3aed" stop-opacity="0.8"/><stop offset="100%" stop-color="#06b6d4" stop-opacity="0.4"/></linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">Nexus<span class="logo-accent">Key</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+        <li><a href="index.html#caracteristicas" class="nav-link">¿Por qué nosotros?</a></li>
+        <li><a href="centro-ayuda.html" class="nav-link">Ayuda</a></li>
+        <li><a href="contacto.html" class="nav-link active">Contacto</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn-icon" id="cartBtn" aria-label="Carrito de compras">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-badge" id="cartCount">0</span>
+        </button>
+        <a href="catalogo.html" class="btn-primary nav-cta">Ver Licencias</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content container">
+      <span class="section-tag">Soporte & Ventas</span>
+      <h1 class="page-title"><span class="gradient-text">Contacto</span></h1>
+      <p class="page-subtitle">¿Tenés dudas antes de comprar o necesitás soporte con tu activación? Un humano real te responderá.</p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="page-body">
+    <div class="page-container">
+
+      <!-- 3 canales de contacto -->
+      <div class="contact-grid">
+
+        <!-- WhatsApp -->
+        <div class="contact-card" style="background:rgba(16,185,129,0.06);border-color:rgba(16,185,129,0.25);">
+          <div class="ch-icon" style="background:rgba(16,185,129,0.15);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="#10b981">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </div>
+          <h3 style="color:#34d399;">WhatsApp</h3>
+          <p>Respuesta en minutos. El canal más rápido para soporte y compras. Sin bots, atención humana real.</p>
+          <a href="https://wa.me/5491131678989" target="_blank" rel="noopener" class="btn-contact" style="background:#10b981;color:white;border-color:#10b981;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Abrir WhatsApp
+          </a>
+        </div>
+
+        <!-- Telegram -->
+        <div class="contact-card" style="background:rgba(37,99,235,0.06);border-color:rgba(37,99,235,0.25);">
+          <div class="ch-icon" style="background:rgba(37,99,235,0.15);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="#3b82f6">
+              <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+          </div>
+          <h3 style="color:#60a5fa;">Telegram</h3>
+          <p>Alternativa rápida para consultas y novedades del catálogo. También publicamos ofertas exclusivas.</p>
+          <a href="https://t.me/nexuskey" target="_blank" rel="noopener" class="btn-contact" style="background:#2563eb;color:white;border-color:#2563eb;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Abrir Telegram
+          </a>
+        </div>
+
+        <!-- Email -->
+        <div class="contact-card" style="background:rgba(124,58,237,0.06);border-color:rgba(124,58,237,0.25);">
+          <div class="ch-icon" style="background:rgba(124,58,237,0.15);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <h3 style="color:#c084fc;">Correo Electrónico</h3>
+          <p>Para consultas empresariales, documentación formal o facturación. Respondemos en menos de 24 hs.</p>
+          <a href="mailto:soporte@nexuskey.com" class="btn-contact" style="background:rgba(124,58,237,0.15);color:#c084fc;border-color:rgba(124,58,237,0.35);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Enviar Email
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Horarios -->
+      <div class="hours-card">
+        <h2>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Horarios de Atención
+        </h2>
+        <div class="hours-row">
+          <span class="hours-day">Lunes a Viernes</span>
+          <span class="hours-time">9:00 — 18:00 hs</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Sábados</span>
+          <span class="hours-time">10:00 — 14:00 hs</span>
+        </div>
+        <div class="hours-row">
+          <span class="hours-day">Domingos y feriados</span>
+          <span class="hours-time muted">Respuesta diferida (24 hs)</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="logo-icon">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <path d="M14 2L24 8V20L14 26L4 20V8L14 2Z" stroke="url(#hG2CT)" stroke-width="1.5" fill="none"/>
+                <path d="M14 7L20 10.5V17.5L14 21L8 17.5V10.5L14 7Z" fill="url(#hF2CT)" opacity="0.6"/>
+                <defs>
+                  <linearGradient id="hG2CT" x1="4" y1="2" x2="24" y2="26"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient>
+                  <linearGradient id="hF2CT" x1="8" y1="7" x2="20" y2="21"><stop offset="0%" stop-color="#7c3aed" stop-opacity="0.8"/><stop offset="100%" stop-color="#06b6d4" stop-opacity="0.4"/></linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="logo-text">Nexus<span class="logo-accent">Key</span></span>
+          </a>
+          <p class="footer-desc">La tienda de confianza para licencias digitales auténticas. Entrega instantánea, soporte experto y garantía de satisfacción.</p>
+        </div>
+        <div class="footer-col"><h4>Soporte</h4><ul><li><a href="centro-ayuda.html">Centro de Ayuda</a></li><li><a href="guias-activacion.html">Guías de Activación</a></li><li><a href="estado-servicio.html">Estado del Servicio</a></li><li><a href="devoluciones.html">Devoluciones</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+        <div class="footer-col"><h4>Empresa</h4><ul><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="blog-tech.html">Blog Tech</a></li><li><a href="planes-empresariales.html">Planes Empresariales</a></li><li><a href="politica-privacidad.html">Política de Privacidad</a></li><li><a href="terminos-uso.html">Términos de Uso</a></li></ul></div>
+        <div class="footer-col"><h4>Productos</h4><ul><li><a href="catalogo.html#microsoft">Windows 11 Pro</a></li><li><a href="catalogo.html#ia">Google Gemini Pro</a></li><li><a href="catalogo.html#creatividad">LinkedIn Premium</a></li><li><a href="catalogo.html">Ver catálogo completo</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 NexusKey. Todos los derechos reservados.</p>
+        <div class="footer-badges"><span class="security-badge">SSL Secured</span><span class="security-badge">Trusted Store</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header"><h3>Tu Carrito</h3><button class="cart-close" onclick="closeCart()" aria-label="Cerrar carrito">✕</button></div>
+    <div class="cart-items" id="cartItems"><div class="cart-empty"><p>Tu carrito está vacío</p><a href="catalogo.html" onclick="closeCart()">Explorar productos</a></div></div>
+    <div class="cart-footer"><div class="cart-total"><span>Total</span><span class="cart-total-price" id="cartTotal">$0.00</span></div><button class="btn-primary" style="width:100%;justify-content:center;" onclick="checkout()">Finalizar Compra</button></div>
+  </div>
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="app.js"></script>
+</body>
+</html>

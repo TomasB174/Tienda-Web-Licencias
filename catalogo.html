@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="NexusKey — Catálogo completo de licencias de software premium. Inteligencia Artificial, Antivirus, Creatividad y Ecosistema Microsoft al mejor precio." />
+  <meta name="title" content="Catálogo Completo — NexusKey" />
+  <title>Catálogo — NexusKey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="catalogo.css" />
+</head>
+
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- Partículas -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       NAVBAR
+  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" id="nav-logo-link">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L24 8V20L14 26L4 20V8L14 2Z" stroke="url(#hexGradCat)" stroke-width="1.5" fill="none" />
+            <path d="M14 7L20 10.5V17.5L14 21L8 17.5V10.5L14 7Z" fill="url(#hexFillCat)" opacity="0.6" />
+            <defs>
+              <linearGradient id="hexGradCat" x1="4" y1="2" x2="24" y2="26">
+                <stop offset="0%" stop-color="#7c3aed" />
+                <stop offset="100%" stop-color="#06b6d4" />
+              </linearGradient>
+              <linearGradient id="hexFillCat" x1="8" y1="7" x2="20" y2="21">
+                <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.8" />
+                <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.4" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">Nexus<span class="logo-accent">Key</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="#ia" class="nav-link cat-nav-link" data-cat="ia">IA</a></li>
+        <li><a href="#antivirus" class="nav-link cat-nav-link" data-cat="antivirus">Antivirus</a></li>
+        <li><a href="#creatividad" class="nav-link cat-nav-link" data-cat="creatividad">Creatividad</a></li>
+        <li><a href="#microsoft" class="nav-link cat-nav-link" data-cat="microsoft">Microsoft</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="btn-icon" id="cartBtn" aria-label="Carrito de compras">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 01-8 0" />
+          </svg>
+          <span class="cart-badge" id="cartCount">0</span>
+        </button>
+        <a href="index.html" class="btn-ghost nav-cta">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          Inicio
+        </a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       PAGE HERO
+  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <section class="cat-hero">
+    <div class="cat-hero-bg">
+      <div class="cat-orb cat-orb-1"></div>
+      <div class="cat-orb cat-orb-2"></div>
+      <div class="cat-orb cat-orb-3"></div>
+    </div>
+    <div class="container">
+      <div class="cat-hero-content animate-fade-up">
+        <span class="section-tag">Catálogo Completo</span>
+        <h1 class="cat-hero-title">
+          Todo el software que<br>
+          <span class="gradient-text">necesitás, en un lugar</span>
+        </h1>
+        <p class="cat-hero-subtitle">
+          Licencias digitales auténticas · Activación instantánea · Garantía 30 días
+        </p>
+      </div>
+
+      <!-- Navegación rápida entre categorías -->
+      <nav class="cat-quick-nav animate-fade-up delay-1" aria-label="Categorías">
+        <a href="#ia" class="cat-tab active" data-tab="ia" id="tab-ia">
+          <div class="cat-tab-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 2a4 4 0 014 4v2h2a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2v-8a2 2 0 012-2h2V6a4 4 0 014-4z"/>
+              <circle cx="12" cy="14" r="2"/>
+            </svg>
+          </div>
+          <span>Inteligencia Artificial</span>
+          <span class="cat-tab-count">8</span>
+        </a>
+        <a href="#antivirus" class="cat-tab" data-tab="antivirus" id="tab-antivirus">
+          <div class="cat-tab-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+          </div>
+          <span>Antivirus & Seguridad</span>
+          <span class="cat-tab-count">15</span>
+        </a>
+        <a href="#creatividad" class="cat-tab" data-tab="creatividad" id="tab-creatividad">
+          <div class="cat-tab-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+              <line x1="9" y1="9" x2="9.01" y2="9"/>
+              <line x1="15" y1="9" x2="15.01" y2="9"/>
+            </svg>
+          </div>
+          <span>Suscripciones & Creatividad</span>
+          <span class="cat-tab-count">3</span>
+        </a>
+        <a href="#microsoft" class="cat-tab" data-tab="microsoft" id="tab-microsoft">
+          <div class="cat-tab-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <polyline points="8 21 12 17 16 21"/>
+            </svg>
+          </div>
+          <span>Ecosistema Microsoft</span>
+          <span class="cat-tab-count">4</span>
+        </a>
+      </nav>
+    </div>
+  </section>
+
+
+  <!-- SECCION 1: INTELIGENCIA ARTIFICIAL -->
+  <section class="section cat-section" id="ia" data-section="ia">
+    <div class="container">
+
+      <div class="cat-section-header">
+        <div class="cat-section-label ia-label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2a4 4 0 014 4v2h2a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2v-8a2 2 0 012-2h2V6a4 4 0 014-4z"/>
+          </svg>
+          Sección 01
+        </div>
+        <h2 class="section-title">Inteligencia <span class="gradient-text">Artificial</span></h2>
+        <p class="section-subtitle">Las herramientas de IA más potentes del mercado. Acceso premium a los modelos más avanzados.</p>
+        <div class="cat-section-line"></div>
+      </div>
+
+      <div class="products-grid cat-grid-4">
+
+        <!-- ChatGPT Go -->
+        <div class="product-card glow-card-purple" data-category="ia" id="prod-chatgpt-go" data-brand="openai"
+          data-qv-name="ChatGPT Go"
+          data-qv-tag="IA · Texto"
+          data-qv-img="assets/cat_ia.png"
+          data-qv-price="5500"
+          data-qv-price-old="12000"
+          data-qv-desc="Acceso al modelo GPT-4o de OpenAI, ideal para uso diario intensivo: redacción avanzada, análisis de datos, generación de código y respuestas sin límites de tokens. La forma más económica de incorporar la IA más usada del mundo a tu flujo de trabajo."
+          data-qv-features="Modelo GPT-4o activo|1 mes de acceso|Sin límite de mensajes|Generación de código y análisis|1 usuario"
+        >
+        <div class="product-badge badge-hot">Sin Stock</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1737894543912-7991b9070a33?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGNoYXQlMjBncHR8ZW58MHx8MHx8fDA%3D" alt="ChatGPT Go" class="product-img" loading="lazy" />
+            <div class="product-img-glow purple"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M37.532 16.87a9.963 9.963 0 00-.856-8.184 10.078 10.078 0 00-10.855-4.835 9.964 9.964 0 00-7.505-3.336 10.079 10.079 0 00-9.612 6.977 9.967 9.967 0 00-6.664 4.834 10.08 10.08 0 001.24 11.817 9.965 9.965 0 00.856 8.185 10.079 10.079 0 0010.855 4.835 9.965 9.965 0 007.504 3.336 10.079 10.079 0 009.617-6.981 9.967 9.967 0 006.663-4.834 10.079 10.079 0 00-1.243-11.814zM22.498 37.886a7.474 7.474 0 01-4.799-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 00.655-1.134V19.054l3.366 1.944a.12.12 0 01.066.092v9.299a7.505 7.505 0 01-7.49 7.496zM6.392 31.006a7.471 7.471 0 01-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 001.308 0l9.724-5.614v3.888a.12.12 0 01-.048.103l-8.051 4.649a7.504 7.504 0 01-10.24-2.744zM4.297 13.62A7.469 7.469 0 018.2 10.333c0 .068-.004.19-.004.274v9.201a1.294 1.294 0 00.654 1.132l9.723 5.614-3.366 1.944a.12.12 0 01-.114.012L7.044 23.86a7.504 7.504 0 01-2.747-10.24zm27.658 6.437l-9.724-5.615 3.367-1.943a.121.121 0 01.114-.012l8.048 4.648a7.498 7.498 0 01-1.158 13.528v-9.476a1.293 1.293 0 00-.647-1.13zm3.35-5.043c-.059-.037-.162-.099-.236-.141l-7.965-4.6a1.298 1.298 0 00-1.308 0l-9.723 5.614v-3.888a.12.12 0 01.048-.103l8.051-4.645a7.497 7.497 0 0111.133 7.763zm-21.063 6.929l-3.367-1.944a.12.12 0 01-.065-.092v-9.299a7.497 7.497 0 0112.293-5.756 6.94 6.94 0 00-.236.134l-7.965 4.6a1.294 1.294 0 00-.654 1.132l-.006 11.225zm1.829-3.943l4.33-2.501 4.332 2.497v4.994l-4.331 2.5-4.331-2.5V18z" fill="currentColor"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">IA · Texto</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(4.2k)</span></div>
+            </div>
+            <h3 class="product-name">ChatGPT Go</h3>
+            <p class="product-desc">Acceso completo a GPT-4o para uso diario. Redacción, código y análisis sin límites.</p>
+            <div class="product-features">
+              <span>GPT-4o</span><span>1 mes</span><span>Sin límites</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $12.000</span>
+                <span class="price-current">ARS $5.500</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('ChatGPT Go', 6.99, this); event.stopPropagation();" id="btn-chatgpt-go">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ChatGPT Plus -->
+        <div class="product-card glow-card-purple" data-category="ia" id="prod-chatgpt-plus" data-brand="openai"
+          data-qv-name="ChatGPT Plus"
+          data-qv-tag="IA · Premium"
+          data-qv-img="assets/cat_ia.png"
+          data-qv-price="25000"
+          data-qv-old-price="20 USD"
+          data-qv-desc="La suscripción premium de OpenAI en 2026. Acceso sin restricciones al modelo o3 (el más potente de la historia), voz en tiempo real sin latencia perceptible, generación de video nativa con integración directa a Sora, y razonamiento avanzado para tareas complejas de ciencia, código y análisis financiero."
+          data-qv-features="Modelo o3 de última generación|Voz en tiempo real (sin latencia)|Integración nativa con Sora (video IA)|Generación de imágenes DALL·E 4|GPTs personalizados + API básica|1 mes de acceso completo"
+        >
+          <div class="product-badge badge-hot">Tendencia</div>
+          <div class="product-badge badge-hot">Sin Stock</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1684487747720-1ba29cda82f8?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="ChatGPT Plus" class="product-img" loading="lazy" />
+            <div class="product-img-glow purple"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M37.532 16.87a9.963 9.963 0 00-.856-8.184 10.078 10.078 0 00-10.855-4.835 9.964 9.964 0 00-7.505-3.336 10.079 10.079 0 00-9.612 6.977 9.967 9.967 0 00-6.664 4.834 10.08 10.08 0 001.24 11.817 9.965 9.965 0 00.856 8.185 10.079 10.079 0 0010.855 4.835 9.965 9.965 0 007.504 3.336 10.079 10.079 0 009.617-6.981 9.967 9.967 0 006.663-4.834 10.079 10.079 0 00-1.243-11.814zM22.498 37.886a7.474 7.474 0 01-4.799-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 00.655-1.134V19.054l3.366 1.944a.12.12 0 01.066.092v9.299a7.505 7.505 0 01-7.49 7.496zM6.392 31.006a7.471 7.471 0 01-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 001.308 0l9.724-5.614v3.888a.12.12 0 01-.048.103l-8.051 4.649a7.504 7.504 0 01-10.24-2.744zM4.297 13.62A7.469 7.469 0 018.2 10.333c0 .068-.004.19-.004.274v9.201a1.294 1.294 0 00.654 1.132l9.723 5.614-3.366 1.944a.12.12 0 01-.114.012L7.044 23.86a7.504 7.504 0 01-2.747-10.24zm27.658 6.437l-9.724-5.615 3.367-1.943a.121.121 0 01.114-.012l8.048 4.648a7.498 7.498 0 01-1.158 13.528v-9.476a1.293 1.293 0 00-.647-1.13zm3.35-5.043c-.059-.037-.162-.099-.236-.141l-7.965-4.6a1.298 1.298 0 00-1.308 0l-9.723 5.614v-3.888a.12.12 0 01.048-.103l8.051-4.645a7.497 7.497 0 0111.133 7.763zm-21.063 6.929l-3.367-1.944a.12.12 0 01-.065-.092v-9.299a7.497 7.497 0 0112.293-5.756 6.94 6.94 0 00-.236.134l-7.965 4.6a1.294 1.294 0 00-.654 1.132l-.006 11.225zm1.829-3.943l4.33-2.501 4.332 2.497v4.994l-4.331 2.5-4.331-2.5V18z" fill="currentColor"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">IA · Premium</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(7.1k)</span></div>
+            </div>
+            <h3 class="product-name">ChatGPT Plus</h3>
+            <p class="product-desc">Modelo o3 + voz en tiempo real, Sora integrado y DALL·E 4. El stack de IA más completo de 2026.</p>
+            <div class="product-features">
+              <span>Modelo o3</span><span>Sora Video</span><span>1 mes</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $45.000</span>
+                <span class="price-current">ARS $25.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('ChatGPT Plus', 14.99, this); event.stopPropagation();" id="btn-chatgpt-plus">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Pro -->
+        <div class="product-card glow-card-blue" data-category="ia" id="prod-google-pro" data-brand="google"
+          data-qv-name="Google One AI Pro (Gemini 3.1)"
+          data-qv-tag="IA · Google"
+          data-qv-img="assets/cat_ia.png"
+          data-qv-price="20000"
+          data-qv-old-price="20"
+          data-qv-desc="La suscripción premium de Google en su máxima expresión para 2026. Potenciada por Gemini 3.1 PRO, el modelo multimodal más avanzado de Google: analiza documentos, imágenes, audio y video de forma simultánea con razonamiento profundo. Integrado nativamente en todo el ecosistema Google Workspace."
+          data-qv-features="Gemini 3.1 PRO (último modelo)|5 TB de almacenamiento en Google One|YouTube Premium Lite|Análisis multimodal avanzado (texto, imagen, audio, video)|Integración nativa con Gmail, Docs, Meet y Drive|Planes Premium Nano Banana Pro y Veo 3.1 Pro|Planes de 1 mes / 3 meses / 1 año de acceso completo|Agente Personal Gemini Spark"
+        >
+          <div class="product-badge badge-new">Más Vendido</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://www.gstatic.com/lamda/images/gemini_aurora_thumbnail_4g_e74822ff0ca4259beb718.png" alt="Google Pro" class="product-img" loading="lazy" />
+            <div class="product-img-glow blue"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">IA · Google</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(3.8k)</span></div>
+            </div>
+            <h3 class="product-name">Google One AI Pro — Gemini 3.1</h3>
+            <p class="product-desc">Gemini 3.1 PRO + 5TB Google One. Análisis multimodal avanzado integrado en todo Google Workspace.</p>
+            <div class="product-features">
+              <span>Gemini 3.1 PRO</span><span>5TB storage</span><span>1 año - 6 meses - 3 meses - 1 mes</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $45.000</span>
+                <span class="price-current">ARS $20.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Google One AI Pro (Gemini 3.1)', 13.99, this); event.stopPropagation();" id="btn-google-pro">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Warp Build -->
+        <div class="product-card glow-card-cyan" data-category="ia" id="prod-warp" data-brand="warp"
+          data-qv-name="Warp Build (1 año)"
+          data-qv-tag="IA · Dev"
+          data-qv-img="assets/cat_ia.png"
+          data-qv-price="150000"
+          data-qv-old-price="216"
+          data-qv-desc="La terminal de desarrollo definitiva para 2026. Warp Build combina la velocidad nativa de Rust con un agente de IA que entiende tu contexto de proyecto completo. Autocompletado predictivo, detección de errores antes de ejecutar, runbooks compartibles y sesiones de equipo sincronizadas en tiempo real."
+          data-qv-features="Agente IA con contexto de proyecto|Autocompletado predictivo de comandos|Runbooks y flujos compartibles|Team sync en tiempo real|Soporte para SSH y entornos cloud|1 año de acceso completo"
+        >
+        <div class="product-badge badge-new">Nuevo / Plan Anual</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://images.g2a.com/300x400/1x1x1/warp-subscription-build-1-year-warp-key-global-i10000513471001/a334c10646b3406b88fcfbbf" alt="Warp Build" class="product-img" loading="lazy" />
+            <div class="product-img-glow" style="background:radial-gradient(ellipse at center,rgba(6,182,212,0.15),transparent 70%)"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">IA · Dev</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9734; <span>(1.2k)</span></div>
+            </div>
+            <h3 class="product-name">Warp Build</h3>
+            <p class="product-desc">Terminal inteligente con IA integrada. Autocompletado, sugerencias de comandos y flujos automáticos.</p>
+            <div class="product-features">
+              <span>1 año</span><span>IA en terminal</span><span>Team sync</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $494.068</span>
+                <span class="price-current">ARS $150.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Warp Build (1 año)', 34.99, this); event.stopPropagation();" id="btn-warp">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cursor -->
+        <div class="product-card glow-card-purple" data-category="ia" id="prod-cursor" data-brand="cursor"
+          data-qv-name="Cursor Pro"
+          data-qv-tag="IA · Código"
+          data-qv-img="assets/cat_ia.png"
+          data-qv-price="35000"
+          data-qv-old-price="20.00"
+          data-qv-desc="El editor de código IA más avanzado del mercado en 2026. Cursor Pro integra los mejores modelos (o3, Claude Opus 4, Gemini 3.1) directamente en tu flujo de trabajo. Comprende tu codebase completo, sugiere refactorizaciones completas y puede ejecutar agentes autónomos para implementar features enteras sin intervención manual."
+          data-qv-features="Acceso a o3, Claude Opus 4 y Gemini 3.1|Agente autónomo de implementación de features|Chat con codebase completo|Autocompletado predictivo (Tab completion)|Refactorización multi-archivo|1 mes de acceso Pro"
+        >
+          <div class="product-badge badge-sale">Popular</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/brand/brand-logo-2.svg" alt="Cursor AI" class="product-img" loading="lazy" />
+            <div class="product-img-glow purple"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/><path d="M13 13l6 6"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">IA · Código</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(5.6k)</span></div>
+            </div>
+            <h3 class="product-name">Cursor</h3>
+            <p class="product-desc">El editor de código con IA más avanzado. Chat con el código base, autocompletado predictivo y refactorización.</p>
+            <div class="product-features">
+              <span>GPT-4o</span><span>Claude 3.5</span><span>1 mes</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $45.000</span>
+                <span class="price-current">$35.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Cursor AI', 15.99, this); event.stopPropagation();" id="btn-cursor">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lovable AI -->
+        <div class="product-card glow-card-orange" data-category="ia" id="prod-lovable" data-brand="lovable"
+          data-qv-name="Lovable AI PRO Lite"
+          data-qv-tag="IA · No-code"
+          data-qv-img="assets/cat_ia.png"
+          data-qv-price="35000"
+          data-qv-old-price="60.00"
+          data-qv-desc="La plataforma no-code líder de 2026 para crear aplicaciones web completas con IA. Describís lo que querés y Lovable genera el frontend, backend, base de datos y lo despliega automáticamente. Ideal para fundadores, product managers y creativos que quieren lanzar productos rápidamente sin escribir código."
+          data-qv-features="Generación de apps full-stack desde descripción|Deploy automático incluido|Base de datos y autenticación integradas|Edición visual y por chat simultánea|Integración con Supabase, Stripe y más|1 año de acceso Pro Lite"
+        >
+        <div class="product-badge badge-new">Plan Anual</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://datafloq.com/wp-content/uploads/2025/12/Lovable-ai-software-development-datafloq.png" alt="Lovable AI" class="product-img" loading="lazy" />
+            <div class="product-img-glow orange"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">IA · No-code</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(2.3k)</span></div>
+            </div>
+            <h3 class="product-name">Lovable AI</h3>
+            <p class="product-desc">Crea apps web completas con IA desde una descripción. Frontend, backend y deploy integrado.</p>
+            <div class="product-features">
+              <span>No-code</span><span>Full-stack</span><span>1 año</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $116.610</span>
+                <span class="price-current">ARS $35.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Lovable AI', 17.99, this); event.stopPropagation();" id="btn-lovable">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rezi AI -->
+        <div class="product-card glow-card-blue" data-category="ia" id="prod-rezi" data-brand="rezi"
+          data-qv-name="Rezi AI Pro (Anual)"
+          data-qv-tag="IA · CV"
+          data-qv-img="assets/cat_ia.png"
+          data-qv-price="70000"
+          data-qv-old-price="149.00"
+          data-qv-desc="La herramienta de IA especializada en búsqueda de empleo para 2026. Rezi analiza la oferta laboral y genera tu CV y carta de presentación optimizados para pasar los sistemas ATS (Applicant Tracking Systems) de las grandes corporaciones. Aumenta tu tasa de entrevistas hasta un 300%."
+          data-qv-features="Generación de CV optimizado por IA|Análisis ATS score en tiempo real|Cartas de presentación personalizadas|CVs ilimitados para distintos roles|Análisis de brechas de habilidades|1 año de acceso Pro"
+        >
+          <div class="product-badge badge-new">Plan Anual</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://cdn-1.webcatalog.io/catalog/rezi-ai/rezi-ai-social-preview.png?v=1714780738717" alt="Rezi AI" class="product-img" loading="lazy" />
+            <div class="product-img-glow blue"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">IA · CV</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9734; <span>(988)</span></div>
+            </div>
+            <h3 class="product-name">Rezi AI</h3>
+            <p class="product-desc">Genera CVs y cartas de presentación optimizados por IA para pasar los filtros ATS de grandes empresas.</p>
+            <div class="product-features">
+              <span>ATS score</span><span>CV ilimitados</span><span>Anual</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $289.580</span>
+                <span class="price-current">ARS $70.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Rezi AI', 19.99, this); event.stopPropagation();" id="btn-rezi">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Perplexity PRO -->
+        <div class="product-card glow-card-cyan" data-category="ia" id="prod-perplexity" data-brand="perplexity"
+          data-qv-name="Perplexity PRO"
+          data-qv-tag="IA · Búsqueda"
+          data-qv-img="assets/cat_ia.png"
+          data-qv-price="150000"
+          data-qv-old-price="220"
+          data-qv-desc="El motor de búsqueda con IA más preciso de 2026. Perplexity PRO responde con fuentes verificadas y actualizadas en tiempo real, eliminando la alucinación. Acceso a los mejores modelos (o3, Claude Opus 4, Gemini 3.1) para elegir según la tarea. Ideal para investigación académica, análisis de mercado y verificación de datos."
+          data-qv-features="Acceso a o3, Claude Opus 4 y Gemini 3.1|Respuestas con fuentes verificadas en tiempo real|Sin alucinaciones (grounding verificado)|Búsqueda de imágenes y archivos adjuntos|Exportación de investigaciones|1 año de acceso Pro"
+        >
+          <div class="product-badge badge-new">Plan Anual</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVXQzOjQfZTYtGAdG9k3hzVmlbqtTCsoQh1Q&s" alt="Perplexity PRO" class="product-img" loading="lazy" />
+            <div class="product-img-glow" style="background:radial-gradient(ellipse at center,rgba(6,182,212,0.15),transparent 70%)"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">IA · Búsqueda</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(4.7k)</span></div>
+            </div>
+            <h3 class="product-name">Perplexity PRO 100% OFF</h3>
+            <p class="product-desc">Motor de búsqueda con IA. Respuestas con fuentes verificadas, análisis profundo y acceso a GPT-4 y Claude.</p>
+            <div class="product-features">
+              <span>GPT-4 & Claude</span><span>Sin límites</span><span>1 año / 1 mes</span></span>Cupón de descuento del 100%</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $396.677</span>
+                <span class="price-current">ARS $150.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Perplexity PRO', 12.99, this); event.stopPropagation();" id="btn-perplexity">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCION 2: ANTIVIRUS & SEGURIDAD -->
+  <section class="section cat-section" id="antivirus" data-section="antivirus">
+    <div class="container">
+
+      <div class="cat-section-header">
+        <div class="cat-section-label antivirus-label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Sección 02
+        </div>
+        <h2 class="section-title">Antivirus <span class="gradient-text">&amp; Seguridad</span></h2>
+        <p class="section-subtitle">Protección premium para tus dispositivos. Las marcas más confiables del mercado.</p>
+        <div class="cat-section-line"></div>
+      </div>
+
+      <div class="products-grid cat-grid-4">
+
+        <!-- McAfee -->
+        <div class="product-card glow-card-green" data-category="antivirus" id="prod-mcafee" data-brand="mcafee"
+          data-qv-name="McAfee Total Protection 2026"
+          data-qv-tag="Antivirus"
+          data-qv-img="assets/cat_security.png"
+          data-qv-price="25000"
+          data-qv-old-price="35.00"
+          data-qv-desc="La suite de ciberseguridad más completa de McAfee, actualizada para las amenazas de 2026. Protección en tiempo real contra ransomware de nueva generación, deepfake detection, VPN ultra-rápida sin límite de datos, gestión de contraseñas con IA y monitoreo de identidad en la dark web."
+          data-qv-features="Protección en tiempo real contra ransomware|Detección de deepfakes e IA maliciosa|VPN ilimitada integrada (sin logs)|Gestor de contraseñas con IA|Monitoreo de identidad en Dark Web|1 dispositivo — 1 año de licencia"
+        >
+          <div class="product-badge badge-hot">Oferta</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://www.ktronix.com/medias/731944728940-001-1400Wx1400H?context=bWFzdGVyfGltYWdlc3w2MTA2OHxpbWFnZS93ZWJwfGFHRm1MMmd6WkM4eE5UUXpPVFkxTkRVMU1UVTRNaTgzTXpFNU5EUTNNamc1TkRCZk1EQXhYekUwTURCWGVERTBNREJJfDIzNGU4NzRlNmE2NjY4NDk4NzhiNWQ4M2M2YTQ2YmI3ZjE1MWI3MzhlNzYyMThiN2RhNDY1ZTMzODM0ODQxNzI" alt="McAfee" class="product-img" loading="lazy" />
+            <div class="product-img-glow green"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag product-tag-green">Antivirus</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(3.1k)</span></div>
+            </div>
+            <h3 class="product-name">McAfee Total Protection</h3>
+            <p class="product-desc">Protección completa en tiempo real, VPN integrada, gestión de contraseñas y protección de identidad.</p>
+            <div class="product-features">
+              <span>1 dispositivo</span><span>VPN incluida</span><span>1 año</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $50.200</span>
+                <span class="price-current">ARS $25.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('McAfee Total Protection', 24.99, this); event.stopPropagation();" id="btn-mcafee">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avast -->
+        <div class="product-card glow-card-orange" data-category="antivirus" id="prod-avast" data-brand="avast"
+          data-qv-name="Avast Premium Security 2026"
+          data-qv-tag="Antivirus"
+          data-qv-img="assets/cat_security.png"
+          data-qv-price="25000"
+          data-qv-old-price="50.00"
+          data-qv-desc="Avast Premium Security en su versión 2026, diseñado para combatir las amenazas más avanzadas: ransomware con cifrado post-cuántico, ataques de phishing potenciados por IA y vulnerabilidades de día cero. Sandbox inteligente, firewall adaptativo y escáner Wi-Fi que detecta intrusos en segundos."
+          data-qv-features="Protección anti-ransomware post-cuántico|Detección de phishing potenciado por IA|Sandbox inteligente para archivos sospechosos|Firewall adaptativo con aprendizaje|Escáner de red Wi-Fi en tiempo real|1 dispositivo — 1 año de licencia"
+        >
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://biocdkeys.com/cdn/shop/files/avast.png?v=1779839751&width=1254" alt="Avast" class="product-img" loading="lazy" />
+            <div class="product-img-glow orange"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag product-tag-orange">Antivirus</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9734; <span>(2.4k)</span></div>
+            </div>
+            <h3 class="product-name">Avast Premium Security</h3>
+            <p class="product-desc">Protección avanzada contra ransomware, phishing y hackers. Sandbox integrado y escáner de red Wi-Fi.</p>
+            <div class="product-features">
+              <span>1 dispositivo</span><span>Anti-ransomware</span><span>1 año</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $68.620</span>
+                <span class="price-current">ARS $25.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Avast Premium Security', 19.99, this); event.stopPropagation();" id="btn-avast">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Webroot Premium 1 Year -->
+        <div class="product-card glow-card-cyan" data-category="antivirus" id="prod-webroot" data-brand="webroot"
+          data-qv-name="Webroot Premium — 1 Year"
+          data-qv-tag="Antivirus · Cloud"
+          data-qv-img="assets/cat_security.png"
+          data-qv-price="40000"
+          data-qv-old-price="129.99"
+          data-qv-glow="cyan"
+          data-qv-stars="5"
+          data-qv-reviews="1.8k"
+          data-qv-desc="El único antivirus 100% basado en la nube. Webroot escanea en sus propios servidores, eliminando el impacto en tu CPU y RAM. Protección en tiempo real contra ransomware, phishing y spyware con una huella de menos de 1 MB en tu sistema."
+          data-qv-features="Motor 100% cloud (0% impacto en tu PC)|Protección en tiempo real contra ransomware|Antiphishing y antispyware integrado|Instalación y escaneo ultra-rápido (menos de 1 min)|Compatible con Windows y Mac|1 usuario — 1 año de licencia"
+        >
+          <div class="product-badge badge-new">Ligero</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://i.vimeocdn.com/video/2018180506-c081737c8be862f48b3c03ad5ebc996983eb448d905c2838d712ba598c9163fd-d?f=webp" alt="Webroot Premium" class="product-img" loading="lazy" />
+            <div class="product-img-glow" style="background:radial-gradient(ellipse at center,rgba(6,182,212,0.18),transparent 70%)"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag product-tag-cyan">Antivirus · Cloud</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(1.8k)</span></div>
+            </div>
+            <h3 class="product-name">Webroot Premium</h3>
+            <p class="product-desc">El único antivirus cloud puro. Escaneo instantáneo, 0% de impacto en tu CPU y protección total en 2026.</p>
+            <div class="product-features">
+              <span>100% Cloud</span><span>Ultra-ligero</span><span>1 año</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $297.332</span>
+                <span class="price-current">ARS $40.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Webroot Premium 1 Year', 16.99, this); event.stopPropagation();" id="btn-webroot">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- McAfee Total Protection 10 Devices -->
+        <div class="product-card glow-card-green" data-category="antivirus" id="prod-mcafee-10" data-brand="mcafee"
+          data-qv-name="McAfee Total Protection Anual"
+          data-qv-tag="Antivirus · Familia"
+          data-qv-img="assets/cat_security.png"
+          data-qv-price="30000"
+          data-qv-old-price="40"
+          data-qv-glow="green"
+          data-qv-stars="5"
+          data-qv-reviews="4.2k"
+          data-qv-desc="Protege a toda tu familia o equipo con una sola licencia. McAfee Total Protection para 10 dispositivos incluye antivirus, VPN, gestor de contraseñas con IA y monitoreo de identidad en la dark web para Windows, Mac, iOS y Android simultáneamente."
+          data-qv-features="Hasta 10 dispositivos simultáneos|Compatible con Windows, Mac, iOS y Android|VPN sin límite de datos integrada|Gestor de contraseñas con IA|Monitoreo de identidad en Dark Web|1 año de licencia (Global)"
+        >
+          <div class="product-badge badge-hot">Familia / 10 dispositivos</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://www.ktronix.com/medias/731944728940-001-1400Wx1400H?context=bWFzdGVyfGltYWdlc3w2MTA2OHxpbWFnZS93ZWJwfGFHRm1MMmd6WkM4eE5UUXpPVFkxTkRVMU1UVTRNaTgzTXpFNU5EUTNNamc1TkRCZk1EQXhYekUwTURCWGVERTBNREJJfDIzNGU4NzRlNmE2NjY4NDk4NzhiNWQ4M2M2YTQ2YmI3ZjE1MWI3MzhlNzYyMThiN2RhNDY1ZTMzODM0ODQxNzI" alt="McAfee 10 Devices" class="product-img" loading="lazy" />
+            <div class="product-img-glow green"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag product-tag-green">Antivirus · Familia</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(4.2k)</span></div>
+            </div>
+            <h3 class="product-name">McAfee Total Protection 1 año</h3>
+            <p class="product-desc">Una licencia, 10 dispositivos. Toda tu familia protegida con antivirus, VPN y monitoreo de identidad.</p>
+            <div class="product-features">
+              <span>10 dispositivos</span><span>VPN incluida</span><span>1 año</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $61.200</span>
+                <span class="price-current">ARS $30.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('McAfee Total Protection 10 Devices 1 Year', 34.99, this); event.stopPropagation();" id="btn-mcafee-10">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- McAfee Mobile Security Android -->
+        <div class="product-card glow-card-green" data-category="antivirus" id="prod-mcafee-mobile" data-brand="mcafee"
+          data-qv-name="McAfee Mobile Security Android — 1 Year"
+          data-qv-tag="Antivirus · Android"
+          data-qv-img="assets/cat_security.png"
+          data-qv-price="12000"
+          data-qv-old-price="25.00"
+          data-qv-glow="green"
+          data-qv-stars="4"
+          data-qv-reviews="2.1k"
+          data-qv-desc="Seguridad móvil de nivel corporativo para tu Android. McAfee Mobile Security bloquea apps maliciosas, protege tu Wi-Fi público, escanea SMS con links peligrosos y te alerta en tiempo real si tu número de teléfono aparece en la dark web."
+          data-qv-features="Escaneo de apps maliciosas en tiempo real|Protección de red Wi-Fi pública|Detección de SMS y links de phishing|Alerta de número en Dark Web|Antirrobo y localización remota|1 dispositivo Android — 1 año"
+        >
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://i.ytimg.com/vi/Mn1MQw1i94A/maxresdefault.jpg" alt="McAfee Mobile Security" class="product-img" loading="lazy" />
+            <div class="product-img-glow green"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/><path d="M9 7h6"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag product-tag-green">Antivirus · Android</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9734; <span>(2.1k)</span></div>
+            </div>
+            <h3 class="product-name">McAfee Mobile Security</h3>
+            <p class="product-desc">Seguridad móvil total para Android. Bloquea apps maliciosas, protege tu Wi-Fi y vigila tu identidad.</p>
+            <div class="product-features">
+              <span>Android</span><span>Antirrobo</span><span>1 año</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $37,183</span>
+                <span class="price-current">ARS $12.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('McAfee Mobile Security Android 1 Year', 11.99, this); event.stopPropagation();" id="btn-mcafee-mobile">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bitdefender Total Security -->
+        <div class="product-card glow-card-blue" data-category="antivirus" id="prod-bitdefender" data-brand="bitdefender"
+          data-qv-name="Bitdefender Total Security — 1 Device 1 Year"
+          data-qv-tag="Antivirus · Elite"
+          data-qv-img="assets/cat_security.png"
+          data-qv-price="35000"
+          data-qv-old-price="49.99"
+          data-qv-glow="blue"
+          data-qv-stars="5"
+          data-qv-reviews="6.7k"
+          data-qv-desc="El antivirus mejor calificado en AV-Test 2025-2026. Bitdefender Total Security logra detección de amenazas del 99.99% con el mínimo impacto en rendimiento del mercado. Su motor de IA propio detecta ataques de día cero antes de que exista una firma conocida."
+          data-qv-features="Tasa de detección 99.99% (AV-Test 2026)|Motor IA propio para amenazas de día cero|Protección anti-ransomware multicapa|Autopilot: modo totalmente silencioso|VPN básica incluida (200 MB/día)|1 dispositivo — 1 año (Global)"
+        >
+          <div class="product-badge badge-sale">N° 1 AV-Test</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://iowacitytechnologyservices.com/wp-content/uploads/2015/09/20150921mo0211-bitdefender-logo-page.jpg?w=1080" alt="Bitdefender Total Security" class="product-img" loading="lazy" />
+            <div class="product-img-glow blue"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">Antivirus · Elite</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(6.7k)</span></div>
+            </div>
+            <h3 class="product-name">Bitdefender Total Security</h3>
+            <p class="product-desc">N°1 en AV-Test 2026. Detección del 99.99%, motor IA propio y modo Autopilot totalmente silencioso.</p>
+            <div class="product-features">
+              <span>99.99% detección</span><span>IA propia</span><span>1 año</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $86.000</span>
+                <span class="price-current">ARS $35.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Bitdefender Total Security 1 Device 1 Year', 19.99, this); event.stopPropagation();" id="btn-bitdefender">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ESET NOD32 Antivirus -->
+        <div class="product-card glow-card-purple" data-category="antivirus" id="prod-eset" data-brand="eset"
+          data-qv-name="ESET NOD32 Antivirus — 1 Device 1 Year"
+          data-qv-tag="Antivirus · Experto"
+          data-qv-img="assets/cat_security.png"
+          data-qv-price="25000"
+          data-qv-old-price="38.50"
+          data-qv-glow="purple"
+          data-qv-stars="5"
+          data-qv-reviews="3.4k"
+          data-qv-desc="La elección de los profesionales de ciberseguridad desde hace 35 años. ESET NOD32 combina el motor de detección más veloz del mercado con protección específica contra exploits y ransomware, sin ralentizar tu PC ni un milisegundo."
+          data-qv-features="Motor de escaneo más veloz del mercado|Protección anti-exploit avanzada|Detección de ransomware en tiempo real|Tecnología ESET LiveGrid® (nube)|Mínimo consumo de recursos del sistema|1 dispositivo — 1 año (Global)"
+        >
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRobq3ADUQ6iETJoPnG93DuVzwdsIOVhk9ahQ&s" alt="ESET NOD32" class="product-img" loading="lazy" />
+            <div class="product-img-glow purple"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">Antivirus · Experto</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(3.4k)</span></div>
+            </div>
+            <h3 class="product-name">ESET NOD32 Antivirus</h3>
+            <p class="product-desc">El favorito de los expertos en seguridad. El motor más veloz del mercado sin impacto en tu sistema.</p>
+            <div class="product-features">
+              <span>Anti-exploit</span><span>LiveGrid®</span><span>1 año</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $73.825</span>
+                <span class="price-current">ARS $25.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('ESET NOD32 Antivirus 1 Device 1 Year', 15.99, this); event.stopPropagation();" id="btn-eset">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- AdGuard Premium 3 Devices -->
+        <div class="product-card glow-card-cyan" data-category="antivirus" id="prod-adguard" data-brand="adguard"
+          data-qv-name="AdGuard Premium — 3 Devices 1 Year"
+          data-qv-tag="Privacidad · DNS"
+          data-qv-img="assets/cat_security.png"
+          data-qv-price="20000"
+          data-qv-old-price="32.99"
+          data-qv-glow="cyan"
+          data-qv-stars="5"
+          data-qv-reviews="5.1k"
+          data-qv-desc="El bloqueador de publicidad y rastreo más avanzado de 2026. AdGuard Premium elimina anuncios a nivel de red en todos tus dispositivos y apps (incluyendo YouTube y Spotify), bloquea trackers de terceros y protege tu DNS contra phishing y malware."
+          data-qv-features="Bloqueo de anuncios en apps y browsers|Eliminación de trackers y telemetría|Protección DNS contra phishing y malware|Bloqueo de anuncios en YouTube y Spotify|Modo HTTPS Filtering (tráfico cifrado)|3 dispositivos — 1 año (Global)"
+        >
+          <div class="product-badge badge-new">Sin anuncios</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://cdn.adguard.com/public/Adguard/Blog/adguard_tablet_1.png?mw=1360" alt="AdGuard Premium" class="product-img" loading="lazy" />
+            <div class="product-img-glow" style="background:radial-gradient(ellipse at center,rgba(6,182,212,0.18),transparent 70%)"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag product-tag-cyan">Privacidad · DNS</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(5.1k)</span></div>
+            </div>
+            <h3 class="product-name">AdGuard Premium</h3>
+            <p class="product-desc">Elimina anuncios en todas tus apps y browsers, incluyendo YouTube. Privacidad total a nivel de red.</p>
+            <div class="product-features">
+              <span>3 dispositivos</span><span>Sin anuncios</span><span>1 año</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $68.620</span>
+                <span class="price-current">ARS $20.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('AdGuard Premium 3 Devices 1 Year', 12.99, this); event.stopPropagation();" id="btn-adguard">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avast Ultimate 1 Device -->
+        <div class="product-card glow-card-orange" data-category="antivirus" id="prod-avast-ultimate" data-brand="avast"
+          data-qv-name="Avast Ultimate — 1 Device 1 Year"
+          data-qv-tag="Antivirus · Suite"
+          data-qv-img="assets/cat_security.png"
+          data-qv-price="35000"
+          data-qv-old-price="109.99"
+          data-qv-glow="orange"
+          data-qv-stars="5"
+          data-qv-reviews="3.9k"
+          data-qv-desc="El paquete todo-en-uno de Avast en su versión más completa. Avast Ultimate incluye antivirus, VPN ilimitada, limpiador de PC, actualizador de drivers y AntiTrack en un solo pack. La protección más completa de Avast a precio inmejorable."
+          data-qv-features="Avast One Antivirus incluido|VPN ilimitada y sin logs|Avast Cleanup Premium incluido|Driver Updater incluido|AntiTrack: protege tu huella digital|1 dispositivo Windows — 1 año"
+        >
+          <div class="product-badge badge-hot">Todo incluido</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://m.media-amazon.com/images/I/71OC0114DIL._AC_UF1000,1000_QL80_.jpg" alt="Avast Ultimate" class="product-img" loading="lazy" />
+            <div class="product-img-glow orange"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag product-tag-orange">Antivirus · Suite</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(3.9k)</span></div>
+            </div>
+            <h3 class="product-name">Avast Ultimate Windows</h3>
+            <p class="product-desc">Antivirus + VPN ilimitada + Cleanup + Driver Updater + AntiTrack. El pack definitivo de Avast.</p>
+            <div class="product-features">
+              <span>VPN incluida</span><span>5 herramientas</span><span>1 año</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $251.585</span>
+                <span class="price-current">ARS $35.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Avast Ultimate 1 Device 1 Year', 29.99, this); event.stopPropagation();" id="btn-avast-ultimate">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avast Internet Security -->
+        <div class="product-card glow-card-orange" data-category="antivirus" id="prod-avast-is" data-brand="avast"
+          data-qv-name="Avast Internet Security — 1 Device 1 Year"
+          data-qv-tag="Antivirus"
+          data-qv-img="assets/cat_security.png"
+          data-qv-price="7000"
+          data-qv-old-price="$11.88"
+          data-qv-glow="orange"
+          data-qv-stars="4"
+          data-qv-reviews="2.8k"
+          data-qv-desc="Protección premium de Avast con Firewall inteligente, Sandbox para ejecutar archivos sospechosos de forma aislada y protección anti-spam para tu correo. Bloquea hackers, ransomware y spyware antes de que lleguen a tu sistema."
+          data-qv-features="Firewall inteligente y configurable|Sandbox para archivos peligrosos|Protección anti-spam para email|Escudo web contra sitios peligrosos|Anti-ransomware y antispyware|1 dispositivo Windows — 1 año"
+        >
+          <div class="product-badge badge-hot">Sin Stock</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="assets/cat_security.png" alt="Avast Internet Security" class="product-img" loading="lazy" />
+            <div class="product-img-glow orange"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag product-tag-orange">Antivirus</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9734; <span>(2.8k)</span></div>
+            </div>
+            <h3 class="product-name">Avast Internet Security</h3>
+            <p class="product-desc">Firewall inteligente, Sandbox y anti-spam. Protección avanzada contra hackers y ransomware.</p>
+            <div class="product-features">
+              <span>Firewall</span><span>Sandbox</span><span>1 año</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $27.173</span>
+                <span class="price-current">ARS $7000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Avast Internet Security 1 Device 1 Year', 19.99, this); event.stopPropagation();" id="btn-avast-is">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avast Secure VPN -->
+        <div class="product-card glow-card-cyan" data-category="antivirus" id="prod-avast-vpn" data-brand="avast"
+          data-qv-name="Avast SecureLine VPN — 1 Device 1 Year"
+          data-qv-tag="Privacidad · VPN"
+          data-qv-img="assets/cat_security.png"
+          data-qv-price="10000"
+          data-qv-old-price="24,99"
+          data-qv-glow="cyan"
+          data-qv-stars="4"
+          data-qv-reviews="1.9k"
+          data-qv-desc="Navés anónimamente con servidores en más de 55 países. Avast SecureLine VPN cifra todo tu tráfico con protocolo OpenVPN y AES-256, sin registrar logs de actividad. Ideal para redes públicas, trabajo remoto y desbloqueo de contenido geobloqueado."
+          data-qv-features="Servidores en 55+ países|Cifrado AES-256 con OpenVPN/WireGuard|Política estricta de cero logs|Protección en Wi-Fi pública automática|Kill Switch integrado|1 dispositivo (multi-plataforma) — 1 año"
+        >
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://www.security.org/app/uploads/2020/08/Avast-SecureLine-VPN-logo.jpg" alt="Avast Secure VPN" class="product-img" loading="lazy" />
+            <div class="product-img-glow" style="background:radial-gradient(ellipse at center,rgba(6,182,212,0.18),transparent 70%)"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag product-tag-cyan">Privacidad · VPN</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9734; <span>(1.9k)</span></div>
+            </div>
+            <h3 class="product-name">Avast SecureLine VPN</h3>
+            <p class="product-desc">VPN con AES-256, 55+ países y cero logs. Protege tu privacidad en cualquier red pública.</p>
+            <div class="product-features">
+              <span>55+ países</span><span>Cero logs</span><span>1 año</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARS $54.896</span>
+                <span class="price-current">ARS $10.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Avast SecureLine VPN 1 Device 1 Year', 14.99, this); event.stopPropagation();" id="btn-avast-vpn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avast AntiTrack -->
+        <div class="product-card glow-card-purple" data-category="antivirus" id="prod-avast-antitrack" data-brand="avast"
+          data-qv-name="Avast AntiTrack — 1 Device 1 Year"
+          data-qv-tag="Privacidad · Huella"
+          data-qv-img="assets/cat_security.png"
+          data-qv-price="18000"
+          data-qv-old-price="19.99"
+          data-qv-glow="purple"
+          data-qv-stars="4"
+          data-qv-reviews="1.1k"
+          data-qv-desc="Las empresas de publicidad construyen tu perfil digital con más de 500 puntos de datos. Avast AntiTrack elimina y falsifica tu huella de navegador (fingerprint), bloquea cookies de rastreo de terceros y borra automáticamente tu historial de actividad web."
+          data-qv-features="Falsificación de browser fingerprint|Bloqueo de cookies de rastreo de terceros|Limpieza automática de historial de actividad|Detección de trackers en tiempo real|Informe de privacidad semanal|1 dispositivo Windows — 1 año"
+        >
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://cdn.gameseal.com/media/4e/92/ea/1717496756/Avast-AntiTrack-Premium-1year-1dev.png" alt="Avast AntiTrack" class="product-img" loading="lazy" />
+            <div class="product-img-glow purple"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">Privacidad · Huella</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9734; <span>(1.1k)</span></div>
+            </div>
+            <h3 class="product-name">Avast AntiTrack</h3>
+            <p class="product-desc">Falsifica tu huella digital y bloquea trackers. Las empresas de ads no podrán construir tu perfil.</p>
+            <div class="product-features">
+              <span>Fingerprint</span><span>Anti-tracker</span><span>1 año</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARG $45.724</span>
+                <span class="price-current">ARS $18.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Avast AntiTrack 1 Device 1 Year', 15.99, this); event.stopPropagation();" id="btn-avast-antitrack">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avast Driver Updater -->
+        <div class="product-card glow-card-blue" data-category="antivirus" id="prod-avast-driver" data-brand="avast"
+          data-qv-name="Avast Driver Updater — 1 Device 1 Year"
+          data-qv-tag="Sistema · Drivers"
+          data-qv-img="assets/cat_security.png"
+          data-qv-price="13000"
+          data-qv-old-price="14.99"
+          data-qv-glow="blue"
+          data-qv-stars="4"
+          data-qv-reviews="876"
+          data-qv-desc="Los drivers desactualizados son la causa n°1 de crashes, freezes y problemas de rendimiento en Windows. Avast Driver Updater escanea más de 700.000 drivers y los actualiza con un clic, descargando versiones certificadas por los fabricantes originales."
+          data-qv-features="Base de datos de 700.000+ drivers|Actualización con un solo clic|Drivers certificados por el fabricante|Punto de restauración automático antes de actualizar|Mejora rendimiento de GPU, audio y red|1 dispositivo Windows — 1 año"
+        >
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://cdn.dlcompare.com/game_tetiere/upload/gameimage/file/avast-driver-updater-file-34c999a8.png.webp" alt="Avast Driver Updater" class="product-img" loading="lazy" />
+            <div class="product-img-glow blue"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">Sistema · Drivers</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9734; <span>(876)</span></div>
+            </div>
+            <h3 class="product-name">Avast Driver Updater</h3>
+            <p class="product-desc">Elimina crashes y freezes actualizando tus drivers. 700k+ drivers certificados con un clic.</p>
+            <div class="product-features">
+              <span>700k+ drivers</span><span>1 clic</span><span>1 año</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARG $34.287</span>
+                <span class="price-current">ARG $13.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Avast Driver Updater 1 Device 1 Year', 13.99, this); event.stopPropagation();" id="btn-avast-driver">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avast Cleanup Premium -->
+        <div class="product-card glow-card-blue" data-category="antivirus" id="prod-avast-cleanup" data-brand="avast"
+          data-qv-name="Avast CleanUp — 1 Device 1 Year"
+          data-qv-tag="Optimización · PC"
+          data-qv-img="assets/cat_security.png"
+          data-qv-price="8000"
+          data-qv-old-price="19.99"
+          data-qv-glow="blue"
+          data-qv-stars="4"
+          data-qv-reviews="1.3k"
+          data-qv-desc="Dale a tu PC Windows el rendimiento del primer día. Avast Cleanup identifica y elimina programas basura, desactiva apps que consumen recursos en segundo plano, limpia el registro y libera espacio en disco con su modo Súper Limpieza automática."
+          data-qv-features="Modo Súper Limpieza automática|Desactivación de apps en segundo plano|Limpieza de registro y archivos temporales|Optimizador de arranque (inicio más rápido)|Liberación de espacio en disco|1 dispositivo Windows — 1 año"
+        >
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://mycodes24.com/wp-content/uploads/2025/10/premiumavast_3.jpg" alt="Avast CleanUp" class="product-img" loading="lazy" />
+            <div class="product-img-glow blue"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">Optimización · PC</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9734; <span>(1.3k)</span></div>
+            </div>
+            <h3 class="product-name">Avast CleanUp Premium</h3>
+            <p class="product-desc">Devuelve a tu PC el rendimiento del primer día. Limpieza profunda, arranque más rápido y más espacio libre.</p>
+            <div class="product-features">
+              <span>Super Limpieza</span><span>Boost arranque</span><span>1 año</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARG $45.724</span>
+                <span class="price-current">ARG $8.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Avast TuneUp 1 Device 1 Year', 14.99, this); event.stopPropagation();" id="btn-avast-tuneup">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avast Cleanup & Boost Pro Android -->
+        <div class="product-card glow-card-green" data-category="antivirus" id="prod-avast-Cleanup-boost-android" data-brand="avast"
+          data-qv-name="Avast Cleanup & Boost Pro Pro Android — 1 Device 2 Year"
+          data-qv-tag="Android · Cleaner"
+          data-qv-img="assets/cat_security.png"
+          data-qv-price="30000"
+          data-qv-old-price="28.56"
+          data-qv-glow="green"
+          data-qv-stars="4"
+          data-qv-reviews="2.2k"
+          data-qv-desc="Tu Android más rápido y con más espacio libre en minutos. Avast Cleanup & Boost Pro Pro elimina caché acumulado, fotos duplicadas, apps que no usás y archivos residuales. Acelera tu teléfono y libera espacio real para lo que realmente importa."
+          data-qv-features="Eliminación de caché y archivos basura|Detector de fotos y vídeos duplicados|Gestión de apps instaladas no usadas|Limpiar en segundo plano automáticamente|Optimizador de batería integrado|1 dispositivo Android — 2 años"
+        >
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://majordev.ru/wa-data/public/shop/products/00/11/1100/images/4302/4302.750.jpg" alt="Avast Cleaner Pro" class="product-img" loading="lazy" />
+            <div class="product-img-glow green"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag product-tag-green">Android · Cleaner</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9734; <span>(2.2k)</span></div>
+            </div>
+            <h3 class="product-name">Avast Cleanup & Boost Pro Pro</h3>
+            <p class="product-desc">Libera espacio y acelera tu Android eliminando caché, fotos duplicadas y apps fantasma.</p>
+            <div class="product-features">
+              <span>Android</span><span>Anti-duplicados</span><span>2 años</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">ARG $65.326</span>
+                <span class="price-current">ARG $30.000</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Avast Cleaner Pro Android 2 Years', 9.99, this); event.stopPropagation();" id="btn-avast-cleaner">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section cat-section" id="creatividad" data-section="creatividad">
+    <div class="container">
+
+      <div class="cat-section-header">
+        <div class="cat-section-label creative-label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          Sección 03
+        </div>
+        <h2 class="section-title">Suscripciones <span class="gradient-text">&amp; Creatividad</span></h2>
+        <p class="section-subtitle">Las mejores plataformas creativas a precio de mercado.</p>
+        <div class="cat-section-line"></div>
+      </div>
+
+      <div class="products-grid cat-grid-4">
+
+        <!-- Canva Pro -->
+        <div class="product-card glow-card-gold" data-category="creatividad" id="prod-canva" data-brand="canva"
+          data-qv-name="Canva Pro"
+          data-qv-tag="Diseño · Creatividad"
+          data-qv-img="assets/cat_creative.png"
+          data-qv-price="12.99"
+          data-qv-old-price="54.99"
+          data-qv-desc="La herramienta de diseño creativa líder del mundo, potenciada con IA generativa en 2026. Canva Pro incluye Magic Studio completo: generación de imágenes, video y presentaciones desde texto, eliminación de fondo con un click, redimensionado inteligente para cualquier plataforma y el Brand Kit completo para mantener consistencia visual."
+          data-qv-features="Magic Studio IA (imagen, video, texto)|100M+ plantillas y elementos premium|Brand Kit completo para tu marca|Eliminación de fondo y objetos con IA|Redimensionado automático multi-formato|1 año de acceso Pro"
+        >
+          <div class="product-badge badge-sale">Premium</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://virtualkeys.store/cdn/shop/files/canva-edu-pro-subscription.png?v=1758679050" alt="Canva Pro" class="product-img" loading="lazy" />
+            <div class="product-img-glow gold"></div>
+            <div class="cat-img-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag product-tag-gold">Diseño</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(9.4k)</span></div>
+            </div>
+            <h3 class="product-name">Canva Pro</h3>
+            <p class="product-desc">Diseño profesional ilimitado. 100M+ plantillas, herramientas de IA, eliminador de fondo, Brand Kit y más.</p>
+            <div class="product-features">
+              <span>IA integrada</span><span>100M+ assets</span><span>1 año</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">$54.99</span>
+                <span class="price-current">$12.99</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Canva Pro', 12.99, this); event.stopPropagation();" id="btn-canva">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cupon LinkedIn Premium 75% OFF 12 Meses -->
+        <div class="product-card glow-card-gold" data-category="creatividad" id="prod-linkedin-cat" data-brand="linkedin"
+          data-qv-name="Cupón LinkedIn Premium 75% OFF — 12 Meses"
+          data-qv-tag="Red Profesional · Suscripción"
+          data-qv-img="assets/product_linkedin.png"
+          data-qv-price="19.99"
+          data-qv-old-price="479.88"
+          data-qv-stars="5"
+          data-qv-reviews="2.7k"
+          data-qv-desc="Cupón de descuento exclusivo del 75% para LinkedIn Premium Career o Business. Válido por 12 meses completos. Aplica en cuentas nuevas y en muchas cuentas existentes elegibles. Recibís el cupón digital por email al instante después de la compra."
+          data-qv-features="75% de descuento sobre el precio oficial|Válido para LinkedIn Premium Career|Válido para LinkedIn Premium Business|12 meses de acceso completo|InMail, quién vio tu perfil y más|Cupón digital enviado al instante|Garantía de activación 100%"
+        >
+          <div class="product-badge badge-sale">75% OFF</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="assets/product_linkedin.png" alt="LinkedIn Premium 75% OFF" class="product-img" loading="lazy" />
+            <div class="product-img-glow gold"></div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag product-tag-gold">Red Profesional</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(2.7k)</span></div>
+            </div>
+            <h3 class="product-name">Cupón LinkedIn Premium 75% OFF</h3>
+            <p class="product-desc">75% de descuento en LinkedIn Premium Career o Business. Válido por 12 meses. Aplica en cualquier cuenta elegible.</p>
+            <div class="product-features">
+              <span>75% OFF</span><span>12 meses</span><span>Cupón digital</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">$479.88</span>
+                <span class="price-current">$19.99</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Cupón LinkedIn Premium 75% OFF 12 Meses', 19.99, this); event.stopPropagation();" id="btn-linkedin-cat">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Adobe Creative Cloud Photography Plan 1TB -->
+        <div class="product-card glow-card-purple" data-category="creatividad" id="prod-adobe-cat" data-brand="adobe"
+          data-qv-name="Adobe Creative Cloud Photography Plan 1TB"
+          data-qv-tag="Fotografía · Adobe"
+          data-qv-img="assets/cat_creative.png"
+          data-qv-price="29.99"
+          data-qv-old-price="119.88"
+          data-qv-stars="5"
+          data-qv-reviews="4.6k"
+          data-qv-desc="Adobe Photoshop + Lightroom con 1TB de almacenamiento en la nube Creative Cloud. El plan fotográfico definitivo de Adobe, ahora con Adobe Firefly IA integrada para generación y edición de imágenes, eliminación de objetos, restauración de fotos y mucho más. Licencia anual oficial."
+          data-qv-features="Photoshop (escritorio, web e iPad)|Lightroom + Lightroom Classic|Adobe Firefly IA generativa integrada|1TB de almacenamiento Creative Cloud|Generative Fill y Generative Expand con IA|1 año de licencia oficial Adobe|Garantía de activación 100%"
+        >
+          <div class="product-badge badge-premium">Premium</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD98quhpEzHOek1fKNEvxYyCFGnkorG8oP0A&s" alt="Adobe CC Photography 1TB" class="product-img" loading="lazy" />
+            <div class="product-img-glow purple"></div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">Fotografía · Adobe</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(4.6k)</span></div>
+            </div>
+            <h3 class="product-name">Adobe CC Photography 1TB</h3>
+            <p class="product-desc">Photoshop + Lightroom + 1TB en la nube + Adobe Firefly IA. El plan fotográfico definitivo para profesionales.</p>
+            <div class="product-features">
+              <span>Photoshop</span><span>Lightroom</span><span>Firefly IA</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">$119.88</span>
+                <span class="price-current">$29.99</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Adobe CC Photography Plan 1TB', 29.99, this); event.stopPropagation();" id="btn-adobe-cat">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section cat-section" id="microsoft" data-section="microsoft">
+    <div class="container">
+
+      <div class="cat-section-header">
+        <div class="cat-section-label microsoft-label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+          Sección 04
+        </div>
+        <h2 class="section-title">Ecosistema <span class="gradient-text">Microsoft</span></h2>
+        <p class="section-subtitle">Windows, Office y más. Licencias originales permanentes.</p>
+        <div class="cat-section-line"></div>
+      </div>
+
+      <div class="products-grid cat-grid-4">
+
+        <!-- Windows 11 Pro Retail -->
+        <div class="product-card glow-card-blue" data-category="microsoft" id="prod-win11-retail" data-brand="microsoft"
+          data-qv-name="Windows 11 Pro — Retail Key"
+          data-qv-tag="Sistema Operativo"
+          data-qv-img="assets/product_windows.png"
+          data-qv-price="24.99"
+          data-qv-old-price="199.99"
+          data-qv-desc="Licencia Retail permanente y original de Windows 11 Pro para 1 PC. En 2026, Windows 11 Pro incluye el asistente Copilot+ nativo con IA, Recall (memoria semántica del PC), funciones de seguridad Pluton y soporte completo para hardware de nueva generación. Clave transferible: si cambiás de PC, te llevás la licencia."
+          data-qv-features="Licencia Retail permanente (de por vida)|Clave transferible entre dispositivos|Windows Copilot+ con IA nativa integrada|Soporte para 64-bit y ARM|Activación oficial en servidores Microsoft|Garantía de activación 100%"
+        >
+          <div class="product-badge badge-hot">Más Vendido</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="assets/product_windows.png" alt="Windows 11 Pro Retail" class="product-img" loading="lazy" />
+            <div class="product-img-glow blue"></div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">Sistema Operativo</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(6.2k)</span></div>
+            </div>
+            <h3 class="product-name">Windows 11 Pro — Retail Key</h3>
+            <p class="product-desc">Licencia retail permanente para 1 PC. Clave oficial de Microsoft, transferible entre dispositivos.</p>
+            <div class="product-features">
+              <span>Permanente</span><span>Transferible</span><span>64-bit</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">$199.99</span>
+                <span class="price-current">$24.99</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Windows 11 Pro Retail Key', 24.99, this); event.stopPropagation();" id="btn-win11-retail">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Microsoft Office 2021 -->
+        <div class="product-card glow-card-purple" data-category="microsoft" id="prod-office-2021" data-brand="microsoft"
+          data-qv-name="Office Professional Plus 2021"
+          data-qv-tag="Ofimática"
+          data-qv-img="assets/product_office.png"
+          data-qv-price="49.99"
+          data-qv-old-price="439.99"
+          data-qv-desc="La suite ofimática más completa de Microsoft en su versión permanente de 2021, la más estable y robusta para entornos profesionales. Incluye las 8 aplicaciones esenciales: Word, Excel, PowerPoint, Outlook, OneNote, Teams, Publisher y Access. Licencia de por vida para 1 PC, sin pagos mensuales ni suscripciones."
+          data-qv-features="Word, Excel, PowerPoint, Outlook y más|OneNote, Teams, Publisher y Access|Licencia permanente (sin renovación)|Compatible con Windows y macOS|Activación oficial en servidores Microsoft|Garantía de activación 100%"
+        >
+          <div class="product-badge badge-new">Licencia Vitalicia</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="assets/product_office.png" alt="Microsoft Office 2021" class="product-img" loading="lazy" />
+            <div class="product-img-glow purple"></div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">Ofimática</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(4.8k)</span></div>
+            </div>
+            <h3 class="product-name">Office Professional Plus 2021</h3>
+            <p class="product-desc">Word, Excel, PowerPoint, Outlook, OneNote, Teams, Publisher y Access. Licencia de por vida, 1 PC.</p>
+            <div class="product-features">
+              <span>Permanente</span><span>8 apps</span><span>Win + Mac</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">$439.99</span>
+                <span class="price-current">$49.99</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Microsoft Office Professional Plus 2021', 49.99, this); event.stopPropagation();" id="btn-office-2021">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Windows 10 Pro Retail Key -->
+        <div class="product-card glow-card-cyan" data-category="microsoft" id="prod-win10-retail" data-brand="microsoft"
+          data-qv-name="Windows 10 Pro — Retail Key"
+          data-qv-tag="Sistema Operativo"
+          data-qv-img="assets/product_windows.png"
+          data-qv-price="14.99"
+          data-qv-old-price="159.99"
+          data-qv-stars="5"
+          data-qv-reviews="8.1k"
+          data-qv-desc="Licencia Retail permanente y original de Windows 10 Pro para 1 PC. Activación 100% oficial vía servidores de Microsoft. Compatible con actualización gratuita a Windows 11 en cualquier momento. Clave transferible: si cambiás de equipo o formateás, la licencia sigue siendo tuya."
+          data-qv-features="Licencia Retail permanente (de por vida)|Actualizable a Windows 11 gratis|Clave transferible entre reinstalaciones|Activación oficial en servidores Microsoft|BitLocker, escritorio remoto y Hyper-V incluidos|Garantía de activación 100%"
+        >
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="assets/product_windows.png" alt="Windows 10 Pro Retail" class="product-img" loading="lazy" />
+            <div class="product-img-glow cyan"></div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">Sistema Operativo</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(8.1k)</span></div>
+            </div>
+            <h3 class="product-name">Windows 10 Pro — Retail Key</h3>
+            <p class="product-desc">Licencia retail permanente para 1 PC. Actualizable a Windows 11 gratis. Clave oficial de Microsoft, transferible entre dispositivos.</p>
+            <div class="product-features">
+              <span>Permanente</span><span>Win 11 gratis</span><span>Transferible</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">$159.99</span>
+                <span class="price-current">$14.99</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Windows 10 Pro Retail Key', 14.99, this); event.stopPropagation();" id="btn-win10-retail">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Microsoft Office Professional Plus 2024 -->
+        <div class="product-card glow-card-purple" data-category="microsoft" id="prod-office-2024" data-brand="microsoft"
+          data-qv-name="Microsoft Office Professional Plus 2024"
+          data-qv-tag="Ofimática"
+          data-qv-img="assets/product_office.png"
+          data-qv-price="59.99"
+          data-qv-old-price="499.99"
+          data-qv-stars="5"
+          data-qv-reviews="3.2k"
+          data-qv-desc="La suite ofimática más completa de Microsoft en su versión 2024, ahora con IA Copilot integrada en todas las aplicaciones. Incluye Word, Excel, PowerPoint, Outlook, OneNote, Teams, Publisher y Access. Licencia permanente para 1 PC, sin pagos mensuales ni suscripciones. Copilot genera documentos, analiza datos en Excel y redacta emails en Outlook."
+          data-qv-features="Word, Excel, PowerPoint, Outlook y más|OneNote, Teams, Publisher y Access|Copilot IA integrada en todas las apps|Licencia permanente (sin renovación mensual)|Compatible con Windows y macOS|Activación oficial en servidores Microsoft|Garantía de activación 100%"
+        >
+          <div class="product-badge badge-premium">Premium</div>
+          <div class="product-img-wrap cat-img-wrap">
+            <img src="assets/product_office.png" alt="Office Professional Plus 2024" class="product-img" loading="lazy" />
+            <div class="product-img-glow purple"></div>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-tag">Ofimática</span>
+              <div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(3.2k)</span></div>
+            </div>
+            <h3 class="product-name">Office Professional Plus 2024</h3>
+            <p class="product-desc">Word, Excel, PowerPoint, Outlook + Copilot IA. Licencia permanente para 1 PC. Sin suscripción mensual, para siempre.</p>
+            <div class="product-features">
+              <span>Copilot IA</span><span>Permanente</span><span>8 apps</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">$499.99</span>
+                <span class="price-current">$59.99</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart('Microsoft Office Professional Plus 2024', 59.99, this); event.stopPropagation();" id="btn-office-2024">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- QUICK VIEW MODAL — idéntico a index.html -->
+  <div class="qv-overlay" id="qvOverlay">
+    <div class="qv-modal" id="qvModal" role="dialog" aria-modal="true" aria-labelledby="qvTitle">
+      <button class="qv-close" id="qvClose" aria-label="Cerrar vista rápida">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+      <div class="qv-layout">
+
+        <!-- Columna Izquierda: Imagen -->
+        <div class="qv-media">
+          <div class="qv-img-wrap">
+            <img id="qvImg" src="" alt="" class="qv-img" />
+            <div class="qv-img-glow-el" id="qvImgGlow"></div>
+          </div>
+          <div class="qv-trust-badges">
+            <div class="qv-trust-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+              Pago 100% Seguro
+            </div>
+            <div class="qv-trust-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Entrega Inmediata
+            </div>
+            <div class="qv-trust-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              Soporte 24/7
+            </div>
+            <div class="qv-trust-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              Garantía 30 días
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Detalles -->
+        <div class="qv-details">
+
+          <div class="qv-meta">
+            <span class="qv-tag" id="qvTag"></span>
+            <div class="qv-stars" id="qvStars"></div>
+          </div>
+
+          <h2 class="qv-title" id="qvTitle"></h2>
+          <p class="qv-desc" id="qvDesc"></p>
+
+          <!-- Lista de beneficios -->
+          <div class="qv-features-block">
+            <h4 class="qv-features-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+              ¿Qué incluye?
+            </h4>
+            <ul class="qv-feature-list" id="qvFeatureList"></ul>
+          </div>
+
+          <!-- Bloque de precios -->
+          <div class="qv-pricing-block">
+            <div class="qv-price-row official">
+              <span class="qv-price-label">Precio USD en tienda oficial bruto (sin impuestos):</span>
+              <span class="qv-price-old" id="qvOldPrice"></span>
+            </div>
+            <div class="qv-price-row ours">
+              <span class="qv-price-label">Nuestro precio:</span>
+              <div class="qv-price-ours-wrap">
+                <span class="qv-price-current" id="qvCurrentPrice"></span>
+                <span class="qv-discount-badge" id="qvDiscount"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <button class="btn-primary btn-lg qv-btn-cart" id="qvBtnCart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+            Agregar al Carrito
+          </button>
+
+        </div><!-- /qv-details -->
+      </div><!-- /qv-layout -->
+    </div><!-- /qv-modal -->
+  </div><!-- /qv-overlay -->
+
+
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       CART DRAWER (igual que index.html)
+  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>Tu Carrito</h3>
+      <button class="cart-close" onclick="closeCart()" aria-label="Cerrar carrito">&#10005;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <p>Tu carrito está vacío</p>
+        <a href="#ia" onclick="closeCart()">Explorar productos</a>
+      </div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <span class="cart-total-price" id="cartTotal">$0.00</span>
+      </div>
+      <button class="btn-primary" style="width:100%;justify-content:center;" onclick="checkout()">
+        Finalizar Compra
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+  <script src="catalogo.js"></script>
+</body>
+
+</html>
+

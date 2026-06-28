@@ -413,13 +413,27 @@ function renderCart() {
 
 function checkout() {
   if (cart.length === 0) {
-    showToast('Agrega productos antes de continuar');
+    showToast('Tu carrito está vacío', 'error');
     return;
   }
-  showToast('Redirigiendo al checkout seguro...');
+
+  // Guardamos el carrito en localStorage para que checkout.html lo lea
+  try {
+    localStorage.setItem('nexuskey_cart', JSON.stringify(cart));
+  } catch (e) {
+    console.error('No se pudo guardar el carrito:', e);
+  }
+
+  // Redirigimos a la página de checkout
+  showToast('Redirigiendo al checkout... 🛒', 'success');
   setTimeout(() => {
-    closeCart();
-  }, 1500);
+    window.location.href = 'checkout.html';
+  }, 600);
+}
+
+function updateCart() {
+  updateCartCount();
+  renderCart();
 }
 
 /* ========================================
@@ -443,18 +457,18 @@ function showToast(message, type = 'success') {
    PRODUCT FILTER
    ======================================== */
 function filterProducts(filter, btnEl) {
-  // Update active button
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btnEl.classList.add('active');
+  // Update active button state
+  document.querySelectorAll('.filter-btn').forEach(function(b) {
+    b.classList.remove('active');
+  });
+  if (btnEl) btnEl.classList.add('active');
 
-  // Filter cards
-  const cards = document.querySelectorAll('.product-card');
-  cards.forEach(card => {
-    if (filter === 'all' || card.dataset.category === filter) {
-      card.classList.remove('hidden');
-    } else {
-      card.classList.add('hidden');
-    }
+  // Use direct style.display — 100% reliable, no CSS class race conditions
+  var cards = document.querySelectorAll('#productsGrid .product-card');
+  cards.forEach(function(card) {
+    var cat = card.getAttribute('data-category');
+    var match = (filter === 'all') || (cat === filter);
+    card.style.display = match ? '' : 'none';
   });
 }
 
@@ -585,9 +599,9 @@ function initGlowBorderEffect() {
 /* ========================================
    INIT
    ======================================== */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   // Particles
-  const canvas = document.getElementById('particleCanvas');
+  var canvas = document.getElementById('particleCanvas');
   if (canvas) {
     new ParticleSystem(canvas);
   }
@@ -600,10 +614,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Glow border effects
   initGlowBorderEffect();
-
-  // Smooth scroll (desktop only, non-touch)
-  // new SmoothScroller(); // Uncomment if you prefer JS-based smooth scroll
-  // Native CSS smooth-scroll (already set in html { scroll-behavior: smooth; }) handles most cases
 
   console.log(
     '%cNexusKey Store%c\n%cDesigned with passion for the perfect UX',
@@ -630,3 +640,142 @@ const navObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 
 sections.forEach(s => navObserver.observe(s));
+
+/* ========================================
+   QUICK VIEW MODAL
+   ======================================== */
+const qvOverlay  = document.getElementById('qvOverlay');
+const qvModal    = document.getElementById('qvModal');
+const qvClose    = document.getElementById('qvClose');
+const qvBtnCart  = document.getElementById('qvBtnCart');
+
+// Estado del producto actualmente en el modal
+let _qvCurrent = null;
+
+/**
+ * Abre el modal e inyecta los datos del producto.
+ * Usa optional chaining (?.) para ser robusto ante diferencias de HTML.
+ * @param {HTMLElement} card — la tarjeta de producto clickeada
+ */
+function openQuickView(card) {
+  if (!qvOverlay) return;  // modal no existe en esta página
+  const d = card.dataset;
+
+  // Inyectar datos básicos
+  const imgEl = document.getElementById('qvImg');
+  if (imgEl) { imgEl.src = d.qvImg || ''; imgEl.alt = d.qvName || ''; }
+  const tagEl = document.getElementById('qvTag');
+  if (tagEl) tagEl.textContent = d.qvTag || '';
+  const titleEl = document.getElementById('qvTitle');
+  if (titleEl) titleEl.textContent = d.qvName || '';
+  const descEl = document.getElementById('qvDesc');
+  if (descEl) descEl.textContent = d.qvDesc || '';
+
+  // Estrellas dinámicas
+  const stars   = parseInt(d.qvStars || '5');
+  const reviews = d.qvReviews || '';
+  const starsEl = document.getElementById('qvStars');
+  if (starsEl) starsEl.innerHTML =
+    '★'.repeat(stars) + '☆'.repeat(5 - stars) +
+    (reviews ? `<span class="reviews">(${reviews})</span>` : '');
+
+  // Precios y descuento
+  const price    = parseFloat(d.qvPrice    || '0');
+  const oldPrice = parseFloat(d.qvOldPrice || '0');
+  const curPrEl  = document.getElementById('qvCurrentPrice');
+  const oldPrEl  = document.getElementById('qvOldPrice');
+  const discEl   = document.getElementById('qvDiscount');
+  if (curPrEl) curPrEl.textContent = `$${price.toFixed(2)}`;
+  if (oldPrEl) oldPrEl.textContent = `$${oldPrice.toFixed(2)}`;
+
+  if (discEl) {
+    if (oldPrice > price) {
+      const pct = Math.round(((oldPrice - price) / oldPrice) * 100);
+      discEl.textContent    = `−${pct}%`;
+      discEl.style.display  = '';
+    } else {
+      discEl.style.display = 'none';
+    }
+  }
+
+  // Lista de beneficios (separados por |)
+  const featureList = document.getElementById('qvFeatureList');
+  if (featureList) {
+    featureList.innerHTML = '';
+    const features = (d.qvFeatures || '').split('|').filter(Boolean);
+    features.forEach(feat => {
+      const li = document.createElement('li');
+      li.textContent = feat.trim();
+      featureList.appendChild(li);
+    });
+  }
+
+  // Imagen glow según el color de la tarjeta
+  const glowMap = {
+    blue:   'radial-gradient(ellipse at center, rgba(37,99,235,0.25), transparent 70%)',
+    purple: 'radial-gradient(ellipse at center, rgba(124,58,237,0.25), transparent 70%)',
+    green:  'radial-gradient(ellipse at center, rgba(16,185,129,0.25), transparent 70%)',
+    cyan:   'radial-gradient(ellipse at center, rgba(6,182,212,0.25), transparent 70%)',
+    orange: 'radial-gradient(ellipse at center, rgba(249,115,22,0.25), transparent 70%)',
+    gold:   'radial-gradient(ellipse at center, rgba(245,158,11,0.25), transparent 70%)',
+  };
+  const glow    = d.qvGlow || 'blue';
+  const glowEl  = document.getElementById('qvImgGlow');
+  if (glowEl) glowEl.style.background = glowMap[glow] || glowMap.blue;
+
+  // Actualizar la clase glow del modal (para el box-shadow)
+  if (qvModal) qvModal.className = `qv-modal glow-${glow}`;
+
+  // Guardar referencia para el botón de carrito
+  _qvCurrent = { name: d.qvName, price };
+
+  // Conectar el botón "Agregar al carrito" del modal
+  if (qvBtnCart) {
+    qvBtnCart.onclick = () => {
+      addToCart(_qvCurrent.name, _qvCurrent.price, qvBtnCart);
+      setTimeout(closeQuickView, 800);
+    };
+  }
+
+  // Abrir con animación
+  qvOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+/**
+ * Cierra el modal con animación de salida.
+ */
+function closeQuickView() {
+  if (!qvOverlay) return;
+  qvOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+  _qvCurrent = null;
+}
+
+// Cerrar con el botón X
+qvClose?.addEventListener('click', closeQuickView);
+
+// Cerrar al hacer clic en el overlay (fuera del modal)
+qvOverlay?.addEventListener('click', (e) => {
+  if (e.target === qvOverlay) closeQuickView();
+});
+
+// Cerrar con la tecla Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && qvOverlay?.classList.contains('open')) {
+    closeQuickView();
+  }
+});
+
+// Event delegation global — funciona en index.html, catalogo.html y cualquier otra página
+// Escucha en `document` para cubrir tarjetas cargadas en cualquier momento
+document.addEventListener('click', (e) => {
+  // Si el clic fue en el botón "Agregar al carrito" (o un hijo suyo), ignorar
+  if (e.target.closest('.btn-add-cart')) return;
+
+  // Busca la tarjeta más cercana que tenga data-qv-name (índice de que tiene datos para el modal)
+  const card = e.target.closest('.product-card[data-qv-name]');
+  if (!card) return;
+
+  openQuickView(card);
+});

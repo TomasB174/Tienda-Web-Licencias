@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NexusKey — Finaliza tu compra de licencias de software de forma segura y al instante." />
+  <title>Checkout — NexusKey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="checkout.css" />
+</head>
+
+<body class="checkout-body">
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- Particle Canvas -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" id="nav-logo-link">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L24 8V20L14 26L4 20V8L14 2Z" stroke="url(#hexGrad)" stroke-width="1.5" fill="none" />
+            <path d="M14 7L20 10.5V17.5L14 21L8 17.5V10.5L14 7Z" fill="url(#hexFill)" opacity="0.6" />
+            <defs>
+              <linearGradient id="hexGrad" x1="4" y1="2" x2="24" y2="26">
+                <stop offset="0%" stop-color="#7c3aed" />
+                <stop offset="100%" stop-color="#06b6d4" />
+              </linearGradient>
+              <linearGradient id="hexFill" x1="8" y1="7" x2="20" y2="21">
+                <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.8" />
+                <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.4" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">Nexus<span class="logo-accent">Key</span></span>
+      </a>
+
+      <div class="checkout-nav-center">
+        <div class="checkout-steps">
+          <div class="step-pill step-done">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Carrito
+          </div>
+          <div class="step-connector"></div>
+          <div class="step-pill step-active">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Checkout
+          </div>
+          <div class="step-connector"></div>
+          <div class="step-pill step-pending">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Confirmación
+          </div>
+        </div>
+      </div>
+
+      <a href="index.html" class="btn-back-nav">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Volver a la tienda
+      </a>
+    </div>
+  </nav>
+
+  <!-- ── MAIN CHECKOUT LAYOUT ── -->
+  <main class="checkout-main">
+    <div class="checkout-container">
+
+      <!-- ═══ COLUMNA IZQUIERDA: Resumen del pedido ═══ -->
+      <section class="checkout-col checkout-col-left">
+
+        <div class="checkout-card glow-card-checkout" id="orderSummaryCard">
+          <div class="checkout-card-header">
+            <div class="checkout-card-icon purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+            </div>
+            <h2 class="checkout-card-title">Resumen del Pedido</h2>
+            <span class="item-count-badge" id="itemCountBadge">0 ítems</span>
+          </div>
+
+          <!-- Lista de productos -->
+          <div class="order-items-list" id="orderItemsList">
+            <!-- Renderizado dinámicamente -->
+          </div>
+
+          <!-- Empty state -->
+          <div class="checkout-empty" id="checkoutEmpty" style="display:none;">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.25">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+            <p>Tu carrito está vacío</p>
+            <a href="index.html" class="btn-primary" style="margin-top:16px;">Explorar productos</a>
+          </div>
+
+          <!-- Divider -->
+          <div class="order-divider"></div>
+
+          <!-- Seguridad -->
+          <div class="security-badges-row">
+            <div class="sec-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+              Licencias Auténticas
+            </div>
+            <div class="sec-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Entrega al Instante
+            </div>
+            <div class="sec-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Garantía 30 días
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ═══ COLUMNA DERECHA: Pago y descuento ═══ -->
+      <section class="checkout-col checkout-col-right">
+
+        <!-- CARD: Código de descuento -->
+        <div class="checkout-card glow-card-checkout" id="discountCard">
+          <div class="checkout-card-header">
+            <div class="checkout-card-icon cyan">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+                <line x1="7" y1="7" x2="7.01" y2="7"/>
+              </svg>
+            </div>
+            <h2 class="checkout-card-title">Código de Descuento</h2>
+          </div>
+
+          <div class="discount-input-group">
+            <div class="discount-field-wrap">
+              <svg class="discount-field-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+                <line x1="7" y1="7" x2="7.01" y2="7"/>
+              </svg>
+              <input
+                type="text"
+                id="discountCode"
+                class="discount-input"
+                placeholder="Ej: NEXUS10"
+                maxlength="20"
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <div class="discount-status-icon" id="discountStatusIcon"></div>
+            </div>
+            <button class="btn-apply" id="applyDiscountBtn" onclick="applyDiscount()">
+              Aplicar
+            </button>
+          </div>
+
+          <div class="discount-message" id="discountMessage"></div>
+
+          <p class="discount-hint">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Tenés un código de descuento? Ingrésalo arriba para verlo aplicado al total.
+          </p>
+        </div>
+
+        <!-- CARD: Desglose financiero -->
+        <div class="checkout-card glow-card-checkout" id="pricingCard">
+          <div class="checkout-card-header">
+            <div class="checkout-card-icon green">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+              </svg>
+            </div>
+            <h2 class="checkout-card-title">Desglose del Total</h2>
+          </div>
+
+          <div class="pricing-breakdown">
+            <div class="pricing-row">
+              <span class="pricing-label">Subtotal</span>
+              <span class="pricing-value" id="subtotalVal">$0.00</span>
+            </div>
+            <div class="pricing-row discount-row" id="discountRow" style="display:none;">
+              <span class="pricing-label discount-label">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Descuento aplicado
+                <span class="discount-code-tag" id="discountCodeTag"></span>
+              </span>
+              <span class="pricing-value discount-value" id="discountVal">-$0.00</span>
+            </div>
+            <div class="pricing-divider"></div>
+            <div class="pricing-row pricing-total-row">
+              <span class="pricing-label total-label">Total Final</span>
+              <div class="total-price-wrap">
+                <span class="price-old-total" id="priceOldTotal" style="display:none;"></span>
+                <span class="price-current-total" id="totalVal">$0.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD: CTAs de compra -->
+        <div class="checkout-card checkout-card-cta glow-card-checkout" id="ctaCard">
+          <div class="checkout-card-header">
+            <div class="checkout-card-icon orange">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+              </svg>
+            </div>
+            <h2 class="checkout-card-title">Finalizar Compra</h2>
+          </div>
+
+          <p class="cta-description">
+            Elegí tu canal preferido para coordinar el pago. Te contactaremos al instante con los datos de transferencia.
+          </p>
+
+          <div class="cta-buttons-stack">
+            <!-- WhatsApp -->
+            <button class="btn-cta btn-whatsapp" id="btnWhatsApp" onclick="buyViaWhatsApp()">
+              <div class="btn-cta-inner">
+                <div class="btn-cta-icon-wrap wa-icon-wrap">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  </svg>
+                </div>
+                <div class="btn-cta-text">
+                  <span class="btn-cta-label">Comprar por WhatsApp</span>
+                  <span class="btn-cta-sub">Respuesta inmediata · 24/7</span>
+                </div>
+                <svg class="btn-cta-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </div>
+              <div class="btn-cta-glow wa-glow"></div>
+            </button>
+
+            <!-- Telegram -->
+            <button class="btn-cta btn-telegram" id="btnTelegram" onclick="buyViaTelegram()">
+              <div class="btn-cta-inner">
+                <div class="btn-cta-icon-wrap tg-icon-wrap">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                  </svg>
+                </div>
+                <div class="btn-cta-text">
+                  <span class="btn-cta-label">Comprar por Telegram</span>
+                  <span class="btn-cta-sub">Chat seguro · Sin número</span>
+                </div>
+                <svg class="btn-cta-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </div>
+              <div class="btn-cta-glow tg-glow"></div>
+            </button>
+          </div>
+
+          <div class="cta-trust-row">
+            <div class="cta-trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              Pago 100% seguro
+            </div>
+            <div class="cta-trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.72A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91A16 16 0 0015.09 17.91l1.27-1.26a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 18.92z"/></svg>
+              Soporte 24/7
+            </div>
+            <div class="cta-trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Garantía 30 días
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <!-- Toast container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="checkout.js"></script>
+</body>
+
+</html>

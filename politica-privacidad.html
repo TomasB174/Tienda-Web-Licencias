@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Política de privacidad de NexusKey. Cómo recopilamos, usamos y protegemos tus datos." />
+  <title>Política de Privacidad — NexusKey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero { padding: 140px 0 60px; position: relative; overflow: hidden; }
+    .page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(124,58,237,0.15), transparent); pointer-events: none; }
+    .page-hero-content { position: relative; z-index: 1; text-align: center; }
+    .page-title { font-family: var(--font-display); font-size: clamp(36px, 5vw, 60px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 16px; }
+    .page-subtitle { font-size: 17px; color: var(--text-secondary); max-width: 560px; margin: 0 auto; line-height: 1.7; }
+    .page-body { padding: 0 0 100px; }
+    .page-container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    .content-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--border-radius-lg); padding: 40px 48px; margin-bottom: 20px; transition: var(--transition); }
+    .content-card:hover { border-color: var(--border-hover); box-shadow: 0 8px 40px rgba(124,58,237,0.1); }
+    .content-card h2 { font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-bottom: 14px; color: var(--text-primary); display: flex; align-items: center; gap: 12px; }
+    .card-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .content-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 10px; }
+    .content-card p:last-child { margin-bottom: 0; }
+    .bullet-list { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-direction: column; gap: 10px; }
+    .bullet-list li { font-size: 15px; color: var(--text-secondary); line-height: 1.7; display: flex; align-items: flex-start; gap: 10px; }
+    .bullet-list li::before { content: '→'; color: var(--neon-cyan); font-weight: 700; flex-shrink: 0; }
+    @media (max-width: 600px) { .content-card { padding: 28px 24px; } }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+  <canvas id="particleCanvas"></canvas>
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L24 8V20L14 26L4 20V8L14 2Z" stroke="url(#nGPP)" stroke-width="1.5" fill="none" />
+            <path d="M14 7L20 10.5V17.5L14 21L8 17.5V10.5L14 7Z" fill="url(#nFPP)" opacity="0.6" />
+            <defs>
+              <linearGradient id="nGPP" x1="4" y1="2" x2="24" y2="26"><stop offset="0%" stop-color="#7c3aed" /><stop offset="100%" stop-color="#06b6d4" /></linearGradient>
+              <linearGradient id="nFPP" x1="8" y1="7" x2="20" y2="21"><stop offset="0%" stop-color="#7c3aed" stop-opacity="0.8" /><stop offset="100%" stop-color="#06b6d4" stop-opacity="0.4" /></linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">Nexus<span class="logo-accent">Key</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+        <li><a href="index.html#caracteristicas" class="nav-link">¿Por qué nosotros?</a></li>
+        <li><a href="centro-ayuda.html" class="nav-link">Ayuda</a></li>
+        <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn-icon" id="cartBtn" aria-label="Carrito">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-badge" id="cartCount">0</span>
+        </button>
+        <a href="catalogo.html" class="btn-primary nav-cta">Ver Licencias</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="container">
+      <div class="page-hero-content">
+        <h1 class="page-title">Política de <span class="gradient-text">Privacidad</span></h1>
+        <p class="page-subtitle">Última actualización: Junio 2026.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page Body -->
+  <section class="page-body">
+    <div class="page-container">
+
+      <!-- Card 1: Recopilación de Datos -->
+      <div class="content-card">
+        <h2>
+          <span class="card-icon" style="background:rgba(124,58,237,0.12);color:#a78bfa;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          Recopilación de Datos
+        </h2>
+        <p>En NexusKey respetamos tu privacidad. Solo recopilamos los datos estrictamente necesarios para procesar tu pedido: nombre y número de WhatsApp o correo electrónico.</p>
+      </div>
+
+      <!-- Card 2: Uso de la Información -->
+      <div class="content-card">
+        <h2>
+          <span class="card-icon" style="background:rgba(6,182,212,0.12);color:#22d3ee;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </span>
+          Uso de la Información
+        </h2>
+        <p>La información recopilada se utiliza exclusivamente para procesar tu compra y brindarte soporte post-venta. No compartimos tus datos con terceros bajo ninguna circunstancia.</p>
+        <ul class="bullet-list">
+          <li>Procesamiento del pedido</li>
+          <li>Envío de la licencia y documentación</li>
+          <li>Soporte técnico post-venta</li>
+        </ul>
+      </div>
+
+      <!-- Card 3: Seguridad de Pagos -->
+      <div class="content-card">
+        <h2>
+          <span class="card-icon" style="background:rgba(37,99,235,0.12);color:#60a5fa;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </span>
+          Seguridad de Pagos
+        </h2>
+        <p>Al finalizar la compra mediante WhatsApp, la información de pago es procesada de forma segura entre tú y nosotros (o la entidad bancaria pertinente). No almacenamos datos de tarjetas de crédito.</p>
+      </div>
+
+      <!-- Card 4: Venta de Datos -->
+      <div class="content-card" style="border-color:rgba(16,185,129,0.25);background:rgba(16,185,129,0.04);">
+        <h2>
+          <span class="card-icon" style="background:rgba(16,185,129,0.12);color:#34d399;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </span>
+          Venta de Datos
+        </h2>
+        <p style="font-size:16px;font-weight:700;color:var(--text-primary);">No vendemos, alquilamos ni cedemos tus datos personales a terceros. Nunca.</p>
+        <p>Tu privacidad es un derecho y la tomamos muy en serio. NexusKey opera bajo estándares de privacidad estrictos.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="logo-icon">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <path d="M14 2L24 8V20L14 26L4 20V8L14 2Z" stroke="url(#nG2PP)" stroke-width="1.5" fill="none" />
+                <path d="M14 7L20 10.5V17.5L14 21L8 17.5V10.5L14 7Z" fill="url(#nF2PP)" opacity="0.6" />
+                <defs>
+                  <linearGradient id="nG2PP" x1="4" y1="2" x2="24" y2="26"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient>
+                  <linearGradient id="nF2PP" x1="8" y1="7" x2="20" y2="21"><stop offset="0%" stop-color="#7c3aed" stop-opacity="0.8"/><stop offset="100%" stop-color="#06b6d4" stop-opacity="0.4"/></linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="logo-text">Nexus<span class="logo-accent">Key</span></span>
+          </a>
+          <p class="footer-desc">La tienda de confianza para licencias digitales auténticas.</p>
+        </div>
+        <div class="footer-col"><h4>Soporte</h4><ul><li><a href="centro-ayuda.html">Centro de Ayuda</a></li><li><a href="guias-activacion.html">Guías de Activación</a></li><li><a href="estado-servicio.html">Estado del Servicio</a></li><li><a href="devoluciones.html">Devoluciones</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+        <div class="footer-col"><h4>Empresa</h4><ul><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="blog-tech.html">Blog Tech</a></li><li><a href="planes-empresariales.html">Planes Empresariales</a></li><li><a href="politica-privacidad.html">Política de Privacidad</a></li><li><a href="terminos-uso.html">Términos de Uso</a></li></ul></div>
+        <div class="footer-col"><h4>Productos</h4><ul><li><a href="catalogo.html#microsoft">Windows 11 Pro</a></li><li><a href="catalogo.html#ia">Google Gemini Pro</a></li><li><a href="catalogo.html">Ver catálogo</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 NexusKey. Todos los derechos reservados.</p><div class="footer-badges"><span class="security-badge">SSL Secured</span><span class="security-badge">Trusted Store</span></div></div>
+    </div>
+  </footer>
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header"><h3>Tu Carrito</h3><button class="cart-close" onclick="closeCart()">✕</button></div>
+    <div class="cart-items" id="cartItems"><div class="cart-empty"><p>Tu carrito está vacío</p><a href="catalogo.html" onclick="closeCart()">Explorar productos</a></div></div>
+    <div class="cart-footer"><div class="cart-total"><span>Total</span><span class="cart-total-price" id="cartTotal">$0.00</span></div><button class="btn-primary" style="width:100%;justify-content:center;" onclick="checkout()">Finalizar Compra</button></div>
+  </div>
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="app.js"></script>
+</body>
+</html>
