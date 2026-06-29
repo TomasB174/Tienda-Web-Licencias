@@ -11,7 +11,7 @@
    ╚══════════════════════════════════════════════════════════════╝ */
 
 // ── Productos / códigos configurables ──────────────────────────────
-const PROMO_PRODUCT_1  = 'Google AI Pro';
+const PROMO_PRODUCT_1  = 'Google AI Pro (Gemini Pro)';
 const PROMO_CODE_1     = 'GEMINI15';
 const PROMO_DISCOUNT_1 = '15%';
 
@@ -468,11 +468,17 @@ let cart = [];
    identificar al afiliado que generó la venta.
 ──────────────────────────────────────────────────────────────── */
 const AFFILIATE_CODES = {
+  // ─ Códigos de afiliado generales (10% sobre cualquier producto) ─
   'NEXUSVIP':  { pct: 10 },
   'PROMO10':   { pct: 10 },
   'DIGITAL10': { pct: 10 },
   'TECNO10':   { pct: 10 },
   'OFERTA10':  { pct: 10 },
+
+  // ─ Específicos de producto ─
+  // product: subcadena que debe estar en item.name (se usa .includes)
+  "GEMINI15":  { pct: 15, label: "15% OFF en Google AI Pro aplicado 🚀",
+                 product: "Google AI Pro" },
 };
 
 let affiliateApplied = null;  // { code: 'NEXUSVIP', pct: 10 } | null
@@ -489,18 +495,37 @@ function applyAffiliateCode() {
   }
 
   const aff = AFFILIATE_CODES[code];
-  if (aff) {
-    affiliateApplied = { code, pct: aff.pct };
-    input.disabled   = true;
-    document.getElementById('cartAffiliateBtn').disabled = true;
-    _setAffiliateMsg(msgEl, 'success', `✓ ${aff.pct}% de descuento aplicado 🎉`);
-    renderCart();
-    showToast(`Código ${code} aplicado — ${aff.pct}% OFF`, 'success');
-  } else {
+
+  if (!aff) {
+    // Código no existe
     affiliateApplied = null;
     _setAffiliateMsg(msgEl, 'error', '✕ Código inválido. Verificá que esté bien escrito.');
     renderCart();
+    return;
   }
+
+  // Si el código requiere un producto específico, verificar que esté en el carrito
+  if (aff.product) {
+    const hasProduct = cart.some(
+      item => item.name.toLowerCase().includes(aff.product.toLowerCase()) ||
+              aff.product.toLowerCase().includes(item.name.toLowerCase())
+    );
+    if (!hasProduct) {
+      affiliateApplied = null;
+      _setAffiliateMsg(msgEl, 'error',
+        `✕ El código “${code}” es exclusivo para ${aff.product}. Agrégalo al carrito primero.`);
+      renderCart();
+      return;
+    }
+  }
+
+  // Código válido ✔
+  affiliateApplied = { code, pct: aff.pct, product: aff.product || null };
+  input.disabled   = true;
+  document.getElementById('cartAffiliateBtn').disabled = true;
+  _setAffiliateMsg(msgEl, 'success', `✓ ${aff.pct}% de descuento aplicado 🎉`);
+  renderCart();
+  showToast(`Código ${code} aplicado — ${aff.pct}% OFF`, 'success');
 }
 
 function removeAffiliateCode() {

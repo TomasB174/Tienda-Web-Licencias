@@ -15,11 +15,17 @@ const TELEGRAM_USER    = "nexuskeystore";   // Tu usuario de Telegram (sin @)
    identificar al afiliado que generó cada venta.
 ──────────────────────────────────────────────── */
 const DISCOUNT_CODES = {
+  // ─ Generales: 10% sobre cualquier producto ─
   "NEXUSVIP":  { pct: 10, label: "10% de descuento aplicado 🎉" },
   "PROMO10":   { pct: 10, label: "10% de descuento aplicado 🎉" },
   "DIGITAL10": { pct: 10, label: "10% de descuento aplicado 🎉" },
   "TECNO10":   { pct: 10, label: "10% de descuento aplicado 🎉" },
   "OFERTA10":  { pct: 10, label: "10% de descuento aplicado 🎉" },
+
+  // ─ Específicos de producto ─
+  // product: subcadena que debe estar en item.name (se usa .includes)
+  "GEMINI15":  { pct: 15, label: "15% OFF en Google AI Pro aplicado 🚀",
+                 product: "Google AI Pro" },
 };
 
 /* ─────────────────────────────────────────
@@ -194,16 +200,37 @@ function applyDiscount() {
 
   const discount = DISCOUNT_CODES[code];
 
-  if (discount) {
-    discountApplied = { code, pct: discount.pct };
-    setDiscountFeedback("success", "✓", discount.label, input, iconEl, msgEl);
-    input.disabled = true;
-    document.getElementById("applyDiscountBtn").disabled = true;
-    document.getElementById("applyDiscountBtn").style.opacity = "0.5";
-  } else {
+  if (!discount) {
     discountApplied = null;
     setDiscountFeedback("error", "✕", "Código inválido. Verificá que esté bien escrito.", input, iconEl, msgEl);
+    renderPricing();
+    return;
   }
+
+  // Validación de producto específico
+  if (discount.product) {
+    const hasProduct = cart.some(
+      item => item.name.toLowerCase().includes(discount.product.toLowerCase()) ||
+              discount.product.toLowerCase().includes(item.name.toLowerCase())
+    );
+    if (!hasProduct) {
+      discountApplied = null;
+      setDiscountFeedback(
+        "error", "✕",
+        `El código “${code}” es exclusivo para ${discount.product}. Agrégalo al carrito primero.`,
+        input, iconEl, msgEl
+      );
+      renderPricing();
+      return;
+    }
+  }
+
+  // Código válido ✔
+  discountApplied = { code, pct: discount.pct, product: discount.product || null };
+  setDiscountFeedback("success", "✓", discount.label, input, iconEl, msgEl);
+  input.disabled = true;
+  document.getElementById("applyDiscountBtn").disabled = true;
+  document.getElementById("applyDiscountBtn").style.opacity = "0.5";
 
   renderPricing();
 }
