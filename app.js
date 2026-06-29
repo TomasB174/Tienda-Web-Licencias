@@ -308,8 +308,22 @@ navLinks.querySelectorAll('.nav-link').forEach(link => {
 });
 
 /* ========================================
-   CART SYSTEM
+   CARRITO DE COMPRAS
    ======================================== */
+
+/**
+ * Formatea un número como precio en Pesos Argentinos.
+ * Ejemplo: 12000 → "$ 12.000" | 12.99 → "$ 12,99"
+ * Se usa en carrito lateral, checkout y mensajes de WhatsApp/Telegram.
+ */
+const fmt = (n) =>
+  new Intl.NumberFormat('es-AR', {
+    style: 'currency',
+    currency: 'ARS',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  }).format(n);
+
 let cart = [];
 
 const cartDrawer = document.getElementById('cartDrawer');
@@ -386,18 +400,18 @@ function renderCart() {
         <a href="#productos" onclick="closeCart()">Explorar productos</a>
       </div>
     `;
-    cartTotalEl.textContent = '$0.00';
+    cartTotalEl.textContent = fmt(0);
     return;
   }
 
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-  cartTotalEl.textContent = '$' + total.toFixed(2);
+  cartTotalEl.textContent = fmt(total);
 
   cartItemsEl.innerHTML = cart.map(item => `
     <div class="cart-item-row">
       <div class="cart-item-info">
         <strong>${item.name}</strong>
-        <span>$${item.price.toFixed(2)}</span>
+        <span>${fmt(item.price)}</span>
       </div>
       <button class="cart-item-remove" onclick="removeFromCart(${item.id})" aria-label="Eliminar">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -685,8 +699,8 @@ function openQuickView(card) {
   const curPrEl  = document.getElementById('qvCurrentPrice');
   const oldPrEl  = document.getElementById('qvOldPrice');
   const discEl   = document.getElementById('qvDiscount');
-  if (curPrEl) curPrEl.textContent = `$${price.toFixed(2)}`;
-  if (oldPrEl) oldPrEl.textContent = `$${oldPrice.toFixed(2)}`;
+  if (curPrEl) curPrEl.textContent = fmt(price);
+  if (oldPrEl) oldPrEl.textContent = fmt(oldPrice);
 
   if (discEl) {
     if (oldPrice > price) {

@@ -20,6 +20,18 @@ const DISCOUNT_CODES = {
 let cart          = [];
 let discountApplied = null;   // { code, pct } | null
 
+/**
+ * Formatea un número como precio en Pesos Argentinos.
+ * Ejemplo: 12000 → "$ 12.000" | 12.99 → "$ 12,99"
+ */
+const fmt = (n) =>
+  new Intl.NumberFormat('es-AR', {
+    style: 'currency',
+    currency: 'ARS',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  }).format(n);
+
 /* ─────────────────────────────────────────
    INICIALIZACIÓN
 ───────────────────────────────────────── */
@@ -73,7 +85,7 @@ function renderOrderSummary() {
         <div class="order-item-name">${escHtml(item.name)}</div>
         <div class="order-item-meta">Licencia digital · Entrega inmediata</div>
       </div>
-      <div class="order-item-price">$${item.price.toFixed(2)}</div>
+      <div class="order-item-price">${fmt(item.price)}</div>
     </div>
   `).join("");
 }
@@ -105,18 +117,18 @@ function renderPricing() {
   const discountAmt   = discountApplied ? +(subtotal * discountApplied.pct / 100).toFixed(2) : 0;
   const total         = +(subtotal - discountAmt).toFixed(2);
 
-  document.getElementById("subtotalVal").textContent = `$${subtotal.toFixed(2)}`;
+  document.getElementById("subtotalVal").textContent = fmt(subtotal);
 
   // Fila de descuento
   const discountRow = document.getElementById("discountRow");
   if (discountApplied) {
     discountRow.style.display          = "flex";
-    document.getElementById("discountVal").textContent      = `-$${discountAmt.toFixed(2)}`;
+    document.getElementById("discountVal").textContent      = `-${fmt(discountAmt)}`;
     document.getElementById("discountCodeTag").textContent  = discountApplied.code;
     // Precio tachado
     const oldTotal = document.getElementById("priceOldTotal");
     oldTotal.style.display    = "inline";
-    oldTotal.textContent      = `$${subtotal.toFixed(2)}`;
+    oldTotal.textContent      = fmt(subtotal);
   } else {
     discountRow.style.display                    = "none";
     document.getElementById("priceOldTotal").style.display = "none";
@@ -124,7 +136,7 @@ function renderPricing() {
 
   // Total con animación
   const totalEl = document.getElementById("totalVal");
-  totalEl.textContent = `$${total.toFixed(2)}`;
+  totalEl.textContent = fmt(total);
   totalEl.classList.remove("price-updated");
   void totalEl.offsetWidth; // reflow para reiniciar animación
   totalEl.classList.add("price-updated");
@@ -197,16 +209,16 @@ function buildMessage() {
   msg    += "*Mi pedido es:*\n";
 
   cart.forEach(item => {
-    msg += `▸ ${item.name} — $${item.price.toFixed(2)}\n`;
+    msg += `▸ ${item.name} — ${fmt(item.price)}\n`;
   });
 
   if (discountApplied) {
     msg += `\n*Código de descuento:* ${discountApplied.code} (-${discountApplied.pct}%)`;
-    msg += `\n*Subtotal:* $${subtotal.toFixed(2)}`;
-    msg += `\n*Descuento:* -$${discountAmt.toFixed(2)}`;
+    msg += `\n*Subtotal:* ${fmt(subtotal)}`;
+    msg += `\n*Descuento:* -${fmt(discountAmt)}`;
   }
 
-  msg += `\n\n*Total${discountApplied ? " con descuento" : ""}:* $${total.toFixed(2)}\n\n`;
+  msg += `\n\n*Total${discountApplied ? " con descuento" : ""}:* ${fmt(total)}\n\n`;
   msg += "¿Me pasás los datos para transferir?";
 
   return msg;
