@@ -293,7 +293,7 @@ function buyViaWhatsApp() {
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 
   showToast("¡Abriendo WhatsApp! 💬", "success");
-  setTimeout(() => window.open(url, "_blank"), 600);
+  setTimeout(() => window.location.href = url, 600);
 }
 
 function buyViaTelegram() {
@@ -306,7 +306,7 @@ function buyViaTelegram() {
   const url = `https://t.me/${TELEGRAM_USER}?text=${encodeURIComponent(msg)}`;
 
   showToast("¡Abriendo Telegram! ✈️", "success");
-  setTimeout(() => window.open(url, "_blank"), 600);
+  setTimeout(() => window.location.href = url, 600);
 }
 
 function disableCTAButtons() {
