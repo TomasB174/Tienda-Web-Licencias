@@ -2108,8 +2108,25 @@ a.bento-cat {
   .step-line { display: none; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .bento-features { grid-template-columns: 1fr; }
-  .feat-large { flex-direction: column; }
-  .feat-wide  { flex-direction: column; }
+
+  /* Reset de spans: en 1 sola columna todas las cards ocupan el ancho completo */
+  .feat-large,
+  .feat-sm,
+  .feat-med,
+  .feat-wide {
+    grid-column: span 1;
+  }
+
+  /* feat-large y feat-wide: apilado vertical para no solaparse */
+  .feat-large {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .feat-wide {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
 
   /* ── TARJETAS ── */
   .product-card {
