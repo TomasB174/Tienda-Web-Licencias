@@ -2107,25 +2107,48 @@ a.bento-cat {
   .steps-grid { grid-template-columns: 1fr; }
   .step-line { display: none; }
   .testimonials-grid { grid-template-columns: 1fr; }
-  .bento-features { grid-template-columns: 1fr; }
-
-  /* Reset de spans: en 1 sola columna todas las cards ocupan el ancho completo */
-  .feat-large,
-  .feat-sm,
-  .feat-med,
-  .feat-wide {
-    grid-column: span 1;
+  /* ════════════════════════════════════════════════
+     SECCIÓN "DISEÑADO PARA LA MÁXIMA CONFIANZA"
+     Layout flex-column — elimina todo el sistema de
+     grid-column: span X que causa el solapamiento.
+     El contenedor pasa de grid a flex vertical.
+     ════════════════════════════════════════════════ */
+  .bento-features {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px;
   }
 
-  /* feat-large y feat-wide: apilado vertical para no solaparse */
+  /* Cada card: ancho completo, altura automática, sin min-height */
+  .bento-feat {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    /* Resetea cualquier grid-column heredado de breakpoints superiores */
+    grid-column: unset !important;
+    grid-row: unset !important;
+  }
+
+  /* feat-large: el flex interno se apila verticalmente */
   .feat-large {
     flex-direction: column;
     align-items: flex-start;
+    gap: 16px;
   }
+
+  /* feat-wide: el flex interno se apila verticalmente */
   .feat-wide {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    gap: 16px;
+  }
+
+  /* Ocultar los decorativos (shield, globe) en móvil:
+     son elementos de tamaño fijo que rompen el flujo */
+  .feat-visual,
+  .globe-dots {
+    display: none;
   }
 
   /* ── TARJETAS ── */
