@@ -2876,32 +2876,27 @@ a.bento-cat {
   /* Precio */
   .qv-price-current { font-size: 26px; }
 
-   * .qv-pricing-block y .qv-btn-cart se agrupan visualmente
-   * con sticky bottom. Como .qv-details tiene overflow:auto,
-   * sticky funciona dentro del scroll container nativo.
-   * Usamos position: sticky + un pseudo-elemento para el fondo.
-   */
+  /* Bloque de precio: flujo normal con separador visual */
   .qv-pricing-block {
-    background: var(--bg-card);
-    margin: 0 -18px;
-    padding: 14px 18px 10px;
+    padding: 14px 0 10px;
     border-top: 1px solid rgba(255, 255, 255, 0.09);
+    margin: 0;
   }
 
+  /* Boton carrito: flujo normal, ancho completo */
   .qv-btn-cart {
     width: 100%;
     justify-content: center;
-    margin: 0 -18px;
-    width: calc(100% + 36px);
-    border-radius: 0;
-    padding: 16px 18px;
+    border-radius: 12px;
+    margin: 0;
+    padding: 16px;
   }
 
-  /* El link “Ver catálogo” queda fuera del sticky, al pie del scroll */
+  /* Link catalogo */
   .qv-catalog-link {
     text-align: center;
     justify-content: center;
-    padding-bottom: 8px;
+    padding-bottom: 16px;
   }
 
   /* Ocultar trigger de hover (en móvil se toca directamente la card) */
