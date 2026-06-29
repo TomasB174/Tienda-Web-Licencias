@@ -995,16 +995,26 @@ function openQuickView(card) {
     '★'.repeat(stars) + '☆'.repeat(5 - stars) +
     (reviews ? `<span class="reviews">(${reviews})</span>` : '');
 
-  // Precios y descuento — parseInt con limpieza de no-dígitos para coincidir
-  // con el mismo parseo que usa addToCart desde el DOM (.price-current).
-  const price    = parseInt((d.qvPrice    || '0').replace(/\D/g, ''), 10) || 0;
-  const oldPrice = parseInt((d.qvOldPrice || '0').replace(/\D/g, ''), 10) || 0;
+  // Precio en ARS (nuestro precio): limpia no-dígitos y parsea como entero
+  const price    = parseInt((d.qvPrice || '0').replace(/\D/g, ''), 10) || 0;
+
+  // Precio referencia USD (tienda oficial): respeta el decimal con parseFloat
+  // "539.88" → 539.88 → formateado como "$539.88" (no como pesos argentinos)
+  const oldPrice = parseFloat(d.qvOldPrice || '0') || 0;
+
+  // Formateador exclusivo para el precio de referencia en USD
+  const fmtUSD = (n) =>
+    new Intl.NumberFormat('en-US', {
+      style: 'currency', currency: 'USD',
+      minimumFractionDigits: 2, maximumFractionDigits: 2,
+    }).format(n);
 
   const curPrEl  = document.getElementById('qvCurrentPrice');
   const oldPrEl  = document.getElementById('qvOldPrice');
   const discEl   = document.getElementById('qvDiscount');
-  if (curPrEl) curPrEl.textContent = fmt(price);
-  if (oldPrEl) oldPrEl.textContent = fmt(oldPrice);
+  if (curPrEl) curPrEl.textContent = fmt(price);      // ARS — sin cambios
+  if (oldPrEl) oldPrEl.textContent = fmtUSD(oldPrice); // USD — formato correcto
+
 
   if (discEl) {
     if (oldPrice > price) {
