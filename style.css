@@ -2883,13 +2883,16 @@ a.bento-cat {
     margin: 0;
   }
 
-  /* Boton carrito: flujo normal, ancho completo */
+  /* Boton carrito: flujo normal, ancho completo, centrado */
   .qv-btn-cart {
-    width: 100%;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    width: 100%;
     border-radius: 12px;
     margin: 0;
     padding: 16px;
+    text-align: center;
   }
 
   /* Link catalogo */
