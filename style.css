@@ -2807,32 +2807,27 @@ a.bento-cat {
 /* ── RESPONSIVE MODAL ── */
 @media (max-width: 700px) {
 
-  /* ───────────────────────────────────────────────
-     MODAL VISTA RÁPIDA — EXPERIENCIA NATIVA FULLSCREEN
-     El modal ocupa toda la pantalla como una app nativa.
-     El CTA (precio + botón) queda fijo abajo siempre visible.
-  ─────────────────────────────────────────────── */
-
-  /* Overlay: sin padding, alinea el modal al tope */
+  /* Overlay: anclado al tope, sin padding */
   .qv-overlay {
     padding: 0;
     align-items: flex-start;
   }
 
-  /* Modal: ocupa 100% de la pantalla real (dvh incluye barra navegador) */
+  /* Modal: pantalla completa, él mismo scrollea */
   .qv-modal {
     width: 100%;
     max-width: 100%;
     height: 100dvh;
     max-height: 100dvh;
     border-radius: 0;
-    overflow: hidden;          /* El scroll lo maneja .qv-details, no el modal */
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
     margin: 0;
-    display: flex;
-    flex-direction: column;
+    display: block;   /* flujo normal — sin flex column */
   }
 
-  /* Animación de apertura: slide desde abajo (evita escala que causa huecos) */
+  /* Animación: slide desde abajo */
   .qv-overlay .qv-modal {
     transform: translateY(100%);
     opacity: 0;
@@ -2841,19 +2836,16 @@ a.bento-cat {
   .qv-overlay.open .qv-modal {
     transform: translateY(0);
     opacity: 1;
-    box-shadow: none;          /* Sin sombra lateral en fullscreen */
+    box-shadow: none;
   }
 
-  /* Layout: una sola columna */
+  /* Layout: una sola columna, sin flex tricks */
   .qv-layout {
     grid-template-columns: 1fr;
-    flex: 1;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    display: block;
   }
 
-  /* Botón cerrar: posicionado para pulgar (esquina superior derecha) */
+  /* Botón cerrar */
   .qv-close {
     top: 16px;
     right: 16px;
@@ -2861,44 +2853,29 @@ a.bento-cat {
     height: 36px;
   }
 
-  /* Imagen: compacta, ocupa el ancho disponible */
+  /* Imagen compacta */
   .qv-media {
     border-right: none;
     border-bottom: 1px solid var(--border);
-    padding: 16px 16px 12px;
-    flex-shrink: 0;
+    padding: 16px;
   }
 
-  .qv-img-wrap {
-    aspect-ratio: 16 / 7;
-  }
+  .qv-img-wrap { aspect-ratio: 16 / 7; }
 
-  /* Trust badges: 2 columnas en móvil */
+  /* Trust badges: 2 columnas */
   .qv-trust-badges { grid-template-columns: 1fr 1fr; }
 
-  /*
-   * COLUMNA DE DETALLES: el área que scrollea.
-   * flex: 1 consume el espacio restante entre la imagen y el CTA sticky.
-   * overflow-y: auto permite scroll suave.
-   * padding-bottom: 120px garantiza que el contenido no quede oculto
-   *   detrás del sticky CTA cuando el usuario llega al final.
-   */
+  /* Detalles: flujo normal, sin overflow propio */
   .qv-details {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    padding: 18px 18px 120px;  /* 120px = altura del sticky CTA + margen */
+    padding: 18px;
     gap: 16px;
-    max-height: none;          /* Anula el antiguo max-height: 50vh */
+    overflow: visible;
+    max-height: none;
   }
 
-  /* Precio: tamaño legible en móvil */
+  /* Precio */
   .qv-price-current { font-size: 26px; }
 
-  /*
-   * PANEL DE COMPRA STICKY — SIEMPRE VISIBLE
-   * ------------------------------------------------
    * .qv-pricing-block y .qv-btn-cart se agrupan visualmente
    * con sticky bottom. Como .qv-details tiene overflow:auto,
    * sticky funciona dentro del scroll container nativo.
