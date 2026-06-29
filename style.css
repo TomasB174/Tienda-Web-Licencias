@@ -2905,9 +2905,6 @@ a.bento-cat {
    * Usamos position: sticky + un pseudo-elemento para el fondo.
    */
   .qv-pricing-block {
-    position: sticky;
-    bottom: 0;
-    z-index: 10;
     background: var(--bg-card);
     margin: 0 -18px;
     padding: 14px 18px 10px;
@@ -2915,17 +2912,12 @@ a.bento-cat {
   }
 
   .qv-btn-cart {
-    position: sticky;
-    bottom: 0;
-    z-index: 10;
     width: 100%;
     justify-content: center;
-    background: var(--bg-card);
     margin: 0 -18px;
     width: calc(100% + 36px);
     border-radius: 0;
     padding: 16px 18px;
-    border-top: none;          /* La línea la pone .qv-pricing-block */
   }
 
   /* El link “Ver catálogo” queda fuera del sticky, al pie del scroll */
