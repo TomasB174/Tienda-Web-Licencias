@@ -2029,6 +2029,207 @@ a.bento-cat {
   to { opacity: 0; transform: translateY(-10px) scale(0.95); }
 }
 
+/* ══════════════════════════════════════════════════════════════
+   PROMO TOAST — Notificaciones de marketing (bottom-left)
+   Completamente independiente del sistema de toast de carrito.
+══════════════════════════════════════════════════════════════ */
+
+#promoToastContainer {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 1800;           /* Debajo del carrito (2000) pero sobre todo lo demás */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+  width: 340px;
+  max-width: calc(100vw - 48px);
+}
+
+/* ── La tarjeta toast ── */
+.promo-toast {
+  pointer-events: all;
+  background: rgba(12, 12, 18, 0.82);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 16px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.04),
+    0 20px 60px rgba(0,0,0,0.55),
+    0 0 32px rgba(124,58,237,0.12);
+  overflow: hidden;
+  cursor: pointer;
+
+  /* Estado inicial (invisible, desplazada hacia abajo) */
+  opacity: 0;
+  transform: translateX(-20px) translateY(8px);
+  transition:
+    opacity    0.42s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform  0.42s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.2s ease;
+}
+
+.promo-toast.show {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
+.promo-toast.hide {
+  opacity: 0;
+  transform: translateX(-16px) translateY(4px);
+  transition: opacity 0.38s ease, transform 0.38s ease;
+  pointer-events: none;
+}
+
+.promo-toast:hover {
+  border-color: rgba(124,58,237,0.5);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 24px 70px rgba(0,0,0,0.65),
+    0 0 48px rgba(124,58,237,0.22);
+}
+
+/* ── Interior principal ── */
+.promo-toast-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 14px 12px;
+}
+
+.promo-toast-icon {
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.promo-toast-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+
+.promo-toast-title {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--neon-cyan, #06b6d4);
+}
+
+.promo-toast-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.45;
+}
+
+/* Pill del código de descuento */
+.promo-toast-code {
+  display: inline-block;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background: linear-gradient(135deg, rgba(124,58,237,0.25), rgba(6,182,212,0.25));
+  border: 1px solid rgba(124,58,237,0.4);
+  color: #e2d9ff;
+  padding: 2px 8px;
+  border-radius: 6px;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+/* ── Botón cerrar ── */
+.promo-toast-close {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(255,255,255,0.45);
+  flex-shrink: 0;
+  transition: background 0.2s ease, color 0.2s ease;
+  padding: 0;
+}
+
+.promo-toast-close:hover {
+  background: rgba(239,68,68,0.15);
+  color: #fca5a5;
+  border-color: rgba(239,68,68,0.3);
+}
+
+/* ── Barra "Ver oferta" ── */
+.promo-toast-link {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.55);
+  padding: 9px 14px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  letter-spacing: 0.04em;
+  transition: background 0.2s ease, color 0.2s ease;
+  pointer-events: all;
+}
+
+.promo-toast-link:hover {
+  background: rgba(124,58,237,0.12);
+  color: rgba(255,255,255,0.9);
+}
+
+/* ── Barra de progreso (auto-dismiss visual) ── */
+.promo-toast.show::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-purple, #7c3aed), var(--neon-cyan, #06b6d4));
+  border-radius: 0 0 16px 16px;
+  animation: promoProgress 5.5s linear forwards;
+}
+
+@keyframes promoProgress {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+
+/* ── Responsive móvil ── */
+@media (max-width: 768px) {
+  #promoToastContainer {
+    left: 12px;
+    bottom: 80px;   /* Sube un poco para no tapar botones flotantes de WhatsApp */
+    width: calc(100vw - 24px);
+    max-width: 360px;
+  }
+
+  .promo-toast-inner { padding: 12px 12px 10px; gap: 10px; }
+  .promo-toast-icon  { font-size: 18px; }
+  .promo-toast-text  { font-size: 12.5px; }
+  .promo-toast-title { font-size: 10.5px; }
+}
+
+@media (max-width: 480px) {
+  #promoToastContainer {
+    left: 10px;
+    right: 10px;
+    width: auto;
+    max-width: none;
+  }
+}
+
 /* ========== PRODUCT CARD FILTER ANIMATION ========== */
 .product-card {
   opacity: 1;  /* always visible by default — animation overrides on filter */
@@ -2697,3 +2898,343 @@ a.bento-cat {
   .qv-price-current { font-size: 24px; }
   .btn-add-cart { font-size: 13px; }
 }
+
+/* ══════════════════════════════════════════════════════════
+   SISTEMA DE CÓDIGO DE AFILIADO — CARRITO LATERAL
+   Estilos para el campo de código en #cartItems
+══════════════════════════════════════════════════════════ */
+
+.cart-affiliate-block {
+  padding: 14px 0 4px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+
+.cart-affiliate-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.cart-affiliate-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.cart-affiliate-input {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-family: var(--font-primary);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.cart-affiliate-input::placeholder { color: var(--text-muted); text-transform: none; letter-spacing: 0; }
+
+.cart-affiliate-input:focus {
+  border-color: rgba(124,58,237,0.5);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.12);
+}
+
+.cart-affiliate-input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.cart-affiliate-btn {
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-primary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.cart-affiliate-btn:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.cart-affiliate-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.cart-affiliate-remove {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.25);
+  color: #f87171;
+  border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.cart-affiliate-remove:hover { background: rgba(239,68,68,0.2); }
+
+.cart-affiliate-msg {
+  display: block;
+  font-size: 11.5px;
+  margin-top: 6px;
+  min-height: 16px;
+  transition: color 0.2s ease;
+}
+.cart-affiliate-msg.success { color: #10b981; }
+.cart-affiliate-msg.error   { color: #f87171; }
+
+/* Fila de descuento aplicado */
+.cart-discount-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0 4px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  border-top: 1px dashed rgba(255,255,255,0.07);
+  margin-top: 4px;
+}
+
+.cart-discount-amt {
+  color: #10b981;
+  font-weight: 700;
+}
+
+/* Fila de subtotal */
+.cart-subtotal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ══════════════════════════════════════════════════════════
+   SECCIÓN PROGRAMA DE AFILIADOS
+══════════════════════════════════════════════════════════ */
+
+.affiliate-section { background: var(--bg-alt, var(--bg-card)); }
+
+.affiliate-box {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-lg);
+  padding: 64px 56px;
+  overflow: hidden;
+}
+
+/* Orbs de glow decorativos */
+.affiliate-orb {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0.12;
+}
+.affiliate-orb.orb-left  { background: var(--neon-purple); top: -100px; left: -100px; }
+.affiliate-orb.orb-right { background: var(--neon-cyan);   bottom: -100px; right: -100px; }
+
+/* Layout 2 columnas */
+.affiliate-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 56px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.affiliate-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 46px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin: 12px 0 20px;
+}
+
+.affiliate-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 28px;
+}
+
+.affiliate-desc strong { color: var(--text-primary); }
+
+/* Pills de beneficios */
+.affiliate-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.aff-benefit {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  transition: border-color 0.2s ease;
+}
+.aff-benefit:hover { border-color: var(--border-hover); }
+
+.aff-benefit-icon { font-size: 22px; flex-shrink: 0; }
+
+.aff-benefit div { display: flex; flex-direction: column; gap: 1px; }
+.aff-benefit strong { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+.aff-benefit span   { font-size: 12px; color: var(--text-muted); }
+
+/* CTA del afiliado */
+.affiliate-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  padding: 16px 32px;
+  border-radius: 14px;
+  text-decoration: none;
+}
+
+/* Tarjeta de preview del código */
+.affiliate-card-preview {
+  background: linear-gradient(145deg, rgba(124,58,237,0.08), rgba(6,182,212,0.08));
+  border: 1px solid rgba(124,58,237,0.2);
+  border-radius: var(--border-radius-lg);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.aff-preview-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.aff-code-display {
+  position: relative;
+  background: rgba(255,255,255,0.04);
+  border: 1px dashed rgba(124,58,237,0.35);
+  border-radius: 12px;
+  padding: 20px 24px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.aff-code-text {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  background: linear-gradient(135deg, var(--neon-purple-light), var(--neon-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.aff-code-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(124,58,237,0.12), transparent 70%);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* Stats row */
+.aff-preview-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.aff-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.aff-stat-num {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.aff-stat-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.aff-stat-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.aff-preview-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+/* Responsive afiliados */
+@media (max-width: 900px) {
+  .affiliate-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .affiliate-box { padding: 48px 36px; }
+}
+
+@media (max-width: 600px) {
+  .affiliate-box { padding: 36px 22px; }
+  .affiliate-title { font-size: clamp(24px, 7vw, 36px); }
+  .affiliate-cta { width: 100%; justify-content: center; }
+  .aff-code-text { font-size: 22px; letter-spacing: 0.08em; }
+}
+

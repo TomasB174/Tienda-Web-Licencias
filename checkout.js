@@ -9,9 +9,17 @@
 const WHATSAPP_NUMBER  = "5491131678989";   // Tu número de WhatsApp (sin + ni espacios)
 const TELEGRAM_USER    = "nexuskeystore";   // Tu usuario de Telegram (sin @)
 
+/* ── CÓDIGOS DE AFILIADO ──────────────────────────────────────────
+   Todos otorgan 10% de descuento al cliente final.
+   El código se incluye en el pedido de WhatsApp para
+   identificar al afiliado que generó cada venta.
+──────────────────────────────────────────────── */
 const DISCOUNT_CODES = {
-  "NEXUS10": { pct: 10, label: "10% de descuento aplicado 🎉" },
-  "NEXUS20": { pct: 20, label: "20% de descuento aplicado 🚀" },
+  "NEXUSVIP":  { pct: 10, label: "10% de descuento aplicado 🎉" },
+  "PROMO10":   { pct: 10, label: "10% de descuento aplicado 🎉" },
+  "DIGITAL10": { pct: 10, label: "10% de descuento aplicado 🎉" },
+  "TECNO10":   { pct: 10, label: "10% de descuento aplicado 🎉" },
+  "OFERTA10":  { pct: 10, label: "10% de descuento aplicado 🎉" },
 };
 
 /* ─────────────────────────────────────────
@@ -55,12 +63,30 @@ function loadCartFromStorage() {
     cart = [];
   }
 
+  // Leer código de afiliado aplicado en el carrito lateral
+  try {
+    const rawAff = localStorage.getItem("nexuskey_affiliate");
+    if (rawAff) {
+      const aff = JSON.parse(rawAff);
+      if (aff && DISCOUNT_CODES[aff.code]) {
+        discountApplied = { code: aff.code, pct: aff.pct };
+        // Pre-rellenar el campo de código y bloquearlo
+        setTimeout(() => {
+          const inp = document.getElementById("discountCode");
+          const btn = document.getElementById("applyDiscountBtn");
+          const tag = document.getElementById("discountCodeTag");
+          if (inp) { inp.value = aff.code; inp.disabled = true; }
+          if (btn) { btn.disabled = true; btn.style.opacity = "0.5"; }
+          if (tag) tag.textContent = aff.code;
+        }, 0);
+      }
+    }
+  } catch { /* ignorar */ }
+
   if (cart.length === 0) {
-    // Si el carrito está vacío, mostramos el estado vacío
     document.getElementById("checkoutEmpty").style.display  = "flex";
     document.getElementById("orderItemsList").style.display = "none";
     document.getElementById("itemCountBadge").textContent   = "Vacío";
-    // Deshabilitamos los botones de compra
     disableCTAButtons();
   }
 }
@@ -206,19 +232,22 @@ function buildMessage() {
   const total       = +(subtotal - discountAmt).toFixed(2);
 
   let msg = "¡Hola! Quiero finalizar mi compra en NexusKey.\n\n";
-  msg    += "*Mi pedido es:*\n";
+  msg    += "*🛠️ Detalle de mi pedido:*\n";
 
+  // Listado completo de productos (importante para cálculo de márgenes)
   cart.forEach(item => {
-    msg += `▸ ${item.name} — ${fmt(item.price)}\n`;
+    msg += `  ▸ ${item.name} — ${fmt(item.price)}\n`;
   });
 
+  msg += `\n*Subtotal:* ${fmt(subtotal)}`;
+
+  // Tracking de afiliado — siempre presente si se usó un código
   if (discountApplied) {
-    msg += `\n*Código de descuento:* ${discountApplied.code} (-${discountApplied.pct}%)`;
-    msg += `\n*Subtotal:* ${fmt(subtotal)}`;
-    msg += `\n*Descuento:* -${fmt(discountAmt)}`;
+    msg += `\n🏷️ *Código de Afiliado:* ${discountApplied.code}`;
+    msg += `\n*Descuento (${discountApplied.pct}%):* -${fmt(discountAmt)}`;
   }
 
-  msg += `\n\n*Total${discountApplied ? " con descuento" : ""}:* ${fmt(total)}\n\n`;
+  msg += `\n\n⭐ *Total a pagar:* ${fmt(total)}\n\n`;
   msg += "¿Me pasás los datos para transferir?";
 
   return msg;

@@ -3,6 +3,142 @@
  * Smooth scroll · Cart · Particles · Cursor · Animations
  */
 
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║   CONFIGURACIÓN DE NOTIFICACIONES TOAST (PROMO)             ║
+   ║   ─────────────────────────────────────────────────────────  ║
+   ║   Editá este bloque para cambiar los mensajes, tiempos       ║
+   ║   y productos promocionados sin tocar nada más.              ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+// ── Productos / códigos configurables ──────────────────────────────
+const PROMO_PRODUCT_1  = 'Google AI Pro';
+const PROMO_CODE_1     = 'GEMINI15';
+const PROMO_DISCOUNT_1 = '15%';
+
+const PROMO_PRODUCT_2  = 'Lovable AI';
+const PROMO_PRODUCT_3  = 'LinkedIn Premium';
+
+// ── Mensajes del carrusel de notificaciones ─────────────────────────
+// Podés agregar, quitar o editar líneas aquí. Se eligen al azar.
+const PROMO_MESSAGES = [
+  {
+    icon : '🔥',
+    title: 'Oferta Flash',
+    text : `${PROMO_DISCOUNT_1} OFF en ${PROMO_PRODUCT_1} con el código`,
+    code : PROMO_CODE_1,             // se muestra destacado como pill
+    url  : 'catalogo.html#prod-google-pro',
+  },
+  {
+    icon : '✨',
+    title: 'Novedad',
+    text : `Crea webs en segundos con ${PROMO_PRODUCT_2}. Descuento especial disponible.`,
+    code : null,
+    url  : 'catalogo.html#prod-lovable',
+  },
+  {
+    icon : '💼',
+    title: 'Impulsa tu carrera',
+    text : `Potenciá tu perfil con ${PROMO_PRODUCT_3}. ¡Cupón del 75% disponible!`,
+    code : null,
+    url  : 'catalogo.html#prod-linkedin',
+  },
+];
+
+// ── Tiempos (en milisegundos) ────────────────────────────────────────
+const PROMO_VISIBLE_MS  = 5500;   // cuánto tiempo permanece visible
+const PROMO_INTERVAL_MS = 38000;  // cada cuánto aparece una nueva notif
+const PROMO_FIRST_MS    = 12000;  // delay inicial antes de la primera notif
+
+// ── Índice del último mensaje mostrado (para evitar repetir el mismo) ─
+let _promoLastIndex = -1;
+
+/* ─── Creación del contenedor (se inyecta en el DOM automáticamente) ─── */
+(function createPromoContainer() {
+  if (document.getElementById('promoToastContainer')) return;
+  const el = document.createElement('div');
+  el.id = 'promoToastContainer';
+  el.setAttribute('aria-live', 'polite');
+  el.setAttribute('aria-atomic', 'false');
+  document.body.appendChild(el);
+})();
+
+/* ─── Función principal: mostrar un toast de promo ─────────────────── */
+function showPromoToast() {
+  const container = document.getElementById('promoToastContainer');
+  if (!container) return;
+
+  // Elegir un mensaje diferente al anterior
+  let idx;
+  do { idx = Math.floor(Math.random() * PROMO_MESSAGES.length); }
+  while (PROMO_MESSAGES.length > 1 && idx === _promoLastIndex);
+  _promoLastIndex = idx;
+
+  const msg = PROMO_MESSAGES[idx];
+
+  // Construir el HTML del toast
+  const codePill = msg.code
+    ? `<span class="promo-toast-code">${msg.code}</span>`
+    : '';
+
+  const toast = document.createElement('div');
+  toast.className   = 'promo-toast';
+  toast.setAttribute('role', 'status');
+  toast.innerHTML = `
+    <div class="promo-toast-inner">
+      <span class="promo-toast-icon">${msg.icon}</span>
+      <div class="promo-toast-body">
+        <span class="promo-toast-title">${msg.title}</span>
+        <span class="promo-toast-text">${msg.text} ${codePill}</span>
+      </div>
+      <button class="promo-toast-close" aria-label="Cerrar notificación">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    ${msg.url ? `<a class="promo-toast-link" href="${msg.url}">Ver oferta →</a>` : ''}
+  `;
+
+  container.appendChild(toast);
+
+  // Animar entrada (la clase .show activa el slide-in via CSS)
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => toast.classList.add('show'));
+  });
+
+  // Auto-cierre
+  const autoClose = setTimeout(() => dismissPromoToast(toast), PROMO_VISIBLE_MS);
+
+  // Cierre manual
+  toast.querySelector('.promo-toast-close').addEventListener('click', () => {
+    clearTimeout(autoClose);
+    dismissPromoToast(toast);
+  });
+
+  // Clic en el toast (no en la X) → ir a la URL
+  if (msg.url) {
+    toast.addEventListener('click', (e) => {
+      if (!e.target.closest('.promo-toast-close')) {
+        clearTimeout(autoClose);
+        dismissPromoToast(toast);
+        window.location.href = msg.url;
+      }
+    });
+  }
+}
+
+function dismissPromoToast(toast) {
+  toast.classList.remove('show');
+  toast.classList.add('hide');
+  setTimeout(() => toast.remove(), 450);
+}
+
+/* ─── Scheduler: primera aparición + loop ──────────────────────────── */
+setTimeout(() => {
+  showPromoToast();
+  setInterval(showPromoToast, PROMO_INTERVAL_MS);
+}, PROMO_FIRST_MS);
+
 /* ========================================
    SMOOTH SCROLL WITH INERTIA (Lenis-style)
    ======================================== */
@@ -326,6 +462,64 @@ const fmt = (n) =>
 
 let cart = [];
 
+/* ── PROGRAMA DE AFILIADOS ──────────────────────────────────────
+   Todos los códigos otorgan 10% de descuento fijo al cliente.
+   El código queda registrado en el pedido de WhatsApp para
+   identificar al afiliado que generó la venta.
+──────────────────────────────────────────────────────────────── */
+const AFFILIATE_CODES = {
+  'NEXUSVIP':  { pct: 10 },
+  'PROMO10':   { pct: 10 },
+  'DIGITAL10': { pct: 10 },
+  'TECNO10':   { pct: 10 },
+  'OFERTA10':  { pct: 10 },
+};
+
+let affiliateApplied = null;  // { code: 'NEXUSVIP', pct: 10 } | null
+
+function applyAffiliateCode() {
+  const input   = document.getElementById('cartAffiliateInput');
+  const msgEl   = document.getElementById('cartAffiliateMsg');
+  if (!input) return;
+
+  const code = input.value.trim().toUpperCase();
+  if (!code) {
+    _setAffiliateMsg(msgEl, 'error', 'Ingresá un código de afiliado.');
+    return;
+  }
+
+  const aff = AFFILIATE_CODES[code];
+  if (aff) {
+    affiliateApplied = { code, pct: aff.pct };
+    input.disabled   = true;
+    document.getElementById('cartAffiliateBtn').disabled = true;
+    _setAffiliateMsg(msgEl, 'success', `✓ ${aff.pct}% de descuento aplicado 🎉`);
+    renderCart();
+    showToast(`Código ${code} aplicado — ${aff.pct}% OFF`, 'success');
+  } else {
+    affiliateApplied = null;
+    _setAffiliateMsg(msgEl, 'error', '✕ Código inválido. Verificá que esté bien escrito.');
+    renderCart();
+  }
+}
+
+function removeAffiliateCode() {
+  affiliateApplied = null;
+  const input = document.getElementById('cartAffiliateInput');
+  const msgEl = document.getElementById('cartAffiliateMsg');
+  if (input) { input.value = ''; input.disabled = false; }
+  if (msgEl)  { msgEl.textContent = ''; msgEl.className = 'cart-affiliate-msg'; }
+  const btn = document.getElementById('cartAffiliateBtn');
+  if (btn) btn.disabled = false;
+  renderCart();
+}
+
+function _setAffiliateMsg(el, type, text) {
+  if (!el) return;
+  el.textContent  = text;
+  el.className    = `cart-affiliate-msg ${type}`;
+}
+
 const cartDrawer = document.getElementById('cartDrawer');
 const cartOverlay = document.getElementById('cartOverlay');
 const cartBtn = document.getElementById('cartBtn');
@@ -348,11 +542,37 @@ function closeCart() {
   document.body.style.overflow = '';
 }
 
-function addToCart(name, price, btn) {
-  const existing = cart.find(item => item.name === name);
+function addToCart(name, _legacyPrice, btn) {
+  /* \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+     PRECIO DESDE EL DOM
+     Subimos al .product-card / .bento-card padre del
+     bot\u00f3n y leemos el <span class="price-current">.
+     Luego eliminamos todo lo que no sea d\u00edgito con /\D/g
+     para convertir "ARS $20.000" \u2192 20000 (entero limpio).
+     El argumento _legacyPrice solo se usa como fallback
+     si el span no existe, sin romper ning\u00fan HTML existente.
+  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+  let price = _legacyPrice;   // fallback
 
+  if (btn) {
+    // Sube al .product-card o .bento-card m\u00e1s cercano
+    const card = btn.closest('.product-card, .bento-card');
+    if (card) {
+      const priceEl = card.querySelector('.price-current');
+      if (priceEl) {
+        const raw    = priceEl.textContent || '';
+        const digits = parseInt(raw.replace(/\D/g, ''), 10);
+        if (!isNaN(digits) && digits > 0) price = digits;
+      }
+    }
+  }
+
+  /* Garantía: siempre un n\u00famero entero positivo */
+  price = Math.round(Number(price)) || 0;
+
+  const existing = cart.find(item => item.name === name);
   if (existing) {
-    showToast(`"${name}" ya está en tu carrito`);
+    showToast(`"${name}" ya est\u00e1 en tu carrito`);
     return;
   }
 
@@ -404,8 +624,28 @@ function renderCart() {
     return;
   }
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const subtotal     = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const discountAmt  = affiliateApplied ? subtotal * affiliateApplied.pct / 100 : 0;
+  const total        = subtotal - discountAmt;
+
+  // Total visible en el footer del carrito
   cartTotalEl.textContent = fmt(total);
+
+  // Reconstruir lista de items + campo de afiliado
+  const codeVal     = affiliateApplied ? affiliateApplied.code : '';
+  const inputDisabled = affiliateApplied ? 'disabled' : '';
+  const btnDisabled   = affiliateApplied ? 'disabled' : '';
+  const msgClass      = affiliateApplied ? 'success' : '';
+  const msgText       = affiliateApplied ? `✓ ${affiliateApplied.pct}% de descuento aplicado 🎉` : '';
+
+  const discountRow = affiliateApplied ? `
+    <div class="cart-discount-row">
+      <span>Descuento (${affiliateApplied.code})</span>
+      <span class="cart-discount-amt">-${fmt(discountAmt)}</span>
+    </div>` : '';
+
+  const removeBtn = affiliateApplied ? `
+    <button class="cart-affiliate-remove" onclick="removeAffiliateCode()" title="Quitar código">✕</button>` : '';
 
   cartItemsEl.innerHTML = cart.map(item => `
     <div class="cart-item-row">
@@ -422,7 +662,39 @@ function renderCart() {
         </svg>
       </button>
     </div>
-  `).join('');
+  `).join('') + `
+
+  <!-- Campo de código de afiliado -->
+  <div class="cart-affiliate-block">
+    <label class="cart-affiliate-label">🏷️ ¿Tenés un código de afiliado?</label>
+    <div class="cart-affiliate-row">
+      <input
+        id="cartAffiliateInput"
+        class="cart-affiliate-input"
+        type="text"
+        placeholder="Ej: NOMBRE10"
+        value="${codeVal}"
+        ${inputDisabled}
+        onkeydown="if(event.key==='Enter') applyAffiliateCode()"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      ${removeBtn}
+      <button
+        id="cartAffiliateBtn"
+        class="cart-affiliate-btn"
+        onclick="applyAffiliateCode()"
+        ${btnDisabled}
+      >Aplicar</button>
+    </div>
+    <span id="cartAffiliateMsg" class="cart-affiliate-msg ${msgClass}">${msgText}</span>
+  </div>
+
+  ${discountRow}
+
+  <div class="cart-subtotal-row">
+    <span>Subtotal</span><span>${fmt(subtotal)}</span>
+  </div>`;
 }
 
 function checkout() {
@@ -431,14 +703,19 @@ function checkout() {
     return;
   }
 
-  // Guardamos el carrito en localStorage para que checkout.html lo lea
+  // Guardamos el carrito Y el código de afiliado en localStorage
   try {
     localStorage.setItem('nexuskey_cart', JSON.stringify(cart));
+    // El código de afiliado viaja al checkout para incluirlo en el mensaje de WhatsApp
+    if (affiliateApplied) {
+      localStorage.setItem('nexuskey_affiliate', JSON.stringify(affiliateApplied));
+    } else {
+      localStorage.removeItem('nexuskey_affiliate');
+    }
   } catch (e) {
     console.error('No se pudo guardar el carrito:', e);
   }
 
-  // Redirigimos a la página de checkout
   showToast('Redirigiendo al checkout... 🛒', 'success');
   setTimeout(() => {
     window.location.href = 'checkout.html';
@@ -693,9 +970,11 @@ function openQuickView(card) {
     '★'.repeat(stars) + '☆'.repeat(5 - stars) +
     (reviews ? `<span class="reviews">(${reviews})</span>` : '');
 
-  // Precios y descuento
-  const price    = parseFloat(d.qvPrice    || '0');
-  const oldPrice = parseFloat(d.qvOldPrice || '0');
+  // Precios y descuento — parseInt con limpieza de no-dígitos para coincidir
+  // con el mismo parseo que usa addToCart desde el DOM (.price-current).
+  const price    = parseInt((d.qvPrice    || '0').replace(/\D/g, ''), 10) || 0;
+  const oldPrice = parseInt((d.qvOldPrice || '0').replace(/\D/g, ''), 10) || 0;
+
   const curPrEl  = document.getElementById('qvCurrentPrice');
   const oldPrEl  = document.getElementById('qvOldPrice');
   const discEl   = document.getElementById('qvDiscount');
