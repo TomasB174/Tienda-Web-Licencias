@@ -2806,48 +2806,138 @@ a.bento-cat {
 
 /* ── RESPONSIVE MODAL ── */
 @media (max-width: 700px) {
-  /* Modal: no se sale de la pantalla, scroll interno */
-  .qv-overlay { padding: 12px; align-items: flex-end; }
 
-  .qv-modal {
-    width: 95vw;
-    max-width: 95vw;
-    max-height: 85vh;
-    overflow-y: auto;
-    border-radius: 20px 20px 0 0;
+  /* ───────────────────────────────────────────────
+     MODAL VISTA RÁPIDA — EXPERIENCIA NATIVA FULLSCREEN
+     El modal ocupa toda la pantalla como una app nativa.
+     El CTA (precio + botón) queda fijo abajo siempre visible.
+  ─────────────────────────────────────────────── */
+
+  /* Overlay: sin padding, alinea el modal al tope */
+  .qv-overlay {
+    padding: 0;
+    align-items: flex-start;
   }
 
-  /* Layout: apilado verticalmente */
+  /* Modal: ocupa 100% de la pantalla real (dvh incluye barra navegador) */
+  .qv-modal {
+    width: 100%;
+    max-width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+    overflow: hidden;          /* El scroll lo maneja .qv-details, no el modal */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Animación de apertura: slide desde abajo (evita escala que causa huecos) */
+  .qv-overlay .qv-modal {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.25s ease;
+  }
+  .qv-overlay.open .qv-modal {
+    transform: translateY(0);
+    opacity: 1;
+    box-shadow: none;          /* Sin sombra lateral en fullscreen */
+  }
+
+  /* Layout: una sola columna */
   .qv-layout {
     grid-template-columns: 1fr;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
-  /* Columna de imagen: borde inferior en vez de derecho */
+  /* Botón cerrar: posicionado para pulgar (esquina superior derecha) */
+  .qv-close {
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Imagen: compacta, ocupa el ancho disponible */
   .qv-media {
     border-right: none;
     border-bottom: 1px solid var(--border);
-    padding: 20px;
+    padding: 16px 16px 12px;
+    flex-shrink: 0;
   }
 
-  /* Imagen: razón de aspecto más compacta en móvil */
-  .qv-img-wrap { aspect-ratio: 16/9; }
+  .qv-img-wrap {
+    aspect-ratio: 16 / 7;
+  }
 
-  /* Trust badges: 2 columnas compactas */
+  /* Trust badges: 2 columnas en móvil */
   .qv-trust-badges { grid-template-columns: 1fr 1fr; }
 
-  /* Columna de detalles: scroll interno si el contenido es largo */
+  /*
+   * COLUMNA DE DETALLES: el área que scrollea.
+   * flex: 1 consume el espacio restante entre la imagen y el CTA sticky.
+   * overflow-y: auto permite scroll suave.
+   * padding-bottom: 120px garantiza que el contenido no quede oculto
+   *   detrás del sticky CTA cuando el usuario llega al final.
+   */
   .qv-details {
-    padding: 20px;
-    gap: 14px;
+    flex: 1;
     overflow-y: auto;
-    max-height: 50vh;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding: 18px 18px 120px;  /* 120px = altura del sticky CTA + margen */
+    gap: 16px;
+    max-height: none;          /* Anula el antiguo max-height: 50vh */
   }
 
-  /* Precio más compacto */
-  .qv-price-current { font-size: 28px; }
+  /* Precio: tamaño legible en móvil */
+  .qv-price-current { font-size: 26px; }
 
-  /* Ocultar trigger hover (en móvil se toca directo la card) */
+  /*
+   * PANEL DE COMPRA STICKY — SIEMPRE VISIBLE
+   * ------------------------------------------------
+   * .qv-pricing-block y .qv-btn-cart se agrupan visualmente
+   * con sticky bottom. Como .qv-details tiene overflow:auto,
+   * sticky funciona dentro del scroll container nativo.
+   * Usamos position: sticky + un pseudo-elemento para el fondo.
+   */
+  .qv-pricing-block {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    background: var(--bg-card);
+    margin: 0 -18px;
+    padding: 14px 18px 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  .qv-btn-cart {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    width: 100%;
+    justify-content: center;
+    background: var(--bg-card);
+    margin: 0 -18px;
+    width: calc(100% + 36px);
+    border-radius: 0;
+    padding: 16px 18px;
+    border-top: none;          /* La línea la pone .qv-pricing-block */
+  }
+
+  /* El link “Ver catálogo” queda fuera del sticky, al pie del scroll */
+  .qv-catalog-link {
+    text-align: center;
+    justify-content: center;
+    padding-bottom: 8px;
+  }
+
+  /* Ocultar trigger de hover (en móvil se toca directamente la card) */
   .qv-hover-trigger { display: none; }
+
 }
 
 
@@ -2868,13 +2958,8 @@ a.bento-cat {
   }
   .filter-bar::-webkit-scrollbar { display: none; }
 
-  /* Modal: padding mínimo en pantallas muy pequeñas */
-  .qv-overlay { padding: 0; }
-  .qv-modal {
-    width: 100vw;
-    max-width: 100vw;
-    border-radius: 20px 20px 0 0;
-  }
+  /* Modal a pantalla completa en 480px ya lo maneja el bloque 700px */
+  /* No se necesitan overrides adicionales del QV modal aquí */
 
   /* CTA: ancho completo en cualquier contexto */
   .btn-primary,
