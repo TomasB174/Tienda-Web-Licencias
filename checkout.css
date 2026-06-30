@@ -398,7 +398,7 @@
   background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
   color: #fff;
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 16px; /* >= 16px para evitar zoom secundario en iOS */
   font-weight: 700;
   border: none;
   border-radius: 12px;
