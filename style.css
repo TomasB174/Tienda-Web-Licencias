@@ -3494,3 +3494,84 @@ a.bento-cat {
   .super-combo-text small { font-size: 11px; }
   .super-combo-arrow svg { width: 18px; height: 18px; }
 }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   COMBOS GRID — Layout 2 columnas para combos.html
+══════════════════════════════════════════════════════════════════════════ */
+
+.combos-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .combos-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Variante AZUL (Combo OS+IA) ── */
+
+@keyframes bundleGlowBlue {
+  0%   { border-color: #38bdf8; box-shadow: 0 0 18px rgba(56,189,248,0.5), 0 0 40px rgba(56,189,248,0.18); }
+  50%  { border-color: #7c3aed; box-shadow: 0 0 18px rgba(124,58,237,0.6), 0 0 40px rgba(124,58,237,0.22); }
+  100% { border-color: #38bdf8; box-shadow: 0 0 18px rgba(56,189,248,0.5), 0 0 40px rgba(56,189,248,0.18); }
+}
+
+.bundle-card-blue {
+  border: 1.5px solid #38bdf8;
+  animation: bundleGlowBlue 4s ease-in-out infinite;
+}
+
+.bundle-card-blue::before {
+  background: linear-gradient(90deg, #38bdf8, #7c3aed, #06b6d4, #38bdf8);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+.badge-bundle-blue {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  color: #fff;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 12px rgba(56,189,248,0.45);
+}
+
+.bundle-gift-banner-blue {
+  background: linear-gradient(
+    90deg,
+    rgba(56,189,248,0.1) 0%,
+    rgba(56,189,248,0.22) 40%,
+    rgba(124,58,237,0.18) 60%,
+    rgba(56,189,248,0.1) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+  border: 1px solid rgba(56,189,248,0.3);
+  color: #38bdf8;
+}
+
+.bundle-price-blue {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(56,189,248,0.55));
+}
+
+.btn-bundle-blue {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 40%, #7c3aed 100%) !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(56,189,248,0.4), 0 2px 8px rgba(124,58,237,0.3);
+  font-weight: 800;
+}
+
+.btn-bundle-blue:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 28px rgba(56,189,248,0.5), 0 4px 12px rgba(124,58,237,0.35);
+}
