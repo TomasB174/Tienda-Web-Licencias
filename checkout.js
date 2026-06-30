@@ -293,7 +293,14 @@ function buyViaWhatsApp() {
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 
   showToast("¡Abriendo WhatsApp! 💬", "success");
-  setTimeout(() => window.location.href = url, 600);
+  // Redirección inmediata — sin setTimeout para no perder el gesto del usuario
+  // (iOS/Android bloquean window.location.href si se llama dentro de un timer)
+  const a = document.createElement('a');
+  a.href = url;
+  a.rel = 'noopener noreferrer';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
 function buyViaTelegram() {
@@ -306,7 +313,13 @@ function buyViaTelegram() {
   const url = `https://t.me/${TELEGRAM_USER}?text=${encodeURIComponent(msg)}`;
 
   showToast("¡Abriendo Telegram! ✈️", "success");
-  setTimeout(() => window.location.href = url, 600);
+  // Redirección inmediata — sin setTimeout (mismo motivo que WhatsApp)
+  const a = document.createElement('a');
+  a.href = url;
+  a.rel = 'noopener noreferrer';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
 function disableCTAButtons() {

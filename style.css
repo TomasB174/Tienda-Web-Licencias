@@ -1954,6 +1954,12 @@ a.bento-cat {
 .cart-footer {
   padding: 24px;
   border-top: 1px solid var(--border);
+  position: sticky;
+  bottom: 0;
+  background: var(--bg-secondary);
+  z-index: 10;
+  pointer-events: auto;
+  flex-shrink: 0;
 }
 
 .cart-total {
@@ -2398,7 +2404,24 @@ a.bento-cat {
   /* ── FOOTER Y RESTO ── */
   .footer-grid { grid-template-columns: 1fr; gap: 24px; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
-  .cart-drawer { width: 100%; }
+  /* ── CART MOBILE — garantiza que el botón de checkout sea siempre tappable —— */
+  .cart-drawer {
+    width: 100%;
+    z-index: 1400;        /* encima de cualquier overlay de la página */
+    height: 100dvh;       /* usa dvh para respetar el teclado virtual */
+  }
+  .cart-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 1401;        /* por encima del propio drawer */
+    pointer-events: auto;
+    padding: 16px 20px;   /* táctil cómodo en mobile */
+  }
+  .cart-footer .btn-primary {
+    min-height: 52px;     /* área de toque mínima recomendada por WCAG */
+    font-size: 16px;
+    pointer-events: auto;
+  }
   .cta-box { padding: 48px 24px; }
 }
 
