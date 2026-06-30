@@ -1,0 +1,754 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google AI Pro – Folleto de Planes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .folleto {
+      width: 540px;
+      background: radial-gradient(ellipse at 50% -10%, #1a1060 0%, #0a0520 45%, #000010 100%);
+      border-radius: 18px;
+      overflow: hidden;
+      padding: 28px 20px 22px;
+      position: relative;
+      box-shadow: 0 0 60px rgba(100, 60, 255, 0.35);
+    }
+
+    .arco {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 180px;
+      background: radial-gradient(ellipse 90% 160px at 50% -30px,
+        rgba(140, 80, 255, 0.55) 0%,
+        rgba(80, 40, 180, 0.30) 50%,
+        transparent 100%);
+      pointer-events: none;
+    }
+
+    .header {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 18px;
+    }
+
+    .google-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .g-icon { width: 36px; height: 36px; }
+
+    .brand-name {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-name span { color: #4285F4; }
+
+    .tagline {
+      font-size: 10.5px;
+      color: rgba(200, 190, 255, 0.80);
+      letter-spacing: 0.3px;
+    }
+
+    .planes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .plan {
+      background: rgba(20, 10, 60, 0.65);
+      border: 1px solid rgba(130, 80, 255, 0.35);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .plan-header {
+      background: linear-gradient(90deg, #6c3fff 0%, #8a5cff 100%);
+      text-align: center;
+      padding: 7px 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .plan-body { padding: 10px 10px 0; }
+
+    .producto-box {
+      background: linear-gradient(135deg, #1a0e55 0%, #0f0830 100%);
+      border: 1px solid rgba(100, 60, 220, 0.50);
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .box-visual {
+      width: 62px;
+      height: 80px;
+      background: linear-gradient(145deg, #1e1060 0%, #0d0640 100%);
+      border-radius: 6px;
+      border: 1px solid rgba(100,60,200,0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+      box-shadow: 3px 3px 10px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .box-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: linear-gradient(135deg, #ff6b35, #ff4500);
+      color: #fff;
+      font-size: 7px;
+      font-weight: 700;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.1;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(255,100,0,0.5);
+    }
+
+    .box-g {
+      font-size: 20px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #4285F4, #34A853, #FBBC05, #EA4335);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .box-label {
+      font-size: 5.5px;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      margin-top: 2px;
+      line-height: 1.3;
+    }
+
+    .producto-info { flex: 1; }
+
+    .prod-title {
+      font-size: 9px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+
+    .prod-sub {
+      font-size: 7.5px;
+      color: rgba(180,170,255,0.8);
+      line-height: 1.4;
+    }
+
+    .app-icons {
+      display: flex;
+      gap: 4px;
+      margin-top: 5px;
+      flex-wrap: wrap;
+    }
+
+    .app-icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      font-weight: 700;
+    }
+
+    .badge-digital {
+      margin-top: 6px;
+      font-size: 7px;
+      color: rgba(160,150,255,0.8);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .banner-invitados {
+      background: linear-gradient(90deg, #5a3af5 0%, #7b55ff 100%);
+      border-radius: 8px;
+      padding: 6px 8px;
+      margin-bottom: 8px;
+    }
+
+    .inv-title {
+      font-size: 9px;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .inv-sub {
+      font-size: 7px;
+      color: rgba(220,215,255,0.9);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .feature-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(100, 60, 200, 0.18);
+    }
+
+    .feature-row:last-of-type { border-bottom: none; }
+
+    .feat-icon {
+      width: 26px;
+      height: 26px;
+      background: rgba(100, 60, 220, 0.25);
+      border-radius: 6px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+
+    .feat-text { flex: 1; }
+
+    .feat-label {
+      font-size: 8px;
+      font-weight: 700;
+      color: rgba(200, 190, 255, 0.70);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 1px;
+    }
+
+    .feat-value {
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .feat-desc {
+      font-size: 7.5px;
+      color: rgba(170, 160, 255, 0.75);
+      line-height: 1.4;
+      margin-top: 1px;
+    }
+
+    /* ── Opciones de duración ── */
+    .duracion-opciones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px 3px;
+      margin-top: 4px;
+    }
+
+    .duracion-opciones span {
+      font-size: 6.5px;
+      color: rgba(160, 200, 255, 0.85);
+      background: rgba(100, 140, 255, 0.12);
+      border: 1px solid rgba(100, 140, 255, 0.28);
+      border-radius: 3px;
+      padding: 1px 4px;
+      white-space: nowrap;
+      line-height: 1.6;
+    }
+
+    .beneficios-banner {
+      background: linear-gradient(90deg, #7c3fff 0%, #5a20e0 100%);
+      margin: 8px -10px 0;
+      padding: 5px 10px;
+      font-size: 8px;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .beneficios-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      padding: 8px 0;
+    }
+
+    .beneficio-item {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .ben-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+
+    .ben-title {
+      font-size: 7px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    .ben-desc {
+      font-size: 6.5px;
+      color: rgba(170, 160, 255, 0.75);
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .precio-section {
+      background: linear-gradient(180deg, #120850 0%, #0a0430 100%);
+      border-top: 1px solid rgba(100, 60, 200, 0.30);
+      margin: 0 -10px;
+      padding: 10px 10px 12px;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .precio-label {
+      font-size: 8.5px;
+      font-weight: 700;
+      color: rgba(180, 170, 255, 0.70);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .precio-valor {
+      font-size: 30px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+    .precio-periodo {
+      font-size: 8px;
+      font-weight: 600;
+      color: rgba(180, 170, 255, 0.75);
+      letter-spacing: 0.5px;
+      margin-top: 3px;
+      text-transform: uppercase;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(100, 60, 200, 0.22);
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 8px;
+      color: rgba(180, 170, 255, 0.75);
+    }
+
+    .ic-drive    { background: rgba(255,255,255,0.05); }
+    .ic-gemini   { background: rgba(66,133,244,0.15); }
+    .ic-notebook { background: rgba(52,168,83,0.15); }
+    .ic-meet     { background: rgba(0,150,136,0.15); }
+    .ic-ag       { background: rgba(180,50,255,0.15); }
+    .ic-credits  { background: rgba(255,180,0,0.15); }
+  </style>
+</head>
+<body>
+<div class="folleto">
+  <div class="arco"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="google-logo">
+      <svg class="g-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+      </svg>
+      <span class="brand-name">Google <span>AI Pro</span></span>
+    </div>
+    <p class="tagline">Potencia tu productividad. Impulsa tu creatividad. Simplifica tu vida.</p>
+  </div>
+
+  <!-- PLANES -->
+  <div class="planes">
+
+    <!-- PLAN INDIVIDUAL -->
+    <div class="plan">
+      <div class="plan-header">Plan Individual</div>
+      <div class="plan-body">
+
+        <div class="producto-box">
+          <div class="box-visual">
+            <div class="box-badge">1<br>MES</div>
+            <div class="box-g">G</div>
+            <div class="box-label">Google<br>AI Pro</div>
+          </div>
+          <div class="producto-info">
+            <div class="prod-title">Google AI Pro</div>
+            <div class="prod-sub">Tu asistente de inteligencia artificial para todo.</div>
+            <div class="app-icons">
+              <div class="app-icon" style="background:rgba(66,133,244,0.25);color:#4285F4;">+</div>
+              <div class="app-icon" style="background:rgba(251,188,5,0.20);color:#FBBC05;">★</div>
+              <div class="app-icon" style="background:rgba(52,168,83,0.20);color:#34A853;">◉</div>
+              <div class="app-icon" style="background:rgba(234,67,53,0.20);color:#EA4335;font-size:7px;font-weight:900;">A</div>
+            </div>
+            <div class="badge-digital">☁ Producto Digital</div>
+          </div>
+        </div>
+
+        <!-- Duración -->
+        <div class="feature-row">
+          <div class="feat-icon">📅</div>
+          <div class="feat-text">
+            <div class="feat-label">Duración</div>
+            <div class="feat-value">1 MES</div>
+            <div class="feat-desc">Acceso completo durante 1 mes.</div>
+            <div class="feat-desc">Consultar por planes de 3 / 6 / 12 y 18 meses.</div>
+            <div class="feat-label">Ofertas Increíbles🔥</div>
+            <div class="duracion-opciones">
+              <span>1 mes</span>
+              <span>3 meses</span>
+              <span>6 meses</span>
+              <span>12 meses</span>
+              <span>18 meses</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activación -->
+        <div class="feature-row">
+          <div class="feat-icon">👤</div>
+          <div class="feat-text">
+            <div class="feat-label">Activación</div>
+            <div class="feat-value">En su propio correo</div>
+            <div class="feat-desc">Activación rápida y segura en tu propia cuenta.</div>
+          </div>
+        </div>
+
+        <!-- Garantía -->
+        <div class="feature-row">
+          <div class="feat-icon">🛡️</div>
+          <div class="feat-text">
+            <div class="feat-label">Garantía Total</div>
+            <div class="feat-value">Por 1 Mes</div>
+            <div class="feat-desc">Respaldo y soporte durante todo tu periodo de suscripción.</div>
+          </div>
+        </div>
+
+        <div class="beneficios-banner">Incluye todos los beneficios</div>
+
+        <div class="beneficios-grid">
+          <div class="beneficio-item">
+            <div class="ben-icon ic-drive">
+              <svg width="22" height="22" viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.6 66.85l3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3L28.95 51H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066DA"/>
+                <path d="M43.65 25L28.35 0c-1.35.8-2.5 1.9-3.3 3.3L1.2 46.5c-.8 1.4-1.2 2.95-1.2 4.5h28.95z" fill="#00AC47"/>
+                <path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5H59.4l6.19 13.5z" fill="#EA4335"/>
+                <path d="M43.65 25L58.95 0H28.35z" fill="#00832D"/>
+                <path d="M59.4 51h27.9c0-1.55-.4-3.1-1.2-4.5L62.85 3.3c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25z" fill="#2684FC"/>
+                <path d="M28.95 51L13.65 76.8c1.35.8 2.9 1.2 4.5 1.2h50.1c1.6 0 3.15-.45 4.5-1.2L57.45 51z" fill="#FFBA00"/>
+              </svg>
+            </div>
+            <div class="ben-title">5 TB Almacenamiento en Google</div>
+            <div class="ben-desc">Almacena y accede a todos tus archivos con total seguridad.</div>
+          </div>
+
+          <div class="beneficio-item">
+            <div class="ben-icon ic-gemini">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C12 2 13 8 17 12C13 16 12 22 12 22C12 22 11 16 7 12C11 8 12 2 12 2Z" fill="#4285F4"/>
+                <path d="M2 12C2 12 8 11 12 7C16 11 22 12 22 12C22 12 16 13 12 17C8 13 2 12 2 12Z" fill="#34A853"/>
+              </svg>
+            </div>
+            <div class="ben-title">Gemini Pro</div>
+            <div class="ben-desc">Accede al modelo más avanzado de inteligencia artificial de Google.</div>
+          </div>
+
+          <div class="beneficio-item">
+            <div class="ben-icon ic-notebook">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="2" width="14" height="18" rx="2" fill="#34A853" opacity="0.2"/>
+                <rect x="3" y="2" width="14" height="18" rx="2" stroke="#34A853" stroke-width="1.5"/>
+                <path d="M7 7h6M7 10h6M7 13h4" stroke="#34A853" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="ben-title">Notebook LM</div>
+            <div class="ben-desc">Organiza, analiza y comprende información con tu asistente de investigación.</div>
+          </div>
+
+          <div class="beneficio-item">
+            <div class="ben-icon ic-meet">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="6" width="13" height="12" rx="2" fill="#00897B"/>
+                <path d="M15 10l5-3v10l-5-3V10z" fill="#00897B"/>
+              </svg>
+            </div>
+            <div class="ben-title">Google Meet Pro</div>
+            <div class="ben-desc">Reuniones más inteligentes con funciones premium para comunicarte sin límites.</div>
+          </div>
+
+          <div class="beneficio-item">
+            <div class="ben-icon ic-ag">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="12,2 22,20 2,20" fill="none" stroke="#a855f7" stroke-width="1.8"/>
+                <line x1="7" y1="14" x2="17" y2="14" stroke="#a855f7" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="ben-title">Disponible Antigravity</div>
+            <div class="ben-desc">Accede a Antigravity, la nueva experiencia de desarrollo impulsada por IA.</div>
+          </div>
+
+          <div class="beneficio-item">
+            <div class="ben-icon ic-credits">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="9" fill="none" stroke="#FBBC05" stroke-width="1.5"/>
+                <text x="12" y="16" font-size="10" fill="#FBBC05" text-anchor="middle" font-family="Roboto" font-weight="700">C</text>
+              </svg>
+            </div>
+            <div class="ben-title">1000 Créditos</div>
+            <div class="ben-desc">Potencia tus proyectos con 1000 créditos para las mejores herramientas de IA.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="precio-section">
+        <div class="precio-label">Precio</div>
+        <!-- CAMBIO: antes S/ 80, ahora 18.000 -->
+        <div class="precio-valor">18.000</div>
+        <div class="precio-periodo">Por 1 Mes</div>
+      </div>
+    </div>
+
+    <!-- PLAN FAMILIAR -->
+    <div class="plan">
+      <div class="plan-header">Plan Familiar</div>
+      <div class="plan-body">
+
+        <div class="producto-box">
+          <div class="box-visual">
+            <div class="box-badge">1<br>MES</div>
+            <div class="box-g">G</div>
+            <div class="box-label">Google<br>AI Pro</div>
+          </div>
+          <div class="producto-info">
+            <div class="prod-title">Google AI Pro</div>
+            <div class="prod-sub">Tu asistente de inteligencia artificial para todo.</div>
+            <div style="margin-top:6px;">
+              <svg width="34" height="22" viewBox="0 0 40 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="8" r="5" fill="#6c3fff" opacity="0.9"/>
+                <circle cx="28" cy="8" r="5" fill="#6c3fff" opacity="0.9"/>
+                <ellipse cx="12" cy="22" rx="9" ry="5" fill="#6c3fff" opacity="0.7"/>
+                <ellipse cx="28" cy="22" rx="9" ry="5" fill="#6c3fff" opacity="0.7"/>
+                <circle cx="20" cy="6" r="4" fill="#8a5cff"/>
+                <ellipse cx="20" cy="20" rx="7" ry="4.5" fill="#8a5cff"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="banner-invitados">
+          <div class="inv-title">⭐ Incluye 5 Invitados Extra</div>
+          <div class="inv-sub">Invita hasta 5 personas para que disfruten de todos los beneficios del plan.</div>
+        </div>
+
+        <!-- Duración -->
+        <div class="feature-row">
+          <div class="feat-icon">📅</div>
+          <div class="feat-text">
+            <div class="feat-label">Duración</div>
+            <div class="feat-value">1 MES</div>
+            <div class="feat-desc">Acceso completo durante 1 mes.</div>
+            <div class="feat-desc">Consultar por planes de 3 / 6 / 12 y 18 meses.</div>
+            <div class="feat-label">Ofertas Increíbles🔥</div>
+            <div class="duracion-opciones">
+              <span>1 mes</span>
+              <span>3 meses</span>
+              <span>6 meses</span>
+              <span>12 meses</span>
+              <span>18 meses</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activación -->
+        <div class="feature-row">
+          <div class="feat-icon">👤</div>
+          <div class="feat-text">
+            <div class="feat-label">Activación</div>
+            <div class="feat-value">En su propio correo</div>
+            <div class="feat-desc">Activación rápida y segura en tu propia cuenta.</div>
+          </div>
+        </div>
+
+        <!-- Garantía -->
+        <div class="feature-row">
+          <div class="feat-icon">🛡️</div>
+          <div class="feat-text">
+            <div class="feat-label">Garantía Total</div>
+            <div class="feat-value">Por 1 Mes</div>
+            <div class="feat-desc">Respaldo y soporte durante todo tu periodo de suscripción.</div>
+          </div>
+        </div>
+
+        <div class="beneficios-banner" style="font-size:7px;">Incluye todos los beneficios para ti y para cada uno de tus 5 invitados</div>
+
+        <div class="beneficios-grid">
+          <div class="beneficio-item">
+            <div class="ben-icon ic-drive">
+              <svg width="22" height="22" viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.6 66.85l3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3L28.95 51H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066DA"/>
+                <path d="M43.65 25L28.35 0c-1.35.8-2.5 1.9-3.3 3.3L1.2 46.5c-.8 1.4-1.2 2.95-1.2 4.5h28.95z" fill="#00AC47"/>
+                <path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5H59.4l6.19 13.5z" fill="#EA4335"/>
+                <path d="M43.65 25L58.95 0H28.35z" fill="#00832D"/>
+                <path d="M59.4 51h27.9c0-1.55-.4-3.1-1.2-4.5L62.85 3.3c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25z" fill="#2684FC"/>
+                <path d="M28.95 51L13.65 76.8c1.35.8 2.9 1.2 4.5 1.2h50.1c1.6 0 3.15-.45 4.5-1.2L57.45 51z" fill="#FFBA00"/>
+              </svg>
+            </div>
+            <div class="ben-title">5 TB Almacenamiento en Google</div>
+            <div class="ben-desc">Almacena y accede a todos tus archivos con total seguridad.</div>
+          </div>
+
+          <div class="beneficio-item">
+            <div class="ben-icon ic-gemini">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C12 2 13 8 17 12C13 16 12 22 12 22C12 22 11 16 7 12C11 8 12 2 12 2Z" fill="#4285F4"/>
+                <path d="M2 12C2 12 8 11 12 7C16 11 22 12 22 12C22 12 16 13 12 17C8 13 2 12 2 12Z" fill="#34A853"/>
+              </svg>
+            </div>
+            <div class="ben-title">Gemini Pro</div>
+            <div class="ben-desc">Accede al modelo más avanzado de inteligencia artificial de Google.</div>
+          </div>
+
+          <div class="beneficio-item">
+            <div class="ben-icon ic-notebook">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="2" width="14" height="18" rx="2" fill="#34A853" opacity="0.2"/>
+                <rect x="3" y="2" width="14" height="18" rx="2" stroke="#34A853" stroke-width="1.5"/>
+                <path d="M7 7h6M7 10h6M7 13h4" stroke="#34A853" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="ben-title">Notebook LM</div>
+            <div class="ben-desc">Organiza, analiza y comprende información con tu asistente de investigación.</div>
+          </div>
+
+          <div class="beneficio-item">
+            <div class="ben-icon ic-meet">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="6" width="13" height="12" rx="2" fill="#00897B"/>
+                <path d="M15 10l5-3v10l-5-3V10z" fill="#00897B"/>
+              </svg>
+            </div>
+            <div class="ben-title">Google Meet Pro</div>
+            <div class="ben-desc">Reuniones más inteligentes con funciones premium para comunicarte sin límites.</div>
+          </div>
+
+          <div class="beneficio-item">
+            <div class="ben-icon ic-ag">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="12,2 22,20 2,20" fill="none" stroke="#a855f7" stroke-width="1.8"/>
+                <line x1="7" y1="14" x2="17" y2="14" stroke="#a855f7" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="ben-title">Disponible Antigravity</div>
+            <div class="ben-desc">Accede a Antigravity, la nueva experiencia de desarrollo impulsada por IA.</div>
+          </div>
+
+          <div class="beneficio-item">
+            <div class="ben-icon ic-credits">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="9" fill="none" stroke="#FBBC05" stroke-width="1.5"/>
+                <text x="12" y="16" font-size="10" fill="#FBBC05" text-anchor="middle" font-family="Roboto" font-weight="700">C</text>
+              </svg>
+            </div>
+            <div class="ben-title">1000 Créditos</div>
+            <div class="ben-desc">Potencia tus proyectos con 1000 créditos para las mejores herramientas de IA.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="precio-section">
+        <div class="precio-label">Precio</div>
+        <!-- CAMBIO: antes S/ 150, ahora 25.000 -->
+        <div class="precio-valor">25.000</div>
+        <div class="precio-periodo">Por 1 Mes</div>
+      </div>
+    </div>
+
+  </div><!-- /planes -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-item">
+      🛡️ Seguro, confiable y respaldado por Google.
+    </div>
+    <div class="footer-item">
+      ☁️ Producto 100% digital.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
