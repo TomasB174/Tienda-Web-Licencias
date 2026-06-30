@@ -3,6 +3,15 @@
    Dark Mode · Bento Grid · Glow Effects
    ======================================== */
 
+/* ── RESET GLOBAL box-sizing para el checkout ──
+   Garantiza que padding y border no sumen ancho extra
+   en ningún elemento dentro de la página de checkout. */
+.checkout-body *,
+.checkout-body *::before,
+.checkout-body *::after {
+  box-sizing: border-box;
+}
+
 /* ── BODY OVERRIDE FOR CHECKOUT ── */
 .checkout-body {
   cursor: auto;
@@ -814,15 +823,22 @@
 }
 
 /* ── RESPONSIVE ── */
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET (max 900px)
+══════════════════════════════════════════ */
 @media (max-width: 900px) {
   .checkout-container {
-    grid-template-columns: 1fr;
-    max-width: 580px;
-    margin: 0 auto; /* Centra el contenido en tablets y móviles */
+    grid-template-columns: 1fr;  /* 1 sola columna */
+    width: 100%;                 /* ocupa todo el ancho disponible */
+    max-width: 600px;            /* nunca más ancho de 600px en tablet */
+    margin-left: auto;           /* centra horizontalmente */
+    margin-right: auto;
+    padding: 0 20px;             /* padding simétrico */
+    box-sizing: border-box;      /* padding no suma ancho */
   }
 
   .checkout-col-right {
-    order: -1;
+    order: -1;  /* el resumen de pago sube primero en mobile */
   }
 
   .checkout-nav-center {
@@ -830,29 +846,80 @@
   }
 }
 
+/* ══════════════════════════════════════════
+   RESPONSIVE — MOBILE (max 600px)
+══════════════════════════════════════════ */
 @media (max-width: 600px) {
+
+  /* Contenedor de página */
   .checkout-main {
     padding-top: 88px;
     padding-bottom: 40px;
+    overflow-x: hidden;  /* corta cualquier desbordamiento horizontal */
   }
 
+  /* Contenedor principal — centrado perfecto */
   .checkout-container {
-    padding: 0 16px;
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;      /* 16px simétrico en ambos lados */
     gap: 16px;
+    box-sizing: border-box;
   }
 
+  /* Todas las tarjetas */
   .checkout-card {
-    padding: 20px;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 16px;
+    box-sizing: border-box;
   }
 
+  /* Columnas */
+  .checkout-col {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Input de descuento — no puede desbordar */
+  .discount-input-group {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .discount-field-wrap,
+  .discount-input {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Botones CTA — ancho completo y táctiles */
+  .btn-cta {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .btn-cta-inner {
+    width: 100%;
+  }
+
+  /* Precios */
   .price-current-total {
     font-size: 24px;
   }
 
+  /* Fila de confianza */
   .cta-trust-row {
     gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
+  /* Steps del navbar (ocultos en mobile) */
   .step-pill {
     font-size: 11px;
     padding: 5px 10px;
