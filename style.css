@@ -3290,3 +3290,207 @@ a.bento-cat {
   .aff-code-text { font-size: 22px; letter-spacing: 0.08em; }
 }
 
+
+/* ══════════════════════════════════════════════════════════════════════════
+   BUNDLE CARD — COMBO EXCLUSIVO
+   Borde animado dorado-violeta, banner de regalo y botón premium
+══════════════════════════════════════════════════════════════════════════ */
+
+/* Animación del borde glow: gold → purple → LinkedIn blue → gold */
+@keyframes bundleGlow {
+  0%   { border-color: #f59e0b; box-shadow: 0 0 18px rgba(245,158,11,0.55), 0 0 40px rgba(245,158,11,0.2); }
+  33%  { border-color: #7c3aed; box-shadow: 0 0 18px rgba(124,58,237,0.65), 0 0 40px rgba(124,58,237,0.25); }
+  66%  { border-color: #0077b5; box-shadow: 0 0 18px rgba(0,119,181,0.55), 0 0 40px rgba(0,119,181,0.2); }
+  100% { border-color: #f59e0b; box-shadow: 0 0 18px rgba(245,158,11,0.55), 0 0 40px rgba(245,158,11,0.2); }
+}
+
+/* Shimmer del banner de regalo */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.bundle-card {
+  border: 1.5px solid #f59e0b;
+  animation: bundleGlow 4s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Franja superior decorativa */
+.bundle-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f59e0b, #7c3aed, #0077b5, #f59e0b);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+  z-index: 2;
+}
+
+/* Badge exclusivo del bundle */
+.badge-bundle {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #000;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 12px rgba(245,158,11,0.5);
+}
+
+/* Banner de regalo con shimmer */
+.bundle-gift-banner {
+  background: linear-gradient(
+    90deg,
+    rgba(245,158,11,0.12) 0%,
+    rgba(245,158,11,0.25) 40%,
+    rgba(124,58,237,0.2) 60%,
+    rgba(245,158,11,0.12) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+  border: 1px solid rgba(245,158,11,0.35);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 10px 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fbbf24;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+/* Precio del bundle — más grande y brillante */
+.bundle-price {
+  font-size: 22px !important;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(245,158,11,0.6));
+}
+
+/* Botón del bundle — gradiente dorado-violeta */
+.btn-bundle {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 40%, #7c3aed 100%) !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(245,158,11,0.4), 0 2px 8px rgba(124,58,237,0.3);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-bundle:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 28px rgba(245,158,11,0.55), 0 4px 12px rgba(124,58,237,0.4);
+}
+
+/* Responsive: en móvil el banner de regalo achica la fuente */
+@media (max-width: 768px) {
+  .bundle-gift-banner { font-size: 11px; padding: 7px 10px; }
+  .bundle-price { font-size: 20px !important; }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SUPER COMBO BANNER — CTA de tiempo limitado
+   Aparece encima del grid de Mas Vendidos en index.html
+══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes superPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.5), 0 0 20px rgba(245,158,11,0.2); border-color: rgba(245,158,11,0.7); }
+  50%       { box-shadow: 0 0 0 8px rgba(245,158,11,0), 0 0 40px rgba(245,158,11,0.35); border-color: rgba(124,58,237,0.9); }
+}
+
+@keyframes iconBounce {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.2) rotate(-8deg); }
+}
+
+.super-combo-banner-wrap {
+  grid-column: 1 / -1;
+  margin-bottom: 8px;
+}
+
+.btn-super-combo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 18px 28px;
+  background: linear-gradient(135deg, rgba(245,158,11,0.07) 0%, rgba(124,58,237,0.09) 50%, rgba(245,158,11,0.07) 100%);
+  border: 1.5px solid rgba(245,158,11,0.6);
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  animation: superPulse 2.4s ease-in-out infinite;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.btn-super-combo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.05) 50%, transparent 60%);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+  pointer-events: none;
+}
+
+.btn-super-combo:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, rgba(245,158,11,0.12) 0%, rgba(124,58,237,0.14) 50%, rgba(245,158,11,0.12) 100%);
+}
+
+.super-combo-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+  animation: iconBounce 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(245,158,11,0.7));
+}
+
+.super-combo-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.super-combo-text strong {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  background: linear-gradient(90deg, #fbbf24, #f59e0b, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.super-combo-text small {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.super-combo-arrow {
+  flex-shrink: 0;
+  color: #fbbf24;
+  transition: transform 0.2s ease;
+  filter: drop-shadow(0 0 6px rgba(245,158,11,0.6));
+}
+
+.btn-super-combo:hover .super-combo-arrow {
+  transform: translateX(5px);
+}
+
+@media (max-width: 600px) {
+  .btn-super-combo { padding: 14px 18px; gap: 12px; }
+  .super-combo-icon { font-size: 26px; }
+  .super-combo-text strong { font-size: 13px; }
+  .super-combo-text small { font-size: 11px; }
+  .super-combo-arrow svg { width: 18px; height: 18px; }
+}
