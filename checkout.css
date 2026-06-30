@@ -358,7 +358,7 @@
   border-radius: 12px;
   padding: 13px 42px 13px 40px;
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 16px; /* Mínimo 16px para evitar auto-zoom en iOS/Safari */
   font-weight: 600;
   letter-spacing: 0.1em;
   color: var(--text-primary);
@@ -818,6 +818,7 @@
   .checkout-container {
     grid-template-columns: 1fr;
     max-width: 580px;
+    margin: 0 auto; /* Centra el contenido en tablets y móviles */
   }
 
   .checkout-col-right {
