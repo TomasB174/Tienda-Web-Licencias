@@ -4,23 +4,6 @@
  */
 
 /* ─────────────────────────────────────────
-   RESET DE ZOOM (iOS Safari)
-   Al navegar desde otra página, iOS puede heredar el estado de zoom.
-   Este snippet fuerza scale=1 inmediatamente al cargar checkout.
-───────────────────────────────────────── */
-(function resetMobileZoom() {
-  const vp = document.querySelector('meta[name="viewport"]');
-  if (!vp) return;
-  // Temporarily add maximum-scale=1 to reset zoom, then remove it
-  // so the user can still pinch-zoom after (accessibility)
-  const original = vp.content;
-  vp.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover';
-  requestAnimationFrame(function() {
-    vp.content = original + ', viewport-fit=cover';
-  });
-})();
-
-/* ─────────────────────────────────────────
    CONSTANTES
 ───────────────────────────────────────── */
 const WHATSAPP_NUMBER  = "5491131678989";   // Tu número de WhatsApp (sin + ni espacios)
