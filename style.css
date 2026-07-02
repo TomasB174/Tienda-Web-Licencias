@@ -3598,3 +3598,129 @@ a.bento-cat {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 8px 28px rgba(56,189,248,0.5), 0 4px 12px rgba(124,58,237,0.35);
 }
+
+/* ── Variante VIOLETA/CIAN (Pack Creador) ── */
+
+@keyframes bundleGlowViolet {
+  0%   { border-color: #a855f7; box-shadow: 0 0 18px rgba(168,85,247,0.55), 0 0 40px rgba(168,85,247,0.20); }
+  50%  { border-color: #22d3ee; box-shadow: 0 0 18px rgba(34,211,238,0.55), 0 0 40px rgba(34,211,238,0.22); }
+  100% { border-color: #a855f7; box-shadow: 0 0 18px rgba(168,85,247,0.55), 0 0 40px rgba(168,85,247,0.20); }
+}
+
+.bundle-card-violet {
+  border: 1.5px solid #a855f7;
+  animation: bundleGlowViolet 4s ease-in-out infinite;
+}
+
+.bundle-card-violet::before {
+  background: linear-gradient(90deg, #a855f7, #22d3ee, #7c3aed, #a855f7);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+.badge-bundle-violet {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: #fff;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 12px rgba(168,85,247,0.50);
+}
+
+.bundle-gift-banner-violet {
+  background: linear-gradient(
+    90deg,
+    rgba(168,85,247,0.12) 0%,
+    rgba(168,85,247,0.25) 40%,
+    rgba(34,211,238,0.18) 60%,
+    rgba(168,85,247,0.12) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+  border: 1px solid rgba(168,85,247,0.35);
+  color: #c084fc;
+}
+
+.bundle-price-violet {
+  background: linear-gradient(135deg, #a855f7, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(168,85,247,0.60));
+}
+
+.btn-bundle-violet {
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #22d3ee 100%) !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(168,85,247,0.45), 0 2px 8px rgba(34,211,238,0.30);
+  font-weight: 800;
+}
+
+.btn-bundle-violet:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 28px rgba(168,85,247,0.55), 0 4px 12px rgba(34,211,238,0.40);
+}
+
+/* ── Variante AZUL CORPORATIVO/CIAN (Pack Perfil Pro) ── */
+
+@keyframes bundleGlowCorp {
+  0%   { border-color: #1d4ed8; box-shadow: 0 0 18px rgba(29,78,216,0.55), 0 0 40px rgba(29,78,216,0.22); }
+  50%  { border-color: #06b6d4; box-shadow: 0 0 18px rgba(6,182,212,0.55), 0 0 40px rgba(6,182,212,0.22); }
+  100% { border-color: #1d4ed8; box-shadow: 0 0 18px rgba(29,78,216,0.55), 0 0 40px rgba(29,78,216,0.22); }
+}
+
+.bundle-card-corp {
+  border: 1.5px solid #1d4ed8;
+  animation: bundleGlowCorp 4s ease-in-out infinite;
+}
+
+.bundle-card-corp::before {
+  background: linear-gradient(90deg, #1d4ed8, #06b6d4, #3b82f6, #1d4ed8);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+.badge-bundle-corp {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: #fff;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 12px rgba(29,78,216,0.50);
+}
+
+.bundle-gift-banner-corp {
+  background: linear-gradient(
+    90deg,
+    rgba(29,78,216,0.12) 0%,
+    rgba(29,78,216,0.25) 40%,
+    rgba(6,182,212,0.18) 60%,
+    rgba(29,78,216,0.12) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+  border: 1px solid rgba(29,78,216,0.35);
+  color: #60a5fa;
+}
+
+.bundle-price-corp {
+  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(29,78,216,0.60));
+}
+
+.btn-bundle-corp {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #06b6d4 100%) !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(29,78,216,0.45), 0 2px 8px rgba(6,182,212,0.30);
+  font-weight: 800;
+}
+
+.btn-bundle-corp:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 28px rgba(29,78,216,0.55), 0 4px 12px rgba(6,182,212,0.40);
+}
