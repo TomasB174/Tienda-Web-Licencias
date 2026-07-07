@@ -110,11 +110,11 @@
         <div class="combos-grid-2" id="combosGrid">
 
           <!-- ╔══════════ COMBO 1 — LinkedIn + Google AI Pro ══════════╗ -->
-          <div class="product-card bundle-card" id="prod-combo-elite"
+          <div class="product-card bundle-card" id="prod-combo-elite" data-product-id="COMBO-ELITE"
             data-qv-name="Combo Elite: LinkedIn Premium + Google AI Pro"
             data-qv-tag="🔥 Combo Exclusivo"
             data-qv-stars="5" data-qv-reviews="1.2k"
-            data-qv-price="20000" data-qv-old-price="40000"
+            data-qv-price="16999" data-qv-old-price="40000"
             data-qv-img="assets/images/Folleto_GooglePro+LinkedinPremium.jpg"
             data-qv-glow="gold"
             data-qv-desc="Potenciá tu red profesional y tu flujo de trabajo con este combo exclusivo. Incluye Cupón LinkedIn Premium 12 meses + Google AI Pro con 5TB de almacenamiento en Google One. ¡Y YouTube Premium Lite de regalo!"
@@ -146,10 +146,10 @@
               <div class="product-footer">
                 <div class="product-price">
                   <span class="price-old">ARS $40.000</span>
-                  <span class="price-current bundle-price">ARS $20.000</span>
+                  <span class="price-current bundle-price">ARS $16.999</span>
                 </div>
                 <button class="btn-add-cart btn-bundle" id="btn-combo-elite"
-                  onclick="event.stopPropagation(); addToCart('Combo Elite: LinkedIn Premium + Google AI Pro', 20000, this)">
+                  onclick="event.stopPropagation(); addToCart('Combo Elite: LinkedIn Premium + Google AI Pro', 16999, this)">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14" /></svg>
                   ¡Lo Quiero!
                 </button>
@@ -159,11 +159,11 @@
           <!-- ╚════════════════════════════════════════════════════════════╝ -->
 
           <!-- ╔══════════ COMBO 2 — Win11 + Google AI Pro ══════════╗ -->
-          <div class="product-card bundle-card bundle-card-blue" id="prod-combo-osai"
+          <div class="product-card bundle-card bundle-card-blue" id="prod-combo-osai" data-product-id="COMBO-OSAI"
             data-qv-name="Combo OS+IA: Win11 + Google AI"
             data-qv-tag="⚡ Combo OS+IA"
             data-qv-stars="5" data-qv-reviews="980"
-            data-qv-price="20000" data-qv-old-price="57000"
+            data-qv-price="16999" data-qv-old-price="57000"
             data-qv-img="assets/images/Folleto_GooglePro+Windows11Pro.jpg"
             data-qv-glow="blue"
             data-qv-desc="Llevá tu PC al siguiente nivel. Incluye Licencia Permanente de Windows 11 Pro + Google AI Pro con 5TB de almacenamiento (Google One). ¡Y YouTube Premium Lite de regalo!"
@@ -195,10 +195,10 @@
               <div class="product-footer">
                 <div class="product-price">
                   <span class="price-old">ARS $57.000</span>
-                  <span class="price-current bundle-price bundle-price-blue">ARS $20.000</span>
+                  <span class="price-current bundle-price bundle-price-blue">ARS $16.999</span>
                 </div>
                 <button class="btn-add-cart btn-bundle btn-bundle-blue" id="btn-combo-osai"
-                  onclick="event.stopPropagation(); addToCart('Combo OS+IA: Win11 + Google AI', 20000, this)">
+                  onclick="event.stopPropagation(); addToCart('Combo OS+IA: Win11 + Google AI', 16999, this)">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14" /></svg>
                   ¡Lo Quiero!
                 </button>
@@ -208,7 +208,7 @@
           <!-- ╚════════════════════════════════════════════════════════════╝ -->
 
           <!-- ╔══════════ COMBO 3 — Pack Creador: Canva Pro + Google AI ══════════╗ -->
-          <div class="product-card bundle-card bundle-card-violet" id="prod-combo-creador"
+          <div class="product-card bundle-card bundle-card-violet" id="prod-combo-creador" data-product-id="COMBO-CREADOR"
             data-qv-name="Pack Creador: Canva Pro + Google AI"
             data-qv-tag="✨ Pack Creador"
             data-qv-stars="5" data-qv-reviews="740"
@@ -258,7 +258,7 @@
           <!-- ╚════════════════════════════════════════════════════════════╝ -->
 
           <!-- ╔══════════ COMBO 4 — Pack Perfil Pro: LinkedIn + Canva ══════════╗ -->
-          <div class="product-card bundle-card bundle-card-corp" id="prod-combo-perfilpro"
+          <div class="product-card bundle-card bundle-card-corp" id="prod-combo-perfilpro" data-product-id="COMBO-PERFILPRO"
             data-qv-name="Pack Perfil Pro: LinkedIn + Canva"
             data-qv-tag="🚀 Pack Perfil Pro"
             data-qv-stars="5" data-qv-reviews="610"
@@ -448,6 +448,8 @@
   <div id="promoToastContainer" class="promo-toast-container"></div>
 
   <script src="app.js"></script>
+  <!-- ═══ CSV PRODUCT LOADER — Carga precios desde csv/productos.csv ═══ -->
+  <script src="csv/csv-loader.js"></script>
 
 </body>
 </html>

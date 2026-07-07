@@ -1,25 +1,35 @@
-,Inteligencia Artificial y Desarrollo
--ChatGPT Go
--ChatGPT Plus
--Google One AI Pro — Gemini 3.1
--Warp Build
--Cursor
--Lovable AI
-Rezi AI Yearly
-Perplexity AI Yearly
-
-,Antivirus y Seguridad
-McAfee Total Protection
-Avast Premium Security
-Webroot Premium
-McAfee Total Protection (Versión 10 dispositivos)
-McAfee Mobile Security
-Bitdefender Total Security
-
-,Suscripciones y Creatividad
-Canva Pro
-Cupón 75% OFF LinkedIn Premium 12 Meses
-
-,Ecosistema Microsoft
-Windows 11 Pro — Retail Key
-Office Professional Plus 2021
+ID_Producto    , Nombre_Producto                      , Categoria        , Precio_Original_ARS, Precio_Oferta_ARS, Etiqueta_Promocional     , Caracteristicas
+CHATGPT-GO     , ChatGPT Go                           , IA               , 12.000             ,             5.500, Sin Stock                , Modelo GPT-4o activo|1 mes de acceso|Sin límite de mensajes
+CHATGPT-PLUS   , ChatGPT Plus                         , IA               , 45.000             ,            25.000, En Tendencia             , Modelo o3|Sora Video integrado|1 mes de acceso
+GOOGLE-AI-PRO  , Google AI Pro (Gemini Pro)           , IA               , 45.000             ,            12.999, Más Vendido              , Gemini 3.1 PRO|5TB Google One|YouTube Premium Lite incluido
+WARP-BUILD     , Warp Build                           , IA               , 494.068            ,            60.000, Plan Anual               , Agente IA en terminal|Team sync|1 año de acceso
+CURSOR-PRO     , Cursor                               , IA               , 45.000             ,            35.000, Popular                  , o3 + Claude Opus 4|Chat con codebase|1 mes Pro
+LOVABLE-AI     , Lovable AI                           , IA               , 116.610            ,            19.999, Plan Anual               , Apps full-stack con IA|Deploy automático|1 año Pro Lite
+REZI-AI        , Rezi AI                              , IA               , 289.580            ,            55.000, Plan Anual               , CV optimizado por IA|ATS score en tiempo real|1 año Pro
+PERPLEXITY-PRO , Perplexity PRO                       , IA               , 396.677            ,           150.000, Plan Anual               , Búsqueda con fuentes verificadas|o3 + Claude + Gemini|1 año
+MCAFEE-1D      , McAfee Total Protection              , Antivirus        , 50.200             ,            25.000, Oferta                   , 1 dispositivo|VPN incluida|1 año
+AVAST-PREMIUM  , Avast Premium Security               , Antivirus        , 68.620             ,            25.000,                          , Anti-ransomware post-cuántico|Sandbox inteligente|1 año
+WEBROOT-PREMIUM, Webroot Premium                      , Antivirus        , 297.332            ,            32.000, Ligero                   , Motor 100% cloud|Ultra-ligero|1 año
+MCAFEE-10D     , McAfee Total Protection 1 año        , Antivirus        , 61.200             ,            30.000, Familia / 10 dispositivos, 10 dispositivos|VPN incluida|1 año
+MCAFEE-MOBILE  , McAfee Mobile Security               , Antivirus        , 37.183             ,            10.000,                          , Seguridad Android|Antirrobo|1 año
+BITDEFENDER-TS , Bitdefender Total Security           , Antivirus        , 86.000             ,            28.000, N° 1 AV-Test             , 99.99% detección|Motor IA propio|1 año
+ESET-NOD32     , ESET NOD32 Antivirus                 , Antivirus        , 73.825             ,            20.000,                          , Motor más veloz|Anti-exploit|LiveGrid® cloud
+ADGUARD-PREM   , AdGuard Premium                      , Antivirus        , 68.620             ,            20.000, Sin anuncios             , 3 dispositivos|Bloqueo DNS|1 año
+AVAST-ULT      , Avast Ultimate Windows               , Antivirus        , 251.585            ,            18.000, Todo incluido            , Antivirus+VPN+Cleanup+Driver|5 herramientas|1 año
+AVAST-IS       , Avast Internet Security              , Antivirus        , 27.173             ,             7.000, Sin Stock                , Firewall inteligente|Sandbox|Anti-spam
+AVAST-VPN      , Avast SecureLine VPN                 , Antivirus        , 54.896             ,            10.000,                          , 55+ países|AES-256|Cero logs
+AVAST-ANTITRACK, Avast AntiTrack                      , Antivirus        , 45.724             ,            15.000,                          , Falsificación de fingerprint|Anti-tracker|1 año
+AVAST-DRIVER   , Avast Driver Updater                 , Antivirus        , 34.287             ,             9.000,                          , 700k+ drivers|1 clic|1 año
+AVAST-CLEANUP  , Avast CleanUp Premium                , Antivirus        , 45.724             ,             8.000,                          , Super Limpieza automática|Boost arranque|1 año
+AVAST-ANDROID  , Avast Cleanup & Boost Pro Android    , Antivirus        , 65.326             ,            30.000,                          , Libera espacio Android|Anti-duplicados|2 años
+CANVA-PRO      , Canva Pro                            , Software         , 274.482            ,            10.000, Premium                  , Magic Studio IA|100M+ plantillas|Brand Kit
+LINKEDIN-75OFF , Cupón LinkedIn Premium 75% OFF       , Software         , 539.880            ,             9.999, 75% OFF                  , 75% descuento|12 meses|Career o Business
+ADOBE-CC-PHOTO , Adobe CC Photography 1TB             , Software         , 45.724             ,            16.000, Premium                  , Photoshop + Lightroom|Adobe Firefly IA|1TB cloud
+WIN11-PRO      , Windows 11 Pro — Retail Key          , Sistema Operativo, 274.063            ,            12.000, Más Vendido              , Licencia permanente|Transferible|Copilot+ integrado
+OFFICE-2021    , Office Professional Plus 2021        , Software         , 37.199             ,            20.000, Licencia Vitalicia       , 8 apps (Word/Excel/PowerPoint...)|Permanente|Win + Mac
+WIN10-PRO      , Windows 10 Pro — Retail Key          , Sistema Operativo, 361.665            ,            10.000,                          , Licencia permanente|Actualizable a Win11 gratis|Transferible
+OFFICE-2024    , Office Professional Plus 2024        , Software         , 63.399             ,            15.000, Premium                  , Copilot IA integrado|Permanente|8 apps
+COMBO-ELITE    , Combo Elite: LinkedIn + Google AI Pro, Combos           , 40.000             ,            16.999, 🔥 Oferta Limitada       , LinkedIn Premium 12 meses|Google AI Pro + 5TB One|YouTube Premium Lite de regalo
+COMBO-OSAI     , Combo OS+IA: Win11 + Google AI       , Combos           , 57.000             ,            16.999, ⚡ Combo OS+IA            , Windows 11 Pro permanente|Google AI Pro + 5TB One|YouTube Premium Lite de regalo
+COMBO-CREADOR  , Pack Creador: Canva Pro + Google AI  , Combos           , 40.000             ,            14.999, ✨ Pack Creador           , Canva Pro completo|Google AI Pro + 5TB One|YouTube Premium Lite de regalo
+COMBO-PERFILPRO, Pack Perfil Pro: LinkedIn + Canva    , Combos           , 35.000             ,            14.999, 🚀 Pack Perfil Pro       , LinkedIn Premium 75% OFF 12 meses|Canva Pro completo|3 meses YouTube Premium de regalo
